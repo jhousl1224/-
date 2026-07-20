@@ -3,8 +3,15 @@ import { mountCardStack, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
-import { TEASER_CAREER, TEASER_LOVE, type Teaser } from "../lib/teaserData";
+import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
+
+const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Teaser> }[] = [
+  { labelZh: "💞 感情關係", labelEn: "Love & Relationships", data: TEASER_LOVE },
+  { labelZh: "💼 事業方向", labelEn: "Career Direction", data: TEASER_CAREER },
+  { labelZh: "💰 財運", labelEn: "Money & Wealth", data: TEASER_WEALTH },
+  { labelZh: "🌿 健康", labelEn: "Health", data: TEASER_HEALTH },
+];
 
 function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser): string {
   return `
@@ -128,9 +135,9 @@ export function mountResult(root: HTMLElement) {
 
     const teaserStack = document.createElement("div");
     teaserStack.className = "teaser-stack";
-    teaserStack.innerHTML =
-      buildTeaserCard("💞 感情關係", "Love & Relationships", TEASER_LOVE[profile.bazi.dominantWuxing]) +
-      buildTeaserCard("💼 事業方向", "Career Direction", TEASER_CAREER[profile.bazi.dominantWuxing]);
+    teaserStack.innerHTML = TEASER_TOPICS.map((topic) =>
+      buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[profile.bazi.dominantWuxing]),
+    ).join("");
     content.appendChild(teaserStack);
 
     content.appendChild(guide.el);
@@ -141,8 +148,8 @@ export function mountResult(root: HTMLElement) {
     content.appendChild(cta);
 
     guide.say(
-      "這只是你命盤的縮影，感情跟事業的完整解讀之後會在深度報告裡揭曉！",
-      "This is just the trailer — the full story on love and career is coming in the deep-dive report.",
+      "這只是你命盤的縮影，感情、事業、財運、健康的完整解讀之後會在深度報告裡揭曉！",
+      "This is just the trailer — the full story on love, career, money, and health is coming in the deep-dive report.",
     );
   }
 

@@ -70,3 +70,69 @@ export const TEASER_CAREER: Record<string, Teaser> = {
     blurredEn: "but there's one kind of choice that would actually amplify your edge...",
   },
 };
+
+export const TEASER_WEALTH: Record<string, Teaser> = {
+  木: {
+    visibleZh: "財運上，木氣旺的你賺錢的方式偏向長期累積、穩紮穩打，",
+    blurredZh: "但有一種花錢習慣，正在悄悄拖慢你存錢的速度……",
+    visibleEn: "Money-wise, your Wood energy favors slow, steady accumulation —",
+    blurredEn: "but there's one spending habit quietly slowing down how fast you save...",
+  },
+  火: {
+    visibleZh: "財運上，火氣旺的你賺錢速度快、也敢投資自己，",
+    blurredZh: "但衝動消費這件事，可能正在悄悄吃掉你的積蓄……",
+    visibleEn: "Financially, your Fire energy means money comes fast, and you're not afraid to invest in yourself —",
+    blurredEn: "but impulse spending might be quietly eating into your savings...",
+  },
+  土: {
+    visibleZh: "財運上，土氣旺的你天生就懂得存錢、重視安全感，",
+    blurredZh: "但有一種投資機會，你可能因為太保守而一直錯過……",
+    visibleEn: "Money-wise, your Earth energy makes saving feel natural — security matters to you —",
+    blurredEn: "but there's a kind of opportunity you might keep passing on for being too cautious...",
+  },
+  金: {
+    visibleZh: "財運上，金氣旺的你理財觀念清楚、執行力強，",
+    blurredZh: "但有一個財務決定，你其實已經猶豫很久了……",
+    visibleEn: "Financially, your Metal energy gives you clear, disciplined money habits —",
+    blurredEn: "but there's one financial decision you've actually been putting off for a while...",
+  },
+  水: {
+    visibleZh: "財運上，水氣旺的你賺錢管道多元、腦筋靈活，",
+    blurredZh: "但錢留不住的原因，其實跟你想的不太一樣……",
+    visibleEn: "Money flows to you through multiple channels thanks to your Water energy —",
+    blurredEn: "but the real reason it doesn't stick around is a little different than you'd think...",
+  },
+};
+
+export const TEASER_HEALTH: Record<string, Teaser> = {
+  木: {
+    visibleZh: "健康上，木氣旺的你要留意的多半跟肝、情緒壓力有關，",
+    blurredZh: "尤其是這個時段，你的身體其實已經在提醒你……",
+    visibleEn: "Health-wise, your Wood energy tends to show stress through your liver and emotional load —",
+    blurredEn: "and there's a specific window where your body's already trying to tell you something...",
+  },
+  火: {
+    visibleZh: "健康上，火氣旺的你容易在心血管與睡眠品質上出現警訊，",
+    blurredZh: "特別是當你處於這種狀態的時候……",
+    visibleEn: "Your Fire energy tends to put pressure on your heart and sleep quality —",
+    blurredEn: "especially when you're in this particular state...",
+  },
+  土: {
+    visibleZh: "健康上，土氣旺的你要多注意腸胃與代謝方面的狀況，",
+    blurredZh: "有一個生活習慣，其實是你身體負擔的主要來源……",
+    visibleEn: "Your Earth energy makes digestion and metabolism the areas most worth watching —",
+    blurredEn: "and there's one daily habit that's actually the main source of strain...",
+  },
+  金: {
+    visibleZh: "健康上，金氣旺的你要注意呼吸系統與皮膚方面的訊號，",
+    blurredZh: "尤其是在某個季節，你的身體反應會特別明顯……",
+    visibleEn: "Your Metal energy means your lungs and skin are worth paying attention to —",
+    blurredEn: "especially during one particular season when your body reacts the most...",
+  },
+  水: {
+    visibleZh: "健康上，水氣旺的你容易在腎臟與循環系統上出現疲勞訊號，",
+    blurredZh: "而且有一個徵兆，你可能已經忽略很久了……",
+    visibleEn: "Your Water energy tends to show fatigue through your kidneys and circulation —",
+    blurredEn: "and there's a warning sign you might have been ignoring for a while...",
+  },
+};
