@@ -1,0 +1,129 @@
+:root {
+  --navy-deep: #0d1030;
+  --navy: #1a2054;
+  --navy-light: #2a3170;
+  --gold: #d4af7a;
+  --gold-soft: #e8cda3;
+  --jade: #5b8c7b;
+  --jade-soft: #7fac9c;
+  --cream: #f3ecdd;
+  --cream-dim: #c9c2b2;
+
+  --font-serif: "Noto Serif TC", serif;
+  --font-sans: "Noto Sans TC", sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius-card: 20px;
+  --radius-pill: 999px;
+
+  --shadow-gold: 0 0 24px rgba(212, 175, 122, 0.35);
+  --shadow-deep: 0 12px 32px rgba(5, 6, 20, 0.45);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--navy-deep);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#app {
+  position: relative;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin: 0;
+  color: var(--cream);
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+.zh {
+  font-family: var(--font-serif);
+}
+
+.en {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--gold-soft);
+  opacity: 0.85;
+}
+
+.en--body {
+  color: var(--cream-dim);
+  font-weight: 300;
+}
+
+.section {
+  position: relative;
+  min-height: 100dvh;
+  padding: var(--space-5) var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  z-index: 1;
+}
+
+.section__inner {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .section__inner {
+    max-width: 560px;
+  }
+}

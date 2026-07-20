@@ -1,0 +1,15 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#result {
+  scroll-margin-top: 0;
+}
+
+#input {
+  scroll-margin-top: 0;
+}
+
+.section + .section {
+  border-top: 1px solid rgba(212, 175, 122, 0.08);
+}
