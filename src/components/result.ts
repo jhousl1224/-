@@ -6,10 +6,10 @@ import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
 import type { BirthProfile } from "../lib/types";
 
 const PROGRESS_STEPS = [
-  { pct: 25, zh: "正在排紫微斗數星盤…", en: "Charting your Zi Wei Dou Shu palaces..." },
-  { pct: 55, zh: "正在推算八字四柱…", en: "Calculating your Bazi Four Pillars..." },
-  { pct: 80, zh: "正在對照生肖與星座…", en: "Cross-referencing Chinese zodiac and star sign..." },
-  { pct: 100, zh: "完成！為你整理白話分析…", en: "Done! Writing your reading in plain words..." },
+  { pct: 25, zh: "正在排紫微斗數星盤…", en: "Mapping out your Zi Wei Dou Shu palaces..." },
+  { pct: 55, zh: "正在推算八字四柱…", en: "Crunching your Bazi Four Pillars..." },
+  { pct: 80, zh: "正在對照生肖與星座…", en: "Checking your Chinese zodiac and star sign..." },
+  { pct: 100, zh: "完成！為你整理白話分析…", en: "Done! Putting it all into plain English..." },
 ];
 
 export function mountResult(root: HTMLElement) {
@@ -72,7 +72,7 @@ export function mountResult(root: HTMLElement) {
         titleEn: "Zi Wei Dou Shu",
         frontNoteZh: ziweiStars.length > 0 ? `命宮主星：${ziweiStars.join("、")}` : "命宮無主星",
         frontNoteEn:
-          ziweiStarsEn.length > 0 ? `Life Palace star(s): ${ziweiStarsEn.join(" & ")}` : "No major star in the Life Palace",
+          ziweiStarsEn.length > 0 ? `Your Life Palace star: ${ziweiStarsEn.join(" & ")}` : "No major star in your Life Palace",
         bodyZh: analysis.ziwei.zh,
         bodyEn: analysis.ziwei.en,
       },
@@ -90,7 +90,7 @@ export function mountResult(root: HTMLElement) {
         titleZh: `生肖・${profile.zodiac.animal}`,
         titleEn: `Chinese Zodiac · ${profile.zodiac.animalEn}`,
         frontNoteZh: "點擊看看你的生肖特質",
-        frontNoteEn: "Tap to reveal your zodiac traits",
+        frontNoteEn: "Tap to see what your animal says about you",
         bodyZh: analysis.zodiac.zh,
         bodyEn: analysis.zodiac.en,
       },
@@ -99,7 +99,7 @@ export function mountResult(root: HTMLElement) {
         titleZh: `星座・${profile.western.sign}`,
         titleEn: `Star Sign · ${profile.western.signEn}`,
         frontNoteZh: "點擊看看你的星座特質",
-        frontNoteEn: "Tap to reveal your star sign traits",
+        frontNoteEn: "Tap to see what your sign says about you",
         bodyZh: analysis.western.zh,
         bodyEn: analysis.western.en,
       },
@@ -110,12 +110,12 @@ export function mountResult(root: HTMLElement) {
 
     const cta = document.createElement("p");
     cta.className = "result-cta";
-    cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">Full in-depth report — unlock coming soon.</span>`;
+    cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">The full deep-dive report is coming soon — stay tuned.</span>`;
     content.appendChild(cta);
 
     guide.say(
       "這只是你命盤的縮影，之後會有更完整的深度報告喔！",
-      "This is just a glimpse — a fuller, deeper report is on the way.",
+      "This is just the trailer — the full story's coming soon.",
     );
   }
 

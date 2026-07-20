@@ -147,7 +147,7 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
       isLeapMonth: calendarType === "lunar" ? leapCheckbox.checked : false,
     };
 
-    guide.say("好，讓我來翻翻星圖……", "Alright, let me turn the pages of your chart...");
+    guide.say("好，讓我來翻翻星圖……", "Alright, let's see what the stars have to say...");
     onSubmit(input);
   });
 
