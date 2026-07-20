@@ -30,8 +30,8 @@ export function generateAnalysis(profile: BirthProfile): AnalysisResult {
   const baziRestZh = bazi.zh.replace(/^八字五行以「.+?」氣最旺，/, "");
 
   const summary: Bilingual = {
-    zh: `綜合來看，${ziwei.zh}再加上八字「${profile.bazi.dominantWuxing}」氣當旺，${baziRestZh}屬${profile.zodiac.animal}又是${profile.western.sign}的你，天賦其實比自己以為的更清楚——只是還沒被好好整理出來。`,
-    en: `So here's the short version: ${ziwei.en} ${bazi.en} Throw in a ${profile.zodiac.animalEn} year and a ${profile.western.signEn} streak, and your gifts are honestly clearer than you give yourself credit for — they just haven't been named yet.`,
+    zh: `綜合來看，${ziwei.zh}再加上八字「${profile.bazi.dominantWuxing}」氣當旺，${baziRestZh}屬${profile.zodiac.animal}又是${profile.western.sign}的你，把這些特質放在一起看，你的天賦其實比自己以為的更明確——只是一直沒有人好好幫你整理出來。`,
+    en: `So here's the short version: ${ziwei.en} ${bazi.en} Throw in a ${profile.zodiac.animalEn} year and a ${profile.western.signEn} streak, and put together, your gifts are honestly more defined than you give yourself credit for — nobody's just laid them out for you like this before.`,
   };
 
   return { ziwei, bazi, zodiac, western, summary };
