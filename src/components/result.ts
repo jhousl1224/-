@@ -1,9 +1,24 @@
 import { createGuide } from "./guide";
-import { mountCardDeck, type CardSpec } from "./cards";
+import { mountCardStack, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
+import { TEASER_CAREER, TEASER_LOVE, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
+
+function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser): string {
+  return `
+    <div class="teaser-card">
+      <p class="teaser-label"><span class="zh">${labelZh}</span> <span class="en" style="display:inline;">${labelEn}</span></p>
+      <div class="teaser-text">
+        <p class="zh">${teaser.visibleZh}<span class="teaser-text-blurred">${teaser.blurredZh}</span></p>
+        <p class="en">${teaser.visibleEn} <span class="teaser-text-blurred">${teaser.blurredEn}</span></p>
+        <div class="teaser-fade"></div>
+      </div>
+      <div class="teaser-unlock">🔒 <span class="zh">解鎖完整分析</span><span class="en" style="display:inline;">Unlock full analysis</span></div>
+    </div>
+  `;
+}
 
 const PROGRESS_STEPS = [
   { pct: 25, zh: "正在排紫微斗數星盤…", en: "Mapping out your Zi Wei Dou Shu palaces..." },
@@ -58,9 +73,9 @@ export function mountResult(root: HTMLElement) {
       </div>
     `;
 
-    const deckWrap = document.createElement("div");
-    deckWrap.style.width = "100%";
-    content.appendChild(deckWrap);
+    const stackWrap = document.createElement("div");
+    stackWrap.style.width = "100%";
+    content.appendChild(stackWrap);
 
     const ziweiStars = profile.ziwei.soulPalaceMajorStars;
     const ziweiStarsEn = ziweiStars.map((s) => ZIWEI_STAR_EN_NAME[s] ?? s);
@@ -105,7 +120,19 @@ export function mountResult(root: HTMLElement) {
       },
     ];
 
-    mountCardDeck(deckWrap, cards);
+    mountCardStack(stackWrap, cards);
+
+    const teaserHeading = document.createElement("div");
+    teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><span class="en">There's more hiding in your chart</span>`;
+    content.appendChild(teaserHeading);
+
+    const teaserStack = document.createElement("div");
+    teaserStack.className = "teaser-stack";
+    teaserStack.innerHTML =
+      buildTeaserCard("💞 感情關係", "Love & Relationships", TEASER_LOVE[profile.bazi.dominantWuxing]) +
+      buildTeaserCard("💼 事業方向", "Career Direction", TEASER_CAREER[profile.bazi.dominantWuxing]);
+    content.appendChild(teaserStack);
+
     content.appendChild(guide.el);
 
     const cta = document.createElement("p");
@@ -114,8 +141,8 @@ export function mountResult(root: HTMLElement) {
     content.appendChild(cta);
 
     guide.say(
-      "這只是你命盤的縮影，之後會有更完整的深度報告喔！",
-      "This is just the trailer — the full story's coming soon.",
+      "這只是你命盤的縮影，感情跟事業的完整解讀之後會在深度報告裡揭曉！",
+      "This is just the trailer — the full story on love and career is coming in the deep-dive report.",
     );
   }
 

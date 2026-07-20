@@ -31,24 +31,30 @@ function buildCard(spec: CardSpec): HTMLElement {
   return card;
 }
 
-export function mountCardDeck(container: HTMLElement, specs: CardSpec[]) {
-  const deck = document.createElement("div");
-  deck.className = "card-deck";
-  specs.forEach((spec) => deck.appendChild(buildCard(spec)));
+export function mountCardStack(container: HTMLElement, specs: CardSpec[]) {
+  const stack = document.createElement("div");
+  stack.className = "card-stack";
 
-  const dots = document.createElement("div");
-  dots.className = "deck-dots";
-  specs.forEach((_, i) => {
-    const dot = document.createElement("span");
-    if (i === 0) dot.classList.add("is-active");
-    dots.appendChild(dot);
+  specs.forEach((spec, i) => {
+    const item = document.createElement("div");
+    item.className = "card-stack-item";
+
+    const index = document.createElement("span");
+    index.className = "card-stack-index";
+    index.textContent = `${i + 1} / ${specs.length}`;
+    item.appendChild(index);
+
+    item.appendChild(buildCard(spec));
+
+    if (i < specs.length - 1) {
+      const hint = document.createElement("div");
+      hint.className = "card-stack-hint";
+      hint.textContent = "↓";
+      item.appendChild(hint);
+    }
+
+    stack.appendChild(item);
   });
 
-  deck.addEventListener("scroll", () => {
-    const index = Math.round(deck.scrollLeft / (deck.firstElementChild as HTMLElement).clientWidth);
-    dots.querySelectorAll("span").forEach((dot, i) => dot.classList.toggle("is-active", i === index));
-  });
-
-  container.appendChild(deck);
-  container.appendChild(dots);
+  container.appendChild(stack);
 }
