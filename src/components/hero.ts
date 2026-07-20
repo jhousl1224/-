@@ -16,13 +16,13 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
       </h1>
       <p class="hero__desc">
         <span class="zh">結合紫微斗數、八字、星座與生肖，用一份出生資料，畫出屬於你的天賦地圖。</span>
-        <span class="en en--body">One birthday, four ancient lenses — Zi Wei Dou Shu, Bazi, zodiac, and sun sign, woven into a map of your gifts.</span>
+        <span class="en en--body">One birthday, four ancient lenses — Zi Wei Dou Shu, Bazi, Chinese Zodiac, and Star Sign, woven into a map of your gifts.</span>
       </p>
       <div class="hero__pillars">
         <span class="pillar-tag">紫微斗數 Zi Wei</span>
         <span class="pillar-tag">八字 Bazi</span>
-        <span class="pillar-tag">生肖 Zodiac</span>
-        <span class="pillar-tag">星座 Sun Sign</span>
+        <span class="pillar-tag">生肖 Chinese Zodiac</span>
+        <span class="pillar-tag">星座 Star Sign</span>
       </div>
     </div>
   `;

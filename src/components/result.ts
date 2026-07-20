@@ -6,7 +6,7 @@ import type { BirthProfile } from "../lib/types";
 const PROGRESS_STEPS = [
   { pct: 25, zh: "正在排紫微斗數星盤…", en: "Charting your Zi Wei Dou Shu palaces..." },
   { pct: 55, zh: "正在推算八字四柱…", en: "Calculating your Bazi Four Pillars..." },
-  { pct: 80, zh: "正在對照生肖與星座…", en: "Cross-referencing zodiac and sun sign..." },
+  { pct: 80, zh: "正在對照生肖與星座…", en: "Cross-referencing Chinese zodiac and star sign..." },
   { pct: 100, zh: "完成！為你整理白話分析…", en: "Done! Writing your reading in plain words..." },
 ];
 
@@ -83,7 +83,7 @@ export function mountResult(root: HTMLElement) {
       {
         icon: "🐉",
         titleZh: `生肖・${profile.zodiac.animal}`,
-        titleEn: profile.zodiac.animalEn,
+        titleEn: `Chinese Zodiac · ${profile.zodiac.animalEn}`,
         frontNoteZh: "點擊看看你的生肖特質",
         bodyZh: analysis.zodiac.zh,
         bodyEn: analysis.zodiac.en,
@@ -91,7 +91,7 @@ export function mountResult(root: HTMLElement) {
       {
         icon: "✦",
         titleZh: `星座・${profile.western.sign}`,
-        titleEn: profile.western.signEn,
+        titleEn: `Star Sign · ${profile.western.signEn}`,
         frontNoteZh: "點擊看看你的星座特質",
         bodyZh: analysis.western.zh,
         bodyEn: analysis.western.en,
