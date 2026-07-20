@@ -67,6 +67,23 @@ export const ZIWEI_NO_STAR: Bilingual = {
   en: "An empty Life Palace means your character is shaped by the surrounding stars — unusually adaptable and hard to box in.",
 };
 
+export const ZIWEI_STAR_EN_NAME: Record<string, string> = {
+  紫微: "Purple Star",
+  天機: "Star of Ingenuity",
+  太陽: "Sun Star",
+  武曲: "Star of Resolve",
+  天同: "Star of Contentment",
+  廉貞: "Star of Integrity",
+  天府: "Treasury Star",
+  太陰: "Moon Star",
+  貪狼: "Star of Desire",
+  巨門: "Star of Eloquence",
+  天相: "Star of Counsel",
+  天梁: "Star of Elders",
+  七殺: "Star of the General",
+  破軍: "Star of Transformation",
+};
+
 export const WUXING_TRAITS: Record<string, Bilingual> = {
   木: {
     zh: "八字五行以「木」氣最旺，你富有生長力與理想性，喜歡學習成長，也樂於扶持他人向上發展。",

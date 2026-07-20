@@ -1,6 +1,8 @@
 import { createGuide } from "./guide";
 import { mountCardDeck, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
+import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
+import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
 import type { BirthProfile } from "../lib/types";
 
 const PROGRESS_STEPS = [
@@ -60,15 +62,17 @@ export function mountResult(root: HTMLElement) {
     deckWrap.style.width = "100%";
     content.appendChild(deckWrap);
 
+    const ziweiStars = profile.ziwei.soulPalaceMajorStars;
+    const ziweiStarsEn = ziweiStars.map((s) => ZIWEI_STAR_EN_NAME[s] ?? s);
+
     const cards: CardSpec[] = [
       {
         icon: "☯",
         titleZh: `紫微・${profile.ziwei.soulPalace}`,
         titleEn: "Zi Wei Dou Shu",
-        frontNoteZh:
-          profile.ziwei.soulPalaceMajorStars.length > 0
-            ? `命宮主星：${profile.ziwei.soulPalaceMajorStars.join("、")}`
-            : "命宮無主星",
+        frontNoteZh: ziweiStars.length > 0 ? `命宮主星：${ziweiStars.join("、")}` : "命宮無主星",
+        frontNoteEn:
+          ziweiStarsEn.length > 0 ? `Life Palace star(s): ${ziweiStarsEn.join(" & ")}` : "No major star in the Life Palace",
         bodyZh: analysis.ziwei.zh,
         bodyEn: analysis.ziwei.en,
       },
@@ -77,6 +81,7 @@ export function mountResult(root: HTMLElement) {
         titleZh: `八字・${profile.bazi.dominantWuxing}氣旺`,
         titleEn: "Bazi Four Pillars",
         frontNoteZh: `日主：${profile.bazi.dayMaster}　${profile.bazi.year.ganZhi} ${profile.bazi.month.ganZhi} ${profile.bazi.day.ganZhi} ${profile.bazi.time.ganZhi}`,
+        frontNoteEn: `Day Master: ${ganToPinyin(profile.bazi.dayMaster)} · ${ganZhiToPinyin(profile.bazi.year.ganZhi)} / ${ganZhiToPinyin(profile.bazi.month.ganZhi)} / ${ganZhiToPinyin(profile.bazi.day.ganZhi)} / ${ganZhiToPinyin(profile.bazi.time.ganZhi)}`,
         bodyZh: analysis.bazi.zh,
         bodyEn: analysis.bazi.en,
       },
@@ -85,6 +90,7 @@ export function mountResult(root: HTMLElement) {
         titleZh: `生肖・${profile.zodiac.animal}`,
         titleEn: `Chinese Zodiac · ${profile.zodiac.animalEn}`,
         frontNoteZh: "點擊看看你的生肖特質",
+        frontNoteEn: "Tap to reveal your zodiac traits",
         bodyZh: analysis.zodiac.zh,
         bodyEn: analysis.zodiac.en,
       },
@@ -93,6 +99,7 @@ export function mountResult(root: HTMLElement) {
         titleZh: `星座・${profile.western.sign}`,
         titleEn: `Star Sign · ${profile.western.signEn}`,
         frontNoteZh: "點擊看看你的星座特質",
+        frontNoteEn: "Tap to reveal your star sign traits",
         bodyZh: analysis.western.zh,
         bodyEn: analysis.western.en,
       },

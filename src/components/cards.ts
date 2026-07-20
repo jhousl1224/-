@@ -3,6 +3,7 @@ export interface CardSpec {
   titleZh: string;
   titleEn: string;
   frontNoteZh: string;
+  frontNoteEn: string;
   bodyZh: string;
   bodyEn: string;
 }
@@ -16,7 +17,8 @@ function buildCard(spec: CardSpec): HTMLElement {
         <div class="flip-card-icon">${spec.icon}</div>
         <h3 class="flip-card-title zh">${spec.titleZh}</h3>
         <span class="en">${spec.titleEn}</span>
-        <p class="en--body" style="font-size:0.8rem;">${spec.frontNoteZh}</p>
+        <p class="zh" style="font-size:0.8rem; margin-top:0.4rem;">${spec.frontNoteZh}</p>
+        <p class="en en--body" style="font-size:0.72rem;">${spec.frontNoteEn}</p>
         <span class="flip-card-hint">點擊翻牌 Tap to flip</span>
       </div>
       <div class="flip-card-face flip-card-back">
