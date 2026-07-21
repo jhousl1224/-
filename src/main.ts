@@ -10,6 +10,7 @@ import { mountStarfield } from "./components/starfield";
 import { mountHero } from "./components/hero";
 import { mountForm } from "./components/form";
 import { mountResult } from "./components/result";
+import { mountFloatingUnlock } from "./components/floatingUnlock";
 import { buildProfile } from "./lib/profile";
 import { generateAnalysis } from "./lib/analysis";
 import type { BirthInput } from "./lib/types";
@@ -24,6 +25,7 @@ mountHero(app, () => {
 });
 mountForm(app, handleSubmit);
 const result = mountResult(app);
+mountFloatingUnlock(app);
 
 function handleSubmit(input: BirthInput) {
   const resultSection = document.getElementById("result");
