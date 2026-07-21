@@ -8,7 +8,7 @@
 
 .guide__figure {
   width: var(--guide-width);
-  aspect-ratio: 1068 / 768;
+  aspect-ratio: 1054 / 768;
   cursor: pointer;
   animation: guide-breathe 4.5s ease-in-out infinite;
   filter: drop-shadow(0 10px 22px rgba(212, 175, 122, 0.3));
