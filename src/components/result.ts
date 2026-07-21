@@ -2,7 +2,7 @@ import { createGuide } from "./guide";
 import { mountCardStack, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
-import { WESTERN_ICON, WUXING_ICON, ZIWEI_STAR_ICON, ZODIAC_ICON } from "../lib/icons";
+import { WESTERN_BADGE, WUXING_BADGE, ZIWEI_NO_STAR_BADGE, ZIWEI_STAR_BADGE, ZODIAC_BADGE } from "../lib/icons";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
 import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
@@ -87,11 +87,11 @@ export function mountResult(root: HTMLElement) {
 
     const ziweiStars = profile.ziwei.soulPalaceMajorStars;
     const ziweiStarsEn = ziweiStars.map((s) => ZIWEI_STAR_EN_NAME[s] ?? s);
-    const ziweiIcon = ziweiStars.length > 0 ? (ZIWEI_STAR_ICON[ziweiStars[0]] ?? "☯") : "☯";
+    const ziweiBadge = ziweiStars.length > 0 ? (ZIWEI_STAR_BADGE[ziweiStars[0]] ?? ZIWEI_NO_STAR_BADGE) : ZIWEI_NO_STAR_BADGE;
 
     const cards: CardSpec[] = [
       {
-        icon: ziweiIcon,
+        badge: ziweiBadge,
         titleZh: `紫微・${profile.ziwei.soulPalace}`,
         titleEn: "Zi Wei Dou Shu",
         frontNoteZh: ziweiStars.length > 0 ? `命宮主星：${ziweiStars.join("、")}` : "命宮無主星",
@@ -101,7 +101,7 @@ export function mountResult(root: HTMLElement) {
         bodyEn: analysis.ziwei.en,
       },
       {
-        icon: WUXING_ICON[profile.bazi.dominantWuxing] ?? "🔥",
+        badge: WUXING_BADGE[profile.bazi.dominantWuxing],
         titleZh: `八字・${profile.bazi.dominantWuxing}氣旺`,
         titleEn: "Bazi Four Pillars",
         frontNoteZh: `日主：${profile.bazi.dayMaster}　${profile.bazi.year.ganZhi} ${profile.bazi.month.ganZhi} ${profile.bazi.day.ganZhi} ${profile.bazi.time.ganZhi}`,
@@ -110,7 +110,7 @@ export function mountResult(root: HTMLElement) {
         bodyEn: analysis.bazi.en,
       },
       {
-        icon: ZODIAC_ICON[profile.zodiac.animal] ?? "🐉",
+        badge: ZODIAC_BADGE[profile.zodiac.animal],
         titleZh: `生肖・${profile.zodiac.animal}`,
         titleEn: `Chinese Zodiac · ${profile.zodiac.animalEn}`,
         frontNoteZh: "點擊看看你的生肖特質",
@@ -119,7 +119,7 @@ export function mountResult(root: HTMLElement) {
         bodyEn: analysis.zodiac.en,
       },
       {
-        icon: WESTERN_ICON[profile.western.sign] ?? "✦",
+        badge: WESTERN_BADGE[profile.western.sign],
         titleZh: `星座・${profile.western.sign}`,
         titleEn: `Star Sign · ${profile.western.signEn}`,
         frontNoteZh: "點擊看看你的星座特質",

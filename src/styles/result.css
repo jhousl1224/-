@@ -121,8 +121,44 @@
   overflow-y: auto;
 }
 
-.flip-card-icon {
-  font-size: 2rem;
+.card-badge {
+  width: 68px;
+  height: 68px;
+  overflow: visible;
+  filter: drop-shadow(0 4px 10px rgba(5, 6, 20, 0.5));
+}
+
+.card-badge-glow {
+  fill: var(--badge-color, var(--gold));
+  opacity: 0.16;
+}
+
+.card-badge-ring-outer {
+  fill: none;
+  stroke: var(--badge-color, var(--gold));
+  stroke-width: 0.75;
+  opacity: 0.5;
+  animation: badge-rotate 24s linear infinite;
+  transform-origin: 50px 50px;
+}
+
+.card-badge-ring {
+  fill: none;
+  stroke: var(--badge-color, var(--gold));
+  stroke-width: 1.25;
+  opacity: 0.75;
+}
+
+.card-badge-symbol {
+  fill: var(--cream);
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+@keyframes badge-rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .flip-card-title {

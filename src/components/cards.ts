@@ -1,5 +1,7 @@
+import type { BadgeSpec } from "../lib/icons";
+
 export interface CardSpec {
-  icon: string;
+  badge: BadgeSpec;
   titleZh: string;
   titleEn: string;
   frontNoteZh: string;
@@ -8,13 +10,26 @@ export interface CardSpec {
   bodyEn: string;
 }
 
+function buildBadge(badge: BadgeSpec): string {
+  const color = badge.color ?? "var(--gold)";
+  const fontSize = badge.symbol.length > 1 ? 26 : 34;
+  return `
+    <svg viewBox="0 0 100 100" class="card-badge" style="--badge-color:${color};">
+      <circle cx="50" cy="50" r="47" class="card-badge-glow" />
+      <circle cx="50" cy="50" r="40" class="card-badge-ring-outer" stroke-dasharray="1.5 4" />
+      <circle cx="50" cy="50" r="34" class="card-badge-ring" />
+      <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol">${badge.symbol}</text>
+    </svg>
+  `;
+}
+
 function buildCard(spec: CardSpec): HTMLElement {
   const card = document.createElement("div");
   card.className = "flip-card";
   card.innerHTML = `
     <div class="flip-card-inner">
       <div class="flip-card-face flip-card-front">
-        <div class="flip-card-icon">${spec.icon}</div>
+        ${buildBadge(spec.badge)}
         <h3 class="flip-card-title zh">${spec.titleZh}</h3>
         <span class="en">${spec.titleEn}</span>
         <p class="zh" style="font-size:0.8rem; margin-top:0.4rem;">${spec.frontNoteZh}</p>
