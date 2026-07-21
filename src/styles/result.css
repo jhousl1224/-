@@ -130,14 +130,39 @@
 
 .card-badge-glow {
   fill: var(--badge-color, var(--gold));
-  opacity: 0.16;
+  opacity: 0.18;
+}
+
+.card-badge-ticks {
+  stroke: var(--badge-color, var(--gold));
+  opacity: 0.6;
+  animation: badge-rotate 40s linear infinite;
+  transform-origin: 50px 50px;
+}
+
+.card-badge-tick {
+  stroke-width: 0.6;
+}
+
+.card-badge-tick--long {
+  stroke-width: 1;
+}
+
+.card-badge-diamond {
+  fill: none;
+  stroke: var(--badge-color, var(--gold));
+  stroke-width: 0.6;
+  opacity: 0.35;
+  transform-origin: 50px 50px;
+  transform: rotate(45deg);
+  animation: badge-rotate-rev 30s linear infinite;
 }
 
 .card-badge-ring-outer {
   fill: none;
   stroke: var(--badge-color, var(--gold));
   stroke-width: 0.75;
-  opacity: 0.5;
+  opacity: 0.55;
   animation: badge-rotate 24s linear infinite;
   transform-origin: 50px 50px;
 }
@@ -146,7 +171,21 @@
   fill: none;
   stroke: var(--badge-color, var(--gold));
   stroke-width: 1.25;
-  opacity: 0.75;
+  opacity: 0.8;
+}
+
+.card-badge-motif {
+  fill: none;
+  stroke: var(--badge-color, var(--gold));
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.3;
+}
+
+.card-badge-core {
+  fill: var(--navy-deep);
+  opacity: 0.55;
 }
 
 .card-badge-symbol {
@@ -158,6 +197,15 @@
 @keyframes badge-rotate {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes badge-rotate-rev {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(-315deg);
   }
 }
 

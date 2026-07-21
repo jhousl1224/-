@@ -10,14 +10,38 @@ export interface CardSpec {
   bodyEn: string;
 }
 
+function buildTicks(): string {
+  let out = "";
+  for (let i = 0; i < 16; i++) {
+    const angle = (360 / 16) * i - 90;
+    const rad = (angle * Math.PI) / 180;
+    const isLong = i % 4 === 0;
+    const rOuter = 46;
+    const len = isLong ? 5 : 2.5;
+    const x1 = 50 + rOuter * Math.cos(rad);
+    const y1 = 50 + rOuter * Math.sin(rad);
+    const x2 = 50 + (rOuter - len) * Math.cos(rad);
+    const y2 = 50 + (rOuter - len) * Math.sin(rad);
+    out += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="card-badge-tick${isLong ? " card-badge-tick--long" : ""}" />`;
+  }
+  return out;
+}
+
 function buildBadge(badge: BadgeSpec): string {
   const color = badge.color ?? "var(--gold)";
-  const fontSize = badge.symbol.length > 1 ? 26 : 34;
+  const fontSize = badge.symbol.length > 1 ? 24 : 30;
+  const motif = badge.motif
+    ? `<path d="${badge.motif}" class="card-badge-motif" />`
+    : "";
   return `
     <svg viewBox="0 0 100 100" class="card-badge" style="--badge-color:${color};">
-      <circle cx="50" cy="50" r="47" class="card-badge-glow" />
-      <circle cx="50" cy="50" r="40" class="card-badge-ring-outer" stroke-dasharray="1.5 4" />
-      <circle cx="50" cy="50" r="34" class="card-badge-ring" />
+      <circle cx="50" cy="50" r="48" class="card-badge-glow" />
+      <g class="card-badge-ticks">${buildTicks()}</g>
+      <rect x="28" y="28" width="44" height="44" class="card-badge-diamond" />
+      <circle cx="50" cy="50" r="40" class="card-badge-ring-outer" stroke-dasharray="1 3.5" />
+      <circle cx="50" cy="50" r="33" class="card-badge-ring" />
+      ${motif}
+      <circle cx="50" cy="50" r="21" class="card-badge-core" />
       <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol">${badge.symbol}</text>
     </svg>
   `;
