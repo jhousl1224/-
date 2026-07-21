@@ -24,7 +24,7 @@ function buildRangeOptions(start: number, end: number, pad = false) {
 
 export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => void) {
   const section = document.createElement("section");
-  section.className = "section";
+  section.className = "section section--locked";
   section.id = "input";
 
   const guide = createGuide();

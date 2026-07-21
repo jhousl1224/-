@@ -36,7 +36,7 @@ const PROGRESS_STEPS = [
 
 export function mountResult(root: HTMLElement) {
   const section = document.createElement("section");
-  section.className = "section";
+  section.className = "section section--locked";
   section.id = "result";
 
   const guide = createGuide();

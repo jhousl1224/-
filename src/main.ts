@@ -18,13 +18,17 @@ const app = document.querySelector<HTMLDivElement>("#app")!;
 
 mountStarfield(app);
 mountHero(app, () => {
-  document.getElementById("input")?.scrollIntoView({ behavior: "smooth" });
+  const inputSection = document.getElementById("input");
+  inputSection?.classList.remove("section--locked");
+  inputSection?.scrollIntoView({ behavior: "smooth" });
 });
 mountForm(app, handleSubmit);
 const result = mountResult(app);
 
 function handleSubmit(input: BirthInput) {
-  document.getElementById("result")?.scrollIntoView({ behavior: "smooth" });
+  const resultSection = document.getElementById("result");
+  resultSection?.classList.remove("section--locked");
+  resultSection?.scrollIntoView({ behavior: "smooth" });
   const profile = buildProfile(input);
   const analysis = generateAnalysis(profile);
   void result.showResult(profile, analysis);
