@@ -1,5 +1,5 @@
 .guide {
-  --guide-width: 210px;
+  --guide-size: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,11 +7,11 @@
 }
 
 .guide__figure {
-  width: var(--guide-width);
-  aspect-ratio: 1054 / 768;
+  width: var(--guide-size);
+  height: var(--guide-size);
   cursor: pointer;
   animation: guide-breathe 4.5s ease-in-out infinite;
-  filter: drop-shadow(0 10px 22px rgba(212, 175, 122, 0.3));
+  filter: drop-shadow(0 6px 18px rgba(212, 175, 122, 0.3));
   touch-action: manipulation;
 }
 
@@ -19,15 +19,35 @@
   transform: scale(0.97);
 }
 
-.guide__figure img {
+.guide__figure svg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  pointer-events: none;
+  overflow: visible;
 }
 
-.guide--greet {
-  animation: guide-greet 0.7s ease-in-out;
+.guide__ring {
+  transform-origin: 100px 100px;
+  animation: guide-rotate 50s linear infinite;
+}
+
+.guide__glyph {
+  font-size: 13px;
+  fill: var(--gold-soft);
+  opacity: 0.85;
+}
+
+.guide__moon {
+  animation: guide-glow 4.5s ease-in-out infinite;
+  transform-origin: 100px 100px;
+}
+
+.guide__spark {
+  fill: var(--cream);
+  animation: guide-twinkle 2.4s ease-in-out infinite;
+}
+
+.guide--pulse {
+  animation: guide-pulse 0.7s ease-in-out;
 }
 
 .guide__bubble {
@@ -77,25 +97,61 @@
     transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-6px) scale(1.015);
+    transform: translateY(-6px) scale(1.02);
   }
 }
 
-@keyframes guide-greet {
+@keyframes guide-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes guide-glow {
   0%,
   100% {
-    transform: rotate(0deg) scale(1);
+    opacity: 0.85;
+    transform: scale(1);
   }
-  30% {
-    transform: rotate(-3deg) scale(1.03);
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
   }
-  60% {
-    transform: rotate(2deg) scale(1.01);
+}
+
+@keyframes guide-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes guide-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.12);
+  }
+  70% {
+    transform: scale(0.98);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .guide__figure {
+  .guide__figure,
+  .guide__ring,
+  .guide__moon,
+  .guide__spark {
     animation: none;
   }
 }

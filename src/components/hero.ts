@@ -44,7 +44,7 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
   root.appendChild(section);
 
   window.setTimeout(() => {
-    guide.say("嗨，我是你的命理導覽員，準備好了嗎？", "Hey, I'm your reading guide. Ready when you are.");
+    guide.say("嗨，準備好看見你的命盤了嗎？", "Hey — ready to see what your chart says?");
   }, 900);
 
   return { section, guide };
