@@ -1,5 +1,5 @@
 .guide {
-  --guide-size: 140px;
+  --guide-size: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
   height: var(--guide-size);
   cursor: pointer;
   animation: guide-breathe 4.5s ease-in-out infinite;
-  filter: drop-shadow(0 6px 18px rgba(212, 175, 122, 0.3));
+  filter: drop-shadow(0 8px 22px rgba(212, 175, 122, 0.35));
   touch-action: manipulation;
 }
 
@@ -25,20 +25,77 @@
   overflow: visible;
 }
 
+.guide__halo {
+  animation: guide-halo-pulse 5s ease-in-out infinite;
+  transform-origin: 100px 100px;
+}
+
+.guide__ring-outer {
+  transform-origin: 100px 100px;
+  animation: guide-rotate-rev 70s linear infinite;
+}
+
 .guide__ring {
   transform-origin: 100px 100px;
   animation: guide-rotate 50s linear infinite;
 }
 
+.guide__ring-inner {
+  transform-origin: 100px 100px;
+  animation: guide-rotate-rev 34s linear infinite;
+  opacity: 0.7;
+}
+
+.guide__hexagram {
+  transform-origin: 100px 100px;
+  animation: guide-rotate 90s linear infinite;
+}
+
+.guide__tick {
+  stroke: rgba(212, 175, 122, 0.35);
+  stroke-width: 0.75;
+}
+
+.guide__tick--long {
+  stroke: rgba(212, 175, 122, 0.6);
+  stroke-width: 1;
+}
+
 .guide__glyph {
-  font-size: 13px;
+  font-size: 12px;
   fill: var(--gold-soft);
   opacity: 0.85;
+}
+
+.guide__seal {
+  fill: none;
+  stroke: rgba(212, 175, 122, 0.4);
+  stroke-width: 0.75;
+}
+
+.guide__constellation {
+  stroke: rgba(127, 172, 156, 0.5);
+  stroke-width: 0.6;
+}
+
+.guide__star-dot {
+  fill: var(--jade-soft);
+  opacity: 0.8;
+}
+
+.guide__core-glow {
+  animation: guide-glow 4.5s ease-in-out infinite;
+  transform-origin: 100px 100px;
 }
 
 .guide__moon {
   animation: guide-glow 4.5s ease-in-out infinite;
   transform-origin: 100px 100px;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 122, 0.7));
+}
+
+.guide__orbit-dot {
+  filter: drop-shadow(0 0 3px currentColor);
 }
 
 .guide__spark {
@@ -113,6 +170,27 @@
   }
 }
 
+@keyframes guide-rotate-rev {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes guide-halo-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
 @keyframes guide-glow {
   0%,
   100% {
@@ -121,7 +199,7 @@
   }
   50% {
     opacity: 1;
-    transform: scale(1.06);
+    transform: scale(1.08);
   }
 }
 
@@ -143,17 +221,22 @@
     transform: scale(1);
   }
   40% {
-    transform: scale(1.12);
+    transform: scale(1.14);
   }
   70% {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .guide__figure,
+  .guide__halo,
+  .guide__ring-outer,
   .guide__ring,
+  .guide__ring-inner,
+  .guide__hexagram,
   .guide__moon,
+  .guide__core-glow,
   .guide__spark {
     animation: none;
   }
