@@ -29,7 +29,10 @@ export function mountFloatingUnlock(root: HTMLElement) {
   const watchTeaserHeading = (heading: Element) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        wrap.classList.toggle("is-visible", entry.isIntersecting);
+        if (entry.isIntersecting) {
+          wrap.classList.add("is-visible");
+          observer.disconnect();
+        }
       },
       { threshold: 0, rootMargin: "0px 0px -30% 0px" },
     );
