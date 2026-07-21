@@ -26,24 +26,24 @@ export function mountFloatingUnlock(root: HTMLElement) {
   const resultSection = document.getElementById("result");
   if (!resultSection) return { el: wrap };
 
-  const watchTeaserStack = (teaserStack: Element) => {
+  const watchTeaserHeading = (heading: Element) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         wrap.classList.toggle("is-visible", entry.isIntersecting);
       },
-      { threshold: 0.08 },
+      { threshold: 0, rootMargin: "0px 0px -30% 0px" },
     );
-    observer.observe(teaserStack);
+    observer.observe(heading);
   };
 
-  const existing = resultSection.querySelector(".teaser-stack");
+  const existing = resultSection.querySelector('[data-role="teaser-heading"]');
   if (existing) {
-    watchTeaserStack(existing);
+    watchTeaserHeading(existing);
   } else {
     const mutationObserver = new MutationObserver(() => {
-      const teaserStack = resultSection.querySelector(".teaser-stack");
-      if (teaserStack) {
-        watchTeaserStack(teaserStack);
+      const heading = resultSection.querySelector('[data-role="teaser-heading"]');
+      if (heading) {
+        watchTeaserHeading(heading);
         mutationObserver.disconnect();
       }
     });

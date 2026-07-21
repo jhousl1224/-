@@ -130,6 +130,7 @@ export function mountResult(root: HTMLElement) {
     mountCardStack(stackWrap, cards);
 
     const teaserHeading = document.createElement("div");
+    teaserHeading.dataset.role = "teaser-heading";
     teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><span class="en">There's more hiding in your chart</span>`;
     content.appendChild(teaserHeading);
 
