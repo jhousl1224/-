@@ -61,12 +61,37 @@
   stroke-width: 1;
 }
 
-.guide__glyph {
+.guide__glyph,
+.guide__glyph-shadow,
+.guide__glyph-sheen {
   fill: none;
-  stroke-width: 5.5;
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.9;
+}
+
+.guide__glyph {
+  opacity: 0.92;
+}
+
+.guide__glyph-shadow {
+  stroke: #4a3410;
+  opacity: 0.45;
+}
+
+.guide__glyph-sheen {
+  stroke: #fff9e8;
+  stroke-width: 2.2;
+  opacity: 0.45;
+}
+
+.guide__glyph-shadow .glyph-dot,
+.guide__glyph-sheen .glyph-dot {
+  display: none;
+}
+
+.guide__glyph .glyph-dot {
+  fill: #f0d9a0;
 }
 
 .guide__seal {

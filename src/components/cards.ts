@@ -42,7 +42,9 @@ function buildSymbol(badge: BadgeSpec): string {
           <stop offset="100%" stop-color="#8f6a1c" />
         </linearGradient>
       </defs>
+      <g class="card-badge-glyph-shadow" transform="translate(1,1.3)">${badge.glyph}</g>
       <g class="card-badge-glyph" style="stroke:url(#${gradId});">${badge.glyph}</g>
+      <g class="card-badge-glyph-sheen" transform="translate(-0.8,-1)">${badge.glyph}</g>
     `;
   }
   const fontSize = badge.symbol.length > 1 ? 24 : 30;

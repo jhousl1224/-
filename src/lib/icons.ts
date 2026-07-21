@@ -40,12 +40,12 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   牡羊座: {
     symbol: "♈",
     glyph:
-      '<path d="M35 58 Q30 46 36 39 Q42 33 47 38 Q50 42 47 46 L47 63 M65 58 Q70 46 64 39 Q58 33 53 38 Q50 42 53 46 L53 63" />',
+      '<path d="M50 60 Q50 48 45 44 Q40 40 41 34 Q42 30 46 33 M50 60 Q50 48 55 44 Q60 40 59 34 Q58 30 54 33" />',
   },
   金牛座: {
     symbol: "♉",
     glyph:
-      '<path d="M39 37 Q34 42 36 48 Q38 53 44 51 M61 37 Q66 42 64 48 Q62 53 56 51" /><circle cx="50" cy="60" r="10" />',
+      '<path d="M38 46 Q33 40 35 32 Q37 25 43 28 M62 46 Q67 40 65 32 Q63 25 57 28" /><circle cx="50" cy="56" r="12" />',
   },
   雙子座: {
     symbol: "♊",
@@ -54,26 +54,26 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   巨蟹座: {
     symbol: "♋",
     glyph:
-      '<circle cx="41" cy="43" r="6.5" /><circle cx="59" cy="57" r="6.5" /><path d="M47 43 Q60 40 59 50.5 M53 57 Q40 60 41 49.5" />',
+      '<path d="M45 38 Q37 38 37 45 Q37 51 45 50 Q56 52 55 44 M55 62 Q63 62 63 55 Q63 49 55 50 Q44 48 45 56" /><circle cx="41" cy="44" r="1.8" class="glyph-dot" /><circle cx="59" cy="56" r="1.8" class="glyph-dot" />',
   },
   獅子座: {
     symbol: "♌",
     glyph:
-      '<path d="M43 41 Q35 41 35 48 Q35 55 44 54 Q51 53 49 45 Q48 39 55 39 Q63 39 63 48 Q63 57 55 59 Q49 60.5 47 55.5" />',
+      '<path d="M43 39 Q35 39 35 46 Q35 53 43 52 Q51 51 49 43 Q48 38 55 38 Q63 38 63 47 Q63 56 55 58 Q49 59.5 47 54.5" /><circle cx="39" cy="45.5" r="1.8" class="glyph-dot" />',
   },
   處女座: {
     symbol: "♍",
     glyph:
-      '<path d="M35 62 L35 38 Q35 33 40 38 L40 62 Q40 33 45 38 L45 62 Q45 40 52 43 Q59 46 56 54 Q52 61 46 57" />',
+      '<path d="M33 62 Q33 38 38 38 Q43 38 43 62 M43 62 Q43 38 48 38 Q53 38 53 58 Q53 66 60 64 Q66 62 63 56 Q61 52 55 54" />',
   },
   天秤座: {
     symbol: "♎",
-    glyph: '<path d="M35 46 Q35 34 50 34 Q65 34 65 46 M31 63 L69 63" />',
+    glyph: '<path d="M35 46 Q35 34 50 34 Q65 34 65 46 M31 62 L69 62" />',
   },
   天蠍座: {
     symbol: "♏",
     glyph:
-      '<path d="M35 62 L35 38 Q35 33 40 38 L40 62 Q40 33 45 38 L45 62 Q45 40 52 43 L59 62 M59 62 L67 53 M59 62 L59 69" />',
+      '<path d="M33 62 Q33 38 38 38 Q43 38 43 62 M43 62 Q43 38 48 38 Q53 38 53 58 L60 65 M60 65 L68 61 M60 65 L63 73" />',
   },
   射手座: {
     symbol: "♐",
@@ -82,7 +82,7 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   摩羯座: {
     symbol: "♑",
     glyph:
-      '<path d="M39 35 Q33 35 33 41 Q33 47 41 46 L41 35 M41 41 L41 61 Q41 68 49 66 Q56 64 54 58 Q52 53 58 55 Q65 57 63 63 Q61 68 55 66" />',
+      '<path d="M39 35 Q33 35 33 41 Q33 47 41 46 L41 35 M41 41 L41 58 Q41 66 50 65 Q58 64 58 57 Q58 52 52 53" /><circle cx="55" cy="55" r="2" class="glyph-dot" />',
   },
   水瓶座: {
     symbol: "♒",
