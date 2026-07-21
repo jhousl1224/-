@@ -24,14 +24,30 @@ export function mountFloatingUnlock(root: HTMLElement) {
   });
 
   const resultSection = document.getElementById("result");
-  if (resultSection) {
+  if (!resultSection) return { el: wrap };
+
+  const watchTeaserStack = (teaserStack: Element) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         wrap.classList.toggle("is-visible", entry.isIntersecting);
       },
       { threshold: 0.08 },
     );
-    observer.observe(resultSection);
+    observer.observe(teaserStack);
+  };
+
+  const existing = resultSection.querySelector(".teaser-stack");
+  if (existing) {
+    watchTeaserStack(existing);
+  } else {
+    const mutationObserver = new MutationObserver(() => {
+      const teaserStack = resultSection.querySelector(".teaser-stack");
+      if (teaserStack) {
+        watchTeaserStack(teaserStack);
+        mutationObserver.disconnect();
+      }
+    });
+    mutationObserver.observe(resultSection, { childList: true, subtree: true });
   }
 
   return { el: wrap };
