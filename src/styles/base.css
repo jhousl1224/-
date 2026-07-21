@@ -24,6 +24,15 @@
   --shadow-gold: 0 0 24px rgba(212, 175, 122, 0.35);
   --shadow-deep: 0 12px 32px rgba(5, 6, 20, 0.45);
 
+  /* layered "premium panel" shadow: soft ambient glow + tight contact shadow + inner hairline + inner top sheen */
+  --shadow-panel:
+    0 24px 48px -12px rgba(5, 6, 20, 0.6),
+    0 4px 12px rgba(5, 6, 20, 0.35),
+    inset 0 0 0 1px rgba(212, 175, 122, 0.32),
+    inset 0 1px 0 rgba(243, 236, 221, 0.08);
+
+  --panel-bg: linear-gradient(165deg, rgba(48, 55, 122, 0.6) 0%, rgba(26, 32, 84, 0.62) 45%, rgba(11, 13, 38, 0.82) 100%);
+
   color-scheme: dark;
 }
 
@@ -44,6 +53,18 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 #app {

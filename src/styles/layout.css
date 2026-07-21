@@ -11,5 +11,28 @@ html {
 }
 
 .section + .section {
-  border-top: 1px solid rgba(212, 175, 122, 0.08);
+  position: relative;
+}
+
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(280px, 70%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 122, 0.55) 50%, transparent);
+}
+
+.section + .section::after {
+  content: "\2726";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  font-size: 0.8rem;
+  opacity: 0.85;
+  text-shadow: 0 0 8px rgba(212, 175, 122, 0.6);
 }
