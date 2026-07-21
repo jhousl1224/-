@@ -1,6 +1,12 @@
-const ZODIAC_GLYPHS = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
+import { WESTERN_BADGE } from "../lib/icons";
+
+const ZODIAC_SIGNS = [
+  "牡羊座", "金牛座", "雙子座", "巨蟹座", "獅子座", "處女座",
+  "天秤座", "天蠍座", "射手座", "摩羯座", "水瓶座", "雙魚座",
+];
 const CX = 100;
 const CY = 100;
+let guideGlyphGradientSeq = 0;
 
 function polar(radius: number, angleDeg: number): [number, number] {
   const rad = (angleDeg * Math.PI) / 180;
@@ -21,11 +27,26 @@ function buildTicks(radius: number, count: number, longLen: number, shortLen: nu
 }
 
 function buildGlyphs(): string {
-  return ZODIAC_GLYPHS.map((glyph, i) => {
-    const angle = (360 / ZODIAC_GLYPHS.length) * i - 90;
+  const gradId = `guide-glyph-gold-${guideGlyphGradientSeq++}`;
+  const scale = 0.34;
+  const glyphs = ZODIAC_SIGNS.map((sign, i) => {
+    const angle = (360 / ZODIAC_SIGNS.length) * i - 90;
     const [x, y] = polar(80, angle);
-    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" class="guide__glyph">${glyph}</text>`;
+    const glyph = WESTERN_BADGE[sign]?.glyph ?? "";
+    return `<g class="guide__glyph" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${scale}) translate(-50,-50)" style="stroke:url(#${gradId});">${glyph}</g>`;
   }).join("\n");
+  return `
+    <defs>
+      <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
+        <stop offset="0%" stop-color="#fff6d8" />
+        <stop offset="25%" stop-color="#f3cd7e" />
+        <stop offset="50%" stop-color="#c9992f" />
+        <stop offset="75%" stop-color="#f0c874" />
+        <stop offset="100%" stop-color="#8f6a1c" />
+      </linearGradient>
+    </defs>
+    ${glyphs}
+  `;
 }
 
 function buildHexagram(radius: number): string {

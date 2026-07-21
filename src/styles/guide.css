@@ -62,9 +62,11 @@
 }
 
 .guide__glyph {
-  font-size: 12px;
-  fill: var(--gold-soft);
-  opacity: 0.85;
+  fill: none;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
 }
 
 .guide__seal {
