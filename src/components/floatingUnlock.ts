@@ -26,27 +26,40 @@ export function mountFloatingUnlock(root: HTMLElement) {
   const resultSection = document.getElementById("result");
   if (!resultSection) return { el: wrap };
 
-  const watchTeaserHeading = (heading: Element) => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          wrap.classList.add("is-visible");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0, rootMargin: "0px 0px -30% 0px" },
-    );
-    observer.observe(heading);
-  };
+  let heading: HTMLElement | null = null;
+  let ticking = false;
 
-  const existing = resultSection.querySelector('[data-role="teaser-heading"]');
+  function updateVisibility() {
+    ticking = false;
+    if (!heading) return;
+    // Show once we've scrolled down past the teaser heading; hide again once
+    // we've scrolled back up into the flip-card area above it.
+    const pastHeading = heading.getBoundingClientRect().bottom < window.innerHeight * 0.85;
+    wrap.classList.toggle("is-visible", pastHeading);
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateVisibility);
+    }
+  }
+
+  function attach(headingEl: HTMLElement) {
+    heading = headingEl;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    updateVisibility();
+  }
+
+  const existing = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
   if (existing) {
-    watchTeaserHeading(existing);
+    attach(existing);
   } else {
     const mutationObserver = new MutationObserver(() => {
-      const heading = resultSection.querySelector('[data-role="teaser-heading"]');
-      if (heading) {
-        watchTeaserHeading(heading);
+      const found = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
+      if (found) {
+        attach(found);
         mutationObserver.disconnect();
       }
     });
