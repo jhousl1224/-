@@ -2,6 +2,8 @@ export interface BadgeSpec {
   symbol: string;
   color?: string;
   motif?: string;
+  /** Hand-drawn SVG path/circle markup for a richer glyph than a text symbol. */
+  glyph?: string;
 }
 
 const MOTIF_WOOD = "M50 28 C36 34 32 52 50 72 C68 52 64 34 50 28 Z M50 34 L50 68";
@@ -35,18 +37,61 @@ export const ZODIAC_BADGE: Record<string, BadgeSpec> = {
 };
 
 export const WESTERN_BADGE: Record<string, BadgeSpec> = {
-  牡羊座: { symbol: "♈" },
-  金牛座: { symbol: "♉" },
-  雙子座: { symbol: "♊" },
-  巨蟹座: { symbol: "♋" },
-  獅子座: { symbol: "♌" },
-  處女座: { symbol: "♍" },
-  天秤座: { symbol: "♎" },
-  天蠍座: { symbol: "♏" },
-  射手座: { symbol: "♐" },
-  摩羯座: { symbol: "♑" },
-  水瓶座: { symbol: "♒" },
-  雙魚座: { symbol: "♓" },
+  牡羊座: {
+    symbol: "♈",
+    glyph:
+      '<path d="M35 58 Q30 46 36 39 Q42 33 47 38 Q50 42 47 46 L47 63 M65 58 Q70 46 64 39 Q58 33 53 38 Q50 42 53 46 L53 63" />',
+  },
+  金牛座: {
+    symbol: "♉",
+    glyph:
+      '<path d="M39 37 Q34 42 36 48 Q38 53 44 51 M61 37 Q66 42 64 48 Q62 53 56 51" /><circle cx="50" cy="60" r="10" />',
+  },
+  雙子座: {
+    symbol: "♊",
+    glyph: '<path d="M37 35 L63 35 M43 35 L43 65 M57 35 L57 65 M37 65 L63 65" />',
+  },
+  巨蟹座: {
+    symbol: "♋",
+    glyph:
+      '<circle cx="41" cy="43" r="6.5" /><circle cx="59" cy="57" r="6.5" /><path d="M47 43 Q60 40 59 50.5 M53 57 Q40 60 41 49.5" />',
+  },
+  獅子座: {
+    symbol: "♌",
+    glyph:
+      '<path d="M43 41 Q35 41 35 48 Q35 55 44 54 Q51 53 49 45 Q48 39 55 39 Q63 39 63 48 Q63 57 55 59 Q49 60.5 47 55.5" />',
+  },
+  處女座: {
+    symbol: "♍",
+    glyph:
+      '<path d="M35 62 L35 38 Q35 33 40 38 L40 62 Q40 33 45 38 L45 62 Q45 40 52 43 Q59 46 56 54 Q52 61 46 57" />',
+  },
+  天秤座: {
+    symbol: "♎",
+    glyph: '<path d="M35 46 Q35 34 50 34 Q65 34 65 46 M31 63 L69 63" />',
+  },
+  天蠍座: {
+    symbol: "♏",
+    glyph:
+      '<path d="M35 62 L35 38 Q35 33 40 38 L40 62 Q40 33 45 38 L45 62 Q45 40 52 43 L59 62 M59 62 L67 53 M59 62 L59 69" />',
+  },
+  射手座: {
+    symbol: "♐",
+    glyph: '<path d="M33 67 L67 33 M51 33 L67 33 L67 49 M40 51 L48 43 M45 60 L53 52" />',
+  },
+  摩羯座: {
+    symbol: "♑",
+    glyph:
+      '<path d="M39 35 Q33 35 33 41 Q33 47 41 46 L41 35 M41 41 L41 61 Q41 68 49 66 Q56 64 54 58 Q52 53 58 55 Q65 57 63 63 Q61 68 55 66" />',
+  },
+  水瓶座: {
+    symbol: "♒",
+    glyph: '<path d="M32 44 L40 50 L48 44 L56 50 L64 44 M32 58 L40 64 L48 58 L56 64 L64 58" />',
+  },
+  雙魚座: {
+    symbol: "♓",
+    glyph: '<path d="M41 34 Q35 50 41 66 M59 34 Q65 50 59 66 M41 50 L59 50" />',
+  },
 };
 
 export const ZIWEI_STAR_BADGE: Record<string, BadgeSpec> = {

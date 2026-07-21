@@ -27,9 +27,30 @@ function buildTicks(): string {
   return out;
 }
 
+let glyphGradientSeq = 0;
+
+function buildSymbol(badge: BadgeSpec): string {
+  if (badge.glyph) {
+    const gradId = `badge-glyph-gold-${glyphGradientSeq++}`;
+    return `
+      <defs>
+        <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
+          <stop offset="0%" stop-color="#fff6d8" />
+          <stop offset="25%" stop-color="#f3cd7e" />
+          <stop offset="50%" stop-color="#c9992f" />
+          <stop offset="75%" stop-color="#f0c874" />
+          <stop offset="100%" stop-color="#8f6a1c" />
+        </linearGradient>
+      </defs>
+      <g class="card-badge-glyph" style="stroke:url(#${gradId});">${badge.glyph}</g>
+    `;
+  }
+  const fontSize = badge.symbol.length > 1 ? 24 : 30;
+  return `<text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol">${badge.symbol}</text>`;
+}
+
 function buildBadge(badge: BadgeSpec): string {
   const color = badge.color ?? "var(--gold)";
-  const fontSize = badge.symbol.length > 1 ? 24 : 30;
   const motif = badge.motif
     ? `<path d="${badge.motif}" class="card-badge-motif" />`
     : "";
@@ -42,7 +63,7 @@ function buildBadge(badge: BadgeSpec): string {
       <circle cx="50" cy="50" r="33" class="card-badge-ring" />
       ${motif}
       <circle cx="50" cy="50" r="21" class="card-badge-core" />
-      <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol">${badge.symbol}</text>
+      ${buildSymbol(badge)}
     </svg>
   `;
 }
