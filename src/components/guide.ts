@@ -33,13 +33,7 @@ function buildGlyphs(): string {
     const angle = (360 / ZODIAC_SIGNS.length) * i - 90;
     const [x, y] = polar(80, angle);
     const glyph = WESTERN_BADGE[sign]?.glyph ?? "";
-    return `
-      <g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${scale}) translate(-50,-50)">
-        <g class="guide__glyph-shadow" transform="translate(1,1.3)">${glyph}</g>
-        <g class="guide__glyph" style="stroke:url(#${gradId});">${glyph}</g>
-        <g class="guide__glyph-sheen" transform="translate(-0.8,-1)">${glyph}</g>
-      </g>
-    `;
+    return `<g class="guide__glyph" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${scale}) translate(-50,-50)" style="stroke:url(#${gradId});">${glyph}</g>`;
   }).join("\n");
   return `
     <defs>
