@@ -1,5 +1,5 @@
 .guide {
-  --guide-size: 132px;
+  --guide-width: 168px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,11 +7,11 @@
 }
 
 .guide__figure {
-  width: var(--guide-size);
-  height: var(--guide-size);
+  width: var(--guide-width);
+  aspect-ratio: 925 / 739;
   cursor: pointer;
   animation: guide-breathe 4.5s ease-in-out infinite;
-  filter: drop-shadow(0 6px 18px rgba(212, 175, 122, 0.25));
+  filter: drop-shadow(0 10px 22px rgba(212, 175, 122, 0.3));
   touch-action: manipulation;
 }
 
@@ -19,32 +19,15 @@
   transform: scale(0.97);
 }
 
-.guide__figure svg {
+.guide__figure img {
   width: 100%;
   height: 100%;
-  overflow: visible;
+  object-fit: contain;
+  pointer-events: none;
 }
 
-.guide__hair {
-  transform-origin: 100px 70px;
-  animation: guide-sway 5.5s ease-in-out infinite;
-}
-
-.guide__collar {
-  transform-origin: 100px 190px;
-  animation: guide-sway 6.5s ease-in-out infinite reverse;
-}
-
-.guide__eyes rect {
-  transform-origin: center;
-}
-
-.guide--blink .guide__eyes rect {
-  animation: guide-blink 0.32s ease-in-out;
-}
-
-.guide--nod .guide__head-group {
-  animation: guide-nod 0.55s ease-in-out;
+.guide--greet {
+  animation: guide-greet 0.7s ease-in-out;
 }
 
 .guide__bubble {
@@ -98,43 +81,21 @@
   }
 }
 
-@keyframes guide-sway {
+@keyframes guide-greet {
   0%,
   100% {
-    transform: rotate(-1.2deg);
+    transform: rotate(0deg) scale(1);
   }
-  50% {
-    transform: rotate(1.2deg);
+  30% {
+    transform: rotate(-3deg) scale(1.03);
   }
-}
-
-@keyframes guide-blink {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(0.08);
-  }
-}
-
-@keyframes guide-nod {
-  0%,
-  100% {
-    transform: rotate(0deg) translateY(0);
-  }
-  40% {
-    transform: rotate(3deg) translateY(3px);
-  }
-  70% {
-    transform: rotate(-1.5deg);
+  60% {
+    transform: rotate(2deg) scale(1.01);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .guide__figure,
-  .guide__hair,
-  .guide__collar {
+  .guide__figure {
     animation: none;
   }
 }
