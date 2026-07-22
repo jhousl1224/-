@@ -194,6 +194,11 @@
   filter: drop-shadow(1px 1.5px 1px rgba(5, 6, 20, 0.55)) drop-shadow(-1px -1px 0.5px rgba(255, 255, 255, 0.45));
 }
 
+.card-badge-symbol--brush {
+  font-family: "Ma Shan Zheng", var(--font-serif), sans-serif;
+  font-weight: 400;
+}
+
 @keyframes badge-rotate {
   to {
     transform: rotate(360deg);

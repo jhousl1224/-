@@ -41,10 +41,10 @@ let glyphGradientSeq = 0;
 
 function buildSymbol(badge: BadgeSpec): string {
   const gradId = `badge-symbol-gold-${glyphGradientSeq++}`;
-  const fontSize = badge.symbol.length > 1 ? 20 : 24;
-  const text = needsTextPresentationSelector(badge.symbol)
-    ? `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}`
-    : badge.symbol;
+  const isAstrological = needsTextPresentationSelector(badge.symbol);
+  const fontSize = badge.symbol.length > 1 ? 20 : 26;
+  const text = isAstrological ? `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}` : badge.symbol;
+  const symbolClass = isAstrological ? "card-badge-symbol" : "card-badge-symbol card-badge-symbol--brush";
   return `
     <defs>
       <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
@@ -54,7 +54,7 @@ function buildSymbol(badge: BadgeSpec): string {
         <stop offset="100%" stop-color="#ffd700" />
       </linearGradient>
     </defs>
-    <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol" fill="url(#${gradId})">${text}</text>
+    <text x="50" y="50" dy="0.32em" text-anchor="middle" font-size="${fontSize}" class="${symbolClass}" fill="url(#${gradId})">${text}</text>
   `;
 }
 
@@ -71,7 +71,7 @@ function buildBadge(badge: BadgeSpec): string {
       <circle cx="50" cy="50" r="40" class="card-badge-ring-outer" stroke-dasharray="1 3.5" />
       <circle cx="50" cy="50" r="33" class="card-badge-ring" />
       ${motif}
-      <circle cx="50" cy="50" r="21" class="card-badge-core" />
+      <circle cx="50" cy="50" r="26" class="card-badge-core" />
       ${buildSymbol(badge)}
     </svg>
   `;
