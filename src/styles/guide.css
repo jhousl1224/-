@@ -62,7 +62,7 @@
 }
 
 .guide__glyph {
-  font-size: 16px;
+  font-size: 18px;
   font-family: "DejaVu Sans", "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols", var(--font-serif), sans-serif;
   font-weight: 700;
   opacity: 0.92;
