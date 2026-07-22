@@ -27,26 +27,16 @@ function buildTicks(): string {
   return out;
 }
 
-let glyphGradientSeq = 0;
+const TEXT_PRESENTATION_SELECTOR = "\uFE0E";
 
 function buildSymbol(badge: BadgeSpec): string {
-  if (badge.glyph) {
-    const gradId = `badge-glyph-gold-${glyphGradientSeq++}`;
-    return `
-      <defs>
-        <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
-          <stop offset="0%" stop-color="#fff6d8" />
-          <stop offset="25%" stop-color="#f3cd7e" />
-          <stop offset="50%" stop-color="#c9992f" />
-          <stop offset="75%" stop-color="#f0c874" />
-          <stop offset="100%" stop-color="#8f6a1c" />
-        </linearGradient>
-      </defs>
-      <g class="card-badge-glyph" style="stroke:url(#${gradId});">${badge.glyph}</g>
-    `;
-  }
-  const fontSize = badge.symbol.length > 1 ? 24 : 30;
-  return `<text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol">${badge.symbol}</text>`;
+  const fontSize = badge.symbol.length > 1 ? 24 : 32;
+  const text = `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}`;
+  return `
+    <foreignObject x="18" y="18" width="64" height="64">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="card-badge-unicode" style="font-size:${fontSize}px;">${text}</div>
+    </foreignObject>
+  `;
 }
 
 function buildBadge(badge: BadgeSpec): string {

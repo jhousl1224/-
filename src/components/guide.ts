@@ -6,7 +6,7 @@ const ZODIAC_SIGNS = [
 ];
 const CX = 100;
 const CY = 100;
-let guideGlyphGradientSeq = 0;
+const TEXT_PRESENTATION_SELECTOR = "\uFE0E";
 
 function polar(radius: number, angleDeg: number): [number, number] {
   const rad = (angleDeg * Math.PI) / 180;
@@ -27,26 +27,19 @@ function buildTicks(radius: number, count: number, longLen: number, shortLen: nu
 }
 
 function buildGlyphs(): string {
-  const gradId = `guide-glyph-gold-${guideGlyphGradientSeq++}`;
-  const scale = 0.34;
-  const glyphs = ZODIAC_SIGNS.map((sign, i) => {
+  const size = 15;
+  const half = size / 2;
+  return ZODIAC_SIGNS.map((sign, i) => {
     const angle = (360 / ZODIAC_SIGNS.length) * i - 90;
     const [x, y] = polar(80, angle);
-    const glyph = WESTERN_BADGE[sign]?.glyph ?? "";
-    return `<g class="guide__glyph" transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${scale}) translate(-50,-50)" style="stroke:url(#${gradId});">${glyph}</g>`;
+    const symbol = WESTERN_BADGE[sign]?.symbol ?? "";
+    const text = `${symbol}${TEXT_PRESENTATION_SELECTOR}`;
+    return `
+      <foreignObject x="${(x - half).toFixed(1)}" y="${(y - half).toFixed(1)}" width="${size}" height="${size}">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="guide__unicode-glyph">${text}</div>
+      </foreignObject>
+    `;
   }).join("\n");
-  return `
-    <defs>
-      <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
-        <stop offset="0%" stop-color="#fff6d8" />
-        <stop offset="25%" stop-color="#f3cd7e" />
-        <stop offset="50%" stop-color="#c9992f" />
-        <stop offset="75%" stop-color="#f0c874" />
-        <stop offset="100%" stop-color="#8f6a1c" />
-      </linearGradient>
-    </defs>
-    ${glyphs}
-  `;
 }
 
 function buildHexagram(radius: number): string {
