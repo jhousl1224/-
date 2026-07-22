@@ -33,7 +33,11 @@ function buildGlyphs(): string {
     const [x, y] = polar(80, angle);
     const symbol = WESTERN_BADGE[sign]?.symbol ?? "";
     const text = `${symbol}${TEXT_PRESENTATION_SELECTOR}`;
-    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" class="guide__glyph" fill="url(#${gradId})">${text}</text>`;
+    return `
+      <g class="guide__glyph-spin-fix" style="transform-origin:${x.toFixed(1)}px ${y.toFixed(1)}px;">
+        <text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" class="guide__glyph" fill="url(#${gradId})">${text}</text>
+      </g>
+    `;
   }).join("\n");
   return `
     <defs>
@@ -119,7 +123,7 @@ function buildEmblemSvg(): string {
     <circle cx="100" cy="100" r="88" fill="none" stroke="#5B8C7B" stroke-width="0.75" opacity="0.35" />
   </g>
 
-  <g class="guide__glyph-ring">
+  <g class="guide__glyph-orbit">
     ${buildGlyphs()}
   </g>
 
