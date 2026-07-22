@@ -54,12 +54,12 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   巨蟹座: {
     symbol: "♋",
     glyph:
-      '<circle cx="35" cy="46" r="7.5" /><path d="M41 41 Q52 30 62 38" /><circle cx="65" cy="54" r="7.5" /><path d="M59 59 Q48 70 38 62" /><circle cx="35" cy="46" r="2" class="glyph-dot" /><circle cx="65" cy="54" r="2" class="glyph-dot" />',
+      '<circle cx="36" cy="44" r="6.5" /><path d="M42 40 Q54 30 60 38 Q62 41 58 42" /><circle cx="64" cy="56" r="6.5" /><path d="M58 60 Q46 70 40 62 Q38 59 42 58" /><circle cx="36" cy="44" r="2" class="glyph-dot" /><circle cx="64" cy="56" r="2" class="glyph-dot" />',
   },
   獅子座: {
     symbol: "♌",
     glyph:
-      '<circle cx="37" cy="55" r="6.5" /><path d="M32 50 Q29 37 40 34 Q49 32 47 41 Q46 47 39 45 M42 45 Q54 46 59 39 Q64 32 68 40 Q71 47 64 51" /><circle cx="40" cy="39" r="1.8" class="glyph-dot" />',
+      '<circle cx="37" cy="55" r="6.5" /><path d="M32 50 Q29 37 40 34 Q49 32 47 41 Q46 47 39 45 M42 45 Q54 46 59 39 Q64 32 68 40 Q71 47 64 51 Q61 54 63 49" /><circle cx="40" cy="39" r="1.8" class="glyph-dot" />',
   },
   處女座: {
     symbol: "♍",
@@ -73,7 +73,7 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   天蠍座: {
     symbol: "♏",
     glyph:
-      '<path d="M33 62 Q33 38 38 38 Q43 38 43 62 M43 62 Q43 38 48 38 Q53 38 53 58 L60 65 M60 65 L68 61 M60 65 L63 73" />',
+      '<path d="M33 62 Q33 38 38 38 Q43 38 43 62 M43 62 Q43 38 48 38 Q53 38 53 58 L62 67 M62 67 L67 58 M62 67 L54 71" />',
   },
   射手座: {
     symbol: "♐",
@@ -82,11 +82,11 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   摩羯座: {
     symbol: "♑",
     glyph:
-      '<path d="M39 33 Q32 32 32 39 Q32 45 40 44 L41 33 M40 40 L42 58 Q43 66 51 66 Q59 66 59 59 Q59 54 53 55" /><circle cx="55" cy="58" r="2.2" class="glyph-dot" />',
+      '<path d="M39 33 Q32 32 32 39 Q32 45 40 44 L41 33 M40 40 Q46 50 42 58 Q40 63 47 65 Q56 67 55 60 Q54 55 48 57" /><circle cx="55" cy="58" r="2.2" class="glyph-dot" />',
   },
   水瓶座: {
     symbol: "♒",
-    glyph: '<path d="M32 44 Q36 40 40 44 Q44 48 48 44 Q52 40 56 44 Q60 48 64 44 M32 58 Q36 54 40 58 Q44 62 48 58 Q52 54 56 58 Q60 62 64 58" />',
+    glyph: '<path d="M31 44 L39 50 L47 44 L55 50 L63 44 M31 58 L39 64 L47 58 L55 64 L63 58" />',
   },
   雙魚座: {
     symbol: "♓",
