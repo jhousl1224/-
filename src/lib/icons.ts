@@ -77,7 +77,7 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   },
   射手座: {
     symbol: "♐",
-    glyph: '<path d="M30 46 L64 26 M50 25 L67 25 L67 44 M33 39 L54 46" />',
+    glyph: '<path d="M30 46 L64 26 M50 25 L67 25 L67 44 M42 30 L42 48" />',
   },
   摩羯座: {
     symbol: "♑",
