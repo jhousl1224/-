@@ -54,7 +54,7 @@ export const WESTERN_BADGE: Record<string, BadgeSpec> = {
   巨蟹座: {
     symbol: "♋",
     glyph:
-      '<circle cx="39" cy="41" r="8" /><circle cx="61" cy="59" r="8" /><path d="M46 45 Q59 47 58 58 M54 55 Q41 53 42 42" /><circle cx="39" cy="41" r="2" class="glyph-dot" /><circle cx="61" cy="59" r="2" class="glyph-dot" />',
+      '<circle cx="35" cy="46" r="7.5" /><path d="M41 41 Q52 30 62 38" /><circle cx="65" cy="54" r="7.5" /><path d="M59 59 Q48 70 38 62" /><circle cx="35" cy="46" r="2" class="glyph-dot" /><circle cx="65" cy="54" r="2" class="glyph-dot" />',
   },
   獅子座: {
     symbol: "♌",
