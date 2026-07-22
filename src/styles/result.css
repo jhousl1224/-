@@ -122,8 +122,8 @@
 }
 
 .card-badge {
-  width: 68px;
-  height: 68px;
+  width: 96px;
+  height: 96px;
   overflow: visible;
   filter: drop-shadow(0 4px 10px rgba(5, 6, 20, 0.5));
 }
