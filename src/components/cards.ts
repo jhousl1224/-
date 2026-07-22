@@ -42,7 +42,7 @@ let glyphGradientSeq = 0;
 function buildSymbol(badge: BadgeSpec): string {
   const gradId = `badge-symbol-gold-${glyphGradientSeq++}`;
   const isAstrological = needsTextPresentationSelector(badge.symbol);
-  const fontSize = badge.symbol.length > 1 ? 20 : isAstrological ? 34 : 26;
+  const fontSize = badge.symbol.length > 1 ? 20 : 34;
   const text = isAstrological ? `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}` : badge.symbol;
   const symbolClass = isAstrological ? "card-badge-symbol" : "card-badge-symbol card-badge-symbol--brush";
   return `
