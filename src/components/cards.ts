@@ -41,7 +41,7 @@ let glyphGradientSeq = 0;
 
 function buildSymbol(badge: BadgeSpec): string {
   const gradId = `badge-symbol-gold-${glyphGradientSeq++}`;
-  const fontSize = badge.symbol.length > 1 ? 24 : 32;
+  const fontSize = badge.symbol.length > 1 ? 20 : 24;
   const text = needsTextPresentationSelector(badge.symbol)
     ? `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}`
     : badge.symbol;
