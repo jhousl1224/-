@@ -117,6 +117,9 @@ function buildEmblemSvg(): string {
 
   <g class="guide__ring">
     <circle cx="100" cy="100" r="88" fill="none" stroke="#5B8C7B" stroke-width="0.75" opacity="0.35" />
+  </g>
+
+  <g class="guide__glyph-ring">
     ${buildGlyphs()}
   </g>
 
