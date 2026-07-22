@@ -23,11 +23,13 @@ export function mountFloatingUnlock(root: HTMLElement) {
     toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
   });
 
-  const resultSection = document.getElementById("result");
-  if (!resultSection) return { el: wrap };
+  const resultSectionEl = document.getElementById("result");
+  if (!resultSectionEl) return { el: wrap };
+  const resultSection = resultSectionEl;
 
   let heading: HTMLElement | null = null;
   let ticking = false;
+  let listenersAttached = false;
 
   function updateVisibility() {
     ticking = false;
@@ -47,24 +49,30 @@ export function mountFloatingUnlock(root: HTMLElement) {
 
   function attach(headingEl: HTMLElement) {
     heading = headingEl;
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    if (!listenersAttached) {
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      listenersAttached = true;
+    }
     updateVisibility();
   }
 
-  const existing = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
-  if (existing) {
-    attach(existing);
-  } else {
-    const mutationObserver = new MutationObserver(() => {
-      const found = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
-      if (found) {
-        attach(found);
-        mutationObserver.disconnect();
-      }
-    });
-    mutationObserver.observe(resultSection, { childList: true, subtree: true });
+  // Re-submitting the form rebuilds the card stack, which replaces the teaser
+  // heading with a new DOM node — keep watching indefinitely so we re-attach
+  // to it instead of holding a stale reference to the detached old one.
+  function checkHeading() {
+    const found = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
+    if (found && found !== heading) {
+      attach(found);
+    } else if (!found && heading) {
+      heading = null;
+      wrap.classList.remove("is-visible");
+    }
   }
+
+  checkHeading();
+  const mutationObserver = new MutationObserver(checkHeading);
+  mutationObserver.observe(resultSection, { childList: true, subtree: true });
 
   return { el: wrap };
 }
