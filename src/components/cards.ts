@@ -28,14 +28,33 @@ function buildTicks(): string {
 }
 
 const TEXT_PRESENTATION_SELECTOR = "\uFE0E";
+const ASTROLOGICAL_SYMBOL_MIN = 0x2648;
+const ASTROLOGICAL_SYMBOL_MAX = 0x2653;
+
+function needsTextPresentationSelector(symbol: string): boolean {
+  if (symbol.length !== 1) return false;
+  const code = symbol.codePointAt(0) ?? 0;
+  return code >= ASTROLOGICAL_SYMBOL_MIN && code <= ASTROLOGICAL_SYMBOL_MAX;
+}
+
+let glyphGradientSeq = 0;
 
 function buildSymbol(badge: BadgeSpec): string {
+  const gradId = `badge-symbol-gold-${glyphGradientSeq++}`;
   const fontSize = badge.symbol.length > 1 ? 24 : 32;
-  const text = `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}`;
+  const text = needsTextPresentationSelector(badge.symbol)
+    ? `${badge.symbol}${TEXT_PRESENTATION_SELECTOR}`
+    : badge.symbol;
   return `
-    <foreignObject x="18" y="18" width="64" height="64">
-      <div xmlns="http://www.w3.org/1999/xhtml" class="card-badge-unicode" style="font-size:${fontSize}px;">${text}</div>
-    </foreignObject>
+    <defs>
+      <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
+        <stop offset="0%" stop-color="#fff8dc" />
+        <stop offset="35%" stop-color="#d4af37" />
+        <stop offset="65%" stop-color="#b8860b" />
+        <stop offset="100%" stop-color="#ffd700" />
+      </linearGradient>
+    </defs>
+    <text x="50" y="52" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}" class="card-badge-symbol" fill="url(#${gradId})">${text}</text>
   `;
 }
 

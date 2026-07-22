@@ -27,19 +27,25 @@ function buildTicks(radius: number, count: number, longLen: number, shortLen: nu
 }
 
 function buildGlyphs(): string {
-  const size = 15;
-  const half = size / 2;
-  return ZODIAC_SIGNS.map((sign, i) => {
+  const gradId = "guide-glyph-gold";
+  const glyphs = ZODIAC_SIGNS.map((sign, i) => {
     const angle = (360 / ZODIAC_SIGNS.length) * i - 90;
     const [x, y] = polar(80, angle);
     const symbol = WESTERN_BADGE[sign]?.symbol ?? "";
     const text = `${symbol}${TEXT_PRESENTATION_SELECTOR}`;
-    return `
-      <foreignObject x="${(x - half).toFixed(1)}" y="${(y - half).toFixed(1)}" width="${size}" height="${size}">
-        <div xmlns="http://www.w3.org/1999/xhtml" class="guide__unicode-glyph">${text}</div>
-      </foreignObject>
-    `;
+    return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" class="guide__glyph" fill="url(#${gradId})">${text}</text>`;
   }).join("\n");
+  return `
+    <defs>
+      <linearGradient id="${gradId}" x1="15%" y1="0%" x2="85%" y2="100%">
+        <stop offset="0%" stop-color="#fff8dc" />
+        <stop offset="35%" stop-color="#d4af37" />
+        <stop offset="65%" stop-color="#b8860b" />
+        <stop offset="100%" stop-color="#ffd700" />
+      </linearGradient>
+    </defs>
+    ${glyphs}
+  `;
 }
 
 function buildHexagram(radius: number): string {
