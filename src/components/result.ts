@@ -201,84 +201,169 @@ export function mountResult(root: HTMLElement) {
     window.addEventListener("starself:unlock-request", unlock);
     renderTeasers();
 
-    const liunianHeading = document.createElement("div");
-    liunianHeading.innerHTML = `<h2 class="zh">流年運勢：今年 + 未來三年</h2><span class="en">Your Year-by-Year Forecast</span>`;
-    content.appendChild(liunianHeading);
+    const currentYear = new Date().getFullYear();
+    const [thisYear] = buildLiunianYears(profile.bazi.dayMaster, currentYear, 1);
+    const futureYears = buildLiunianYears(profile.bazi.dayMaster, currentYear + 1, 3);
 
-    const liunianYearToggle = document.createElement("div");
-    liunianYearToggle.className = "toggle-group liunian-year-toggle";
-    content.appendChild(liunianYearToggle);
+    // --- Tier 2: this year, split into an already-happened first half and a forecast second half ---
 
-    const liunianYearMeta = document.createElement("div");
-    liunianYearMeta.className = "liunian-year-meta";
-    content.appendChild(liunianYearMeta);
+    const thisYearHeading = document.createElement("div");
+    thisYearHeading.innerHTML = `<h2 class="zh">今年流年：上半年回顧 + 下半年預測</h2><span class="en">This Year: First-Half Recap + Second-Half Forecast</span>`;
+    content.appendChild(thisYearHeading);
 
-    const liunianCards = document.createElement("div");
-    liunianCards.className = "teaser-stack";
-    content.appendChild(liunianCards);
+    const thisYearMeta = document.createElement("div");
+    thisYearMeta.className = "liunian-year-meta";
+    thisYearMeta.innerHTML = `
+      <p class="zh">${thisYear.year}年（${thisYear.ganZhi}年）・${LIUNIAN_CATEGORY_INFO[thisYear.category].labelZh}：${LIUNIAN_CATEGORY_INFO[thisYear.category].themeZh}</p>
+      <p class="en">${thisYear.year} (${thisYear.ganZhi}) · ${LIUNIAN_CATEGORY_INFO[thisYear.category].labelEn}: ${LIUNIAN_CATEGORY_INFO[thisYear.category].themeEn}</p>
+    `;
+    content.appendChild(thisYearMeta);
 
-    const liunianCta = document.createElement("p");
-    liunianCta.className = "result-cta";
-    content.appendChild(liunianCta);
+    const h1Label = document.createElement("p");
+    h1Label.className = "liunian-half-label";
+    h1Label.innerHTML = `<span class="zh">📖 上半年回顧（已發生）</span><span class="en">First Half — Already Happened</span>`;
+    content.appendChild(h1Label);
 
-    const liunianYears = buildLiunianYears(profile.bazi.dayMaster, new Date().getFullYear(), 4);
-    let selectedYearIndex = 0;
-    let liunianUnlocked = false;
+    const thisYearH1Cards = document.createElement("div");
+    thisYearH1Cards.className = "teaser-stack";
+    content.appendChild(thisYearH1Cards);
 
-    liunianYearToggle.innerHTML = liunianYears
+    const h2Label = document.createElement("p");
+    h2Label.className = "liunian-half-label";
+    h2Label.innerHTML = `<span class="zh">🔮 下半年預測（即將發生）</span><span class="en">Second Half — What's Ahead</span>`;
+    content.appendChild(h2Label);
+
+    const thisYearH2Cards = document.createElement("div");
+    thisYearH2Cards.className = "teaser-stack";
+    content.appendChild(thisYearH2Cards);
+
+    const thisYearCta = document.createElement("p");
+    thisYearCta.className = "result-cta";
+    content.appendChild(thisYearCta);
+
+    let thisYearUnlocked = false;
+
+    function reframeForHalf(teaser: Teaser, half: "h1" | "h2"): Teaser {
+      const zhPrefix = half === "h1" ? "回顧這半年，" : "接下來這半年，";
+      const enPrefix = half === "h1" ? "Looking back on the first half of the year, " : "Looking ahead to the second half of the year, ";
+      return {
+        ...teaser,
+        visibleZh: teaser.visibleZh.replace(/^這一年，?/, zhPrefix),
+        visibleEn: teaser.visibleEn.replace(/^This year,?\s*/, enPrefix),
+      };
+    }
+
+    function renderThisYearCards() {
+      thisYearH1Cards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, reframeForHalf(topic.data[thisYear.category], "h1"), thisYearUnlocked),
+      ).join("");
+      thisYearH2Cards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, reframeForHalf(topic.data[thisYear.category], "h2"), thisYearUnlocked),
+      ).join("");
+
+      if (thisYearUnlocked) {
+        thisYearCta.innerHTML = `<span class="zh">🎉 今年的流年運勢已解鎖！</span><span class="en">Unlocked — this year's forecast is all yours.</span>`;
+      } else {
+        thisYearCta.innerHTML = `<span class="zh">今年上下半年的完整流年解析，付費解鎖 🔒</span><span class="en">The full first-half + second-half forecast unlocks with payment.</span>`;
+        [thisYearH1Cards, thisYearH2Cards].forEach((container) => {
+          container.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+            btn.addEventListener("click", unlockThisYear);
+          });
+        });
+      }
+    }
+
+    function unlockThisYear() {
+      if (thisYearUnlocked) return;
+      thisYearUnlocked = true;
+      renderThisYearCards();
+      guide.say(
+        "今年上半年的回顧跟下半年的預測都解鎖囉，對照一下上半年準不準！",
+        "This year's recap and forecast are both unlocked — see how the first half checks out!",
+      );
+    }
+
+    renderThisYearCards();
+
+    // --- Tier 3: next 3 years, bundled in one unlock ---
+
+    const futureYearsHeading = document.createElement("div");
+    futureYearsHeading.innerHTML = `<h2 class="zh">明年・後年・大後年流年</h2><span class="en">The Next 3 Years</span>`;
+    content.appendChild(futureYearsHeading);
+
+    const futureYearToggle = document.createElement("div");
+    futureYearToggle.className = "toggle-group liunian-year-toggle";
+    content.appendChild(futureYearToggle);
+
+    const futureYearMeta = document.createElement("div");
+    futureYearMeta.className = "liunian-year-meta";
+    content.appendChild(futureYearMeta);
+
+    const futureYearCards = document.createElement("div");
+    futureYearCards.className = "teaser-stack";
+    content.appendChild(futureYearCards);
+
+    const futureYearCta = document.createElement("p");
+    futureYearCta.className = "result-cta";
+    content.appendChild(futureYearCta);
+
+    let selectedFutureIndex = 0;
+    let futureYearsUnlocked = false;
+
+    futureYearToggle.innerHTML = futureYears
       .map(
         (y, i) =>
-          `<button type="button" data-index="${i}" class="${i === 0 ? "is-active" : ""}"><span class="zh">${LIUNIAN_YEAR_LABELS_ZH[i]}</span><span class="en">${y.year}</span></button>`,
+          `<button type="button" data-index="${i}" class="${i === 0 ? "is-active" : ""}"><span class="zh">${LIUNIAN_YEAR_LABELS_ZH[i + 1]}</span><span class="en">${y.year}</span></button>`,
       )
       .join("");
 
-    function renderLiunianYearMeta() {
-      const y = liunianYears[selectedYearIndex];
+    function renderFutureYearMeta() {
+      const y = futureYears[selectedFutureIndex];
       const info = LIUNIAN_CATEGORY_INFO[y.category];
-      liunianYearMeta.innerHTML = `
+      futureYearMeta.innerHTML = `
         <p class="zh">${y.year}年（${y.ganZhi}年）・${info.labelZh}：${info.themeZh}</p>
         <p class="en">${y.year} (${y.ganZhi}) · ${info.labelEn}: ${info.themeEn}</p>
       `;
     }
 
-    function renderLiunianCards() {
-      const y = liunianYears[selectedYearIndex];
-      liunianCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[y.category], liunianUnlocked),
+    function renderFutureYearCards() {
+      const y = futureYears[selectedFutureIndex];
+      futureYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[y.category], futureYearsUnlocked),
       ).join("");
 
-      if (liunianUnlocked) {
-        liunianCta.innerHTML = `<span class="zh">🎉 流年運勢已解鎖！點上面的年份切換查看</span><span class="en">Unlocked — switch between years above to see each forecast.</span>`;
+      if (futureYearsUnlocked) {
+        futureYearCta.innerHTML = `<span class="zh">🎉 未來三年運勢已解鎖！點上面的年份切換查看</span><span class="en">Unlocked — switch between years above to see each forecast.</span>`;
       } else {
-        liunianCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">The full multi-year forecast unlocks with payment.</span>`;
-        liunianCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
-          btn.addEventListener("click", unlockLiunian);
+        futureYearCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">The full 3-year forecast unlocks with payment.</span>`;
+        futureYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+          btn.addEventListener("click", unlockFutureYears);
         });
       }
     }
 
-    function unlockLiunian() {
-      if (liunianUnlocked) return;
-      liunianUnlocked = true;
-      renderLiunianCards();
+    function unlockFutureYears() {
+      if (futureYearsUnlocked) return;
+      futureYearsUnlocked = true;
+      renderFutureYearCards();
       guide.say(
-        "未來幾年的流年運勢也一起解鎖囉，記得每一年都回來看看喔！",
-        "Your year-by-year forecast is unlocked too — come back and check in on each year!",
+        "未來三年的流年運勢也一起解鎖囉，記得每一年都回來看看喔！",
+        "Your next 3 years are unlocked too — come back and check in on each one!",
       );
     }
 
-    liunianYearToggle.addEventListener("click", (e) => {
+    futureYearToggle.addEventListener("click", (e) => {
       const btn = (e.target as HTMLElement).closest("button");
       if (!btn) return;
-      selectedYearIndex = Number(btn.dataset.index);
-      liunianYearToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
+      selectedFutureIndex = Number(btn.dataset.index);
+      futureYearToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
-      renderLiunianYearMeta();
-      renderLiunianCards();
+      renderFutureYearMeta();
+      renderFutureYearCards();
     });
 
-    renderLiunianYearMeta();
-    renderLiunianCards();
+    renderFutureYearMeta();
+    renderFutureYearCards();
 
     guide.say(
       "這只是你命盤的縮影，感情、事業、財運、健康的完整解讀之後會在深度報告裡揭曉！",

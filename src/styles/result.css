@@ -400,3 +400,22 @@
   margin-top: 0.2rem;
   font-size: 0.76rem;
 }
+
+.liunian-half-label {
+  width: 100%;
+  text-align: left;
+  margin-top: var(--space-3);
+  padding-left: 0.2rem;
+}
+
+.liunian-half-label .zh {
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.liunian-half-label .en {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+}
