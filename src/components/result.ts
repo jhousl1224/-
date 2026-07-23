@@ -157,6 +157,8 @@ export function mountResult(root: HTMLElement) {
     cta.className = "result-cta";
     content.appendChild(cta);
 
+    window.dispatchEvent(new CustomEvent("starself:report-reset"));
+
     let unlocked = false;
 
     function renderTeasers() {

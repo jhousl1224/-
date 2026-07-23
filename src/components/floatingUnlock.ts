@@ -1,9 +1,12 @@
+const LOCKED_LABEL = `<span class="zh">🔒 解鎖完整報告</span><span class="en">Unlock Full Report</span>`;
+const UNLOCKED_LABEL = `<span class="zh">✅ 已解鎖</span><span class="en">Unlocked</span>`;
+
 export function mountFloatingUnlock(root: HTMLElement) {
   const wrap = document.createElement("div");
   wrap.className = "floating-unlock";
   wrap.innerHTML = `
     <button type="button" class="btn-primary" data-role="floating-unlock-btn">
-      <span class="zh">🔒 解鎖完整報告</span><span class="en">Unlock Full Report</span>
+      ${LOCKED_LABEL}
     </button>
   `;
 
@@ -25,8 +28,15 @@ export function mountFloatingUnlock(root: HTMLElement) {
   });
 
   window.addEventListener("starself:unlocked", () => {
-    btn.innerHTML = `<span class="zh">✅ 已解鎖</span><span class="en">Unlocked</span>`;
+    btn.innerHTML = UNLOCKED_LABEL;
     wrap.classList.add("is-unlocked");
+  });
+
+  // A fresh form submission means a brand-new, never-unlocked report — drop
+  // any leftover "unlocked" visual state from a previous chart.
+  window.addEventListener("starself:report-reset", () => {
+    btn.innerHTML = LOCKED_LABEL;
+    wrap.classList.remove("is-unlocked");
   });
 
   const resultSectionEl = document.getElementById("result");
