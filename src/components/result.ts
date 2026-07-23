@@ -34,6 +34,7 @@ function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser, unloc
           <p class="zh">${teaser.visibleZh}${teaser.blurredZh}${teaser.fullZh}</p>
           <p class="en">${teaser.visibleEn} ${teaser.blurredEn} ${teaser.fullEn}</p>
         </div>
+        <span class="teaser-unlocked-badge">✅ <span class="zh">已解鎖</span><span class="en">Unlocked</span></span>
       </div>
     `;
   }

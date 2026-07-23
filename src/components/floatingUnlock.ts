@@ -1,5 +1,4 @@
 const LOCKED_LABEL = `<span class="zh">🔒 解鎖完整報告</span><span class="en">🔒 Unlock Full Report</span>`;
-const UNLOCKED_LABEL = `<span class="zh">✅ 已解鎖</span><span class="en">✅ Unlocked</span>`;
 
 export function mountFloatingUnlock(root: HTMLElement) {
   const wrap = document.createElement("div");
@@ -19,6 +18,7 @@ export function mountFloatingUnlock(root: HTMLElement) {
 
   const btn = wrap.querySelector("button") as HTMLButtonElement;
   let toastTimer: number | undefined;
+  let hasUnlocked = false;
 
   btn.addEventListener("click", () => {
     window.dispatchEvent(new CustomEvent("starself:unlock-request"));
@@ -27,16 +27,19 @@ export function mountFloatingUnlock(root: HTMLElement) {
     toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
   });
 
+  // Once unlocked, each card shows its own "已解鎖" badge — the floating
+  // button's job (prompting the unlock) is done, so drop it instead of
+  // leaving a now-purposeless pill floating over the content.
   window.addEventListener("starself:unlocked", () => {
-    btn.innerHTML = UNLOCKED_LABEL;
-    wrap.classList.add("is-unlocked");
+    hasUnlocked = true;
+    wrap.classList.remove("is-visible");
   });
 
   // A fresh form submission means a brand-new, never-unlocked report — drop
   // any leftover "unlocked" visual state from a previous chart.
   window.addEventListener("starself:report-reset", () => {
+    hasUnlocked = false;
     btn.innerHTML = LOCKED_LABEL;
-    wrap.classList.remove("is-unlocked");
   });
 
   const resultSectionEl = document.getElementById("result");
@@ -49,6 +52,10 @@ export function mountFloatingUnlock(root: HTMLElement) {
 
   function updateVisibility() {
     ticking = false;
+    if (hasUnlocked) {
+      wrap.classList.remove("is-visible");
+      return;
+    }
     if (!heading) return;
     // Show once we've scrolled down past the teaser heading; hide again once
     // we've scrolled back up into the flip-card area above it.
