@@ -10,17 +10,17 @@ import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser }
 import type { BirthProfile } from "../lib/types";
 
 const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Teaser> }[] = [
-  { labelZh: "💞 感情關係", labelEn: "Love & Relationships", data: TEASER_LOVE },
-  { labelZh: "💼 事業方向", labelEn: "Career Direction", data: TEASER_CAREER },
-  { labelZh: "💰 財運", labelEn: "Money & Wealth", data: TEASER_WEALTH },
-  { labelZh: "🌿 健康", labelEn: "Health", data: TEASER_HEALTH },
+  { labelZh: "💞 感情關係", labelEn: "💞 Love & Relationships", data: TEASER_LOVE },
+  { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: TEASER_CAREER },
+  { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: TEASER_WEALTH },
+  { labelZh: "🌿 健康", labelEn: "🌿 Health", data: TEASER_HEALTH },
 ];
 
 const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCategory, Teaser> }[] = [
-  { labelZh: "💞 感情關係", labelEn: "Love & Relationships", data: LIUNIAN_LOVE },
-  { labelZh: "💼 事業方向", labelEn: "Career Direction", data: LIUNIAN_CAREER },
-  { labelZh: "💰 財運", labelEn: "Money & Wealth", data: LIUNIAN_WEALTH },
-  { labelZh: "🌿 健康", labelEn: "Health", data: LIUNIAN_HEALTH },
+  { labelZh: "💞 感情關係", labelEn: "💞 Love & Relationships", data: LIUNIAN_LOVE },
+  { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: LIUNIAN_CAREER },
+  { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: LIUNIAN_WEALTH },
+  { labelZh: "🌿 健康", labelEn: "🌿 Health", data: LIUNIAN_HEALTH },
 ];
 
 const LIUNIAN_YEAR_LABELS_ZH = ["今年", "明年", "後年", "大後年"];
@@ -178,10 +178,10 @@ export function mountResult(root: HTMLElement) {
       ).join("");
 
       if (unlocked) {
-        cta.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">Unlocked — here's your full report.</span>`;
+        cta.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked — here's your full report.</span>`;
         window.dispatchEvent(new CustomEvent("starself:unlocked"));
       } else {
-        cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">The full deep-dive report is coming soon — stay tuned.</span>`;
+        cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">🔒 The full deep-dive report is coming soon — stay tuned.</span>`;
         teaserStack.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
           btn.addEventListener("click", unlock);
         });
@@ -221,7 +221,7 @@ export function mountResult(root: HTMLElement) {
 
     const h1Label = document.createElement("p");
     h1Label.className = "liunian-half-label";
-    h1Label.innerHTML = `<span class="zh">📖 上半年回顧（已發生）</span><span class="en">First Half — Already Happened</span>`;
+    h1Label.innerHTML = `<span class="zh">📖 上半年回顧（已發生）</span><span class="en">📖 First Half — Already Happened</span>`;
     content.appendChild(h1Label);
 
     const thisYearH1Cards = document.createElement("div");
@@ -230,7 +230,7 @@ export function mountResult(root: HTMLElement) {
 
     const h2Label = document.createElement("p");
     h2Label.className = "liunian-half-label";
-    h2Label.innerHTML = `<span class="zh">🔮 下半年預測（即將發生）</span><span class="en">Second Half — What's Ahead</span>`;
+    h2Label.innerHTML = `<span class="zh">🔮 下半年預測（即將發生）</span><span class="en">🔮 Second Half — What's Ahead</span>`;
     content.appendChild(h2Label);
 
     const thisYearH2Cards = document.createElement("div");
@@ -262,9 +262,9 @@ export function mountResult(root: HTMLElement) {
       ).join("");
 
       if (thisYearUnlocked) {
-        thisYearCta.innerHTML = `<span class="zh">🎉 今年的流年運勢已解鎖！</span><span class="en">Unlocked — this year's forecast is all yours.</span>`;
+        thisYearCta.innerHTML = `<span class="zh">🎉 今年的流年運勢已解鎖！</span><span class="en">🎉 Unlocked — this year's forecast is all yours.</span>`;
       } else {
-        thisYearCta.innerHTML = `<span class="zh">今年上下半年的完整流年解析，付費解鎖 🔒</span><span class="en">The full first-half + second-half forecast unlocks with payment.</span>`;
+        thisYearCta.innerHTML = `<span class="zh">今年上下半年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full first-half + second-half forecast unlocks with payment.</span>`;
         [thisYearH1Cards, thisYearH2Cards].forEach((container) => {
           container.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
             btn.addEventListener("click", unlockThisYear);
@@ -333,9 +333,9 @@ export function mountResult(root: HTMLElement) {
       ).join("");
 
       if (futureYearsUnlocked) {
-        futureYearCta.innerHTML = `<span class="zh">🎉 未來三年運勢已解鎖！點上面的年份切換查看</span><span class="en">Unlocked — switch between years above to see each forecast.</span>`;
+        futureYearCta.innerHTML = `<span class="zh">🎉 未來三年運勢已解鎖！點上面的年份切換查看</span><span class="en">🎉 Unlocked — switch between years above to see each forecast.</span>`;
       } else {
-        futureYearCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">The full 3-year forecast unlocks with payment.</span>`;
+        futureYearCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full 3-year forecast unlocks with payment.</span>`;
         futureYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
           btn.addEventListener("click", unlockFutureYears);
         });

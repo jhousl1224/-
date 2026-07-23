@@ -1,5 +1,5 @@
-const LOCKED_LABEL = `<span class="zh">🔒 解鎖完整報告</span><span class="en">Unlock Full Report</span>`;
-const UNLOCKED_LABEL = `<span class="zh">✅ 已解鎖</span><span class="en">Unlocked</span>`;
+const LOCKED_LABEL = `<span class="zh">🔒 解鎖完整報告</span><span class="en">🔒 Unlock Full Report</span>`;
+const UNLOCKED_LABEL = `<span class="zh">✅ 已解鎖</span><span class="en">✅ Unlocked</span>`;
 
 export function mountFloatingUnlock(root: HTMLElement) {
   const wrap = document.createElement("div");
@@ -12,7 +12,7 @@ export function mountFloatingUnlock(root: HTMLElement) {
 
   const toast = document.createElement("div");
   toast.className = "floating-toast";
-  toast.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">Unlocked! Enjoy your full report.</span>`;
+  toast.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked! Enjoy your full report.</span>`;
 
   root.appendChild(wrap);
   root.appendChild(toast);
