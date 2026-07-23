@@ -3,6 +3,8 @@ import { mountCardStack, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
 import { WESTERN_BADGE, WUXING_BADGE, ZIWEI_NO_STAR_BADGE, ZIWEI_STAR_BADGE, ZODIAC_BADGE } from "../lib/icons";
+import { buildLiunianYears, type LiunianCategory } from "../lib/liunian";
+import { LIUNIAN_CAREER, LIUNIAN_CATEGORY_INFO, LIUNIAN_HEALTH, LIUNIAN_LOVE, LIUNIAN_WEALTH } from "../lib/liunianData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
 import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
@@ -13,6 +15,15 @@ const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Te
   { labelZh: "💰 財運", labelEn: "Money & Wealth", data: TEASER_WEALTH },
   { labelZh: "🌿 健康", labelEn: "Health", data: TEASER_HEALTH },
 ];
+
+const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCategory, Teaser> }[] = [
+  { labelZh: "💞 感情關係", labelEn: "Love & Relationships", data: LIUNIAN_LOVE },
+  { labelZh: "💼 事業方向", labelEn: "Career Direction", data: LIUNIAN_CAREER },
+  { labelZh: "💰 財運", labelEn: "Money & Wealth", data: LIUNIAN_WEALTH },
+  { labelZh: "🌿 健康", labelEn: "Health", data: LIUNIAN_HEALTH },
+];
+
+const LIUNIAN_YEAR_LABELS_ZH = ["今年", "明年", "後年", "大後年"];
 
 function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser, unlocked: boolean): string {
   if (unlocked) {
@@ -189,6 +200,85 @@ export function mountResult(root: HTMLElement) {
 
     window.addEventListener("starself:unlock-request", unlock);
     renderTeasers();
+
+    const liunianHeading = document.createElement("div");
+    liunianHeading.innerHTML = `<h2 class="zh">流年運勢：今年 + 未來三年</h2><span class="en">Your Year-by-Year Forecast</span>`;
+    content.appendChild(liunianHeading);
+
+    const liunianYearToggle = document.createElement("div");
+    liunianYearToggle.className = "toggle-group liunian-year-toggle";
+    content.appendChild(liunianYearToggle);
+
+    const liunianYearMeta = document.createElement("div");
+    liunianYearMeta.className = "liunian-year-meta";
+    content.appendChild(liunianYearMeta);
+
+    const liunianCards = document.createElement("div");
+    liunianCards.className = "teaser-stack";
+    content.appendChild(liunianCards);
+
+    const liunianCta = document.createElement("p");
+    liunianCta.className = "result-cta";
+    content.appendChild(liunianCta);
+
+    const liunianYears = buildLiunianYears(profile.bazi.dayMaster, new Date().getFullYear(), 4);
+    let selectedYearIndex = 0;
+    let liunianUnlocked = false;
+
+    liunianYearToggle.innerHTML = liunianYears
+      .map(
+        (y, i) =>
+          `<button type="button" data-index="${i}" class="${i === 0 ? "is-active" : ""}"><span class="zh">${LIUNIAN_YEAR_LABELS_ZH[i]}</span><span class="en">${y.year}</span></button>`,
+      )
+      .join("");
+
+    function renderLiunianYearMeta() {
+      const y = liunianYears[selectedYearIndex];
+      const info = LIUNIAN_CATEGORY_INFO[y.category];
+      liunianYearMeta.innerHTML = `
+        <p class="zh">${y.year}年（${y.ganZhi}年）・${info.labelZh}：${info.themeZh}</p>
+        <p class="en">${y.year} (${y.ganZhi}) · ${info.labelEn}: ${info.themeEn}</p>
+      `;
+    }
+
+    function renderLiunianCards() {
+      const y = liunianYears[selectedYearIndex];
+      liunianCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[y.category], liunianUnlocked),
+      ).join("");
+
+      if (liunianUnlocked) {
+        liunianCta.innerHTML = `<span class="zh">🎉 流年運勢已解鎖！點上面的年份切換查看</span><span class="en">Unlocked — switch between years above to see each forecast.</span>`;
+      } else {
+        liunianCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">The full multi-year forecast unlocks with payment.</span>`;
+        liunianCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+          btn.addEventListener("click", unlockLiunian);
+        });
+      }
+    }
+
+    function unlockLiunian() {
+      if (liunianUnlocked) return;
+      liunianUnlocked = true;
+      renderLiunianCards();
+      guide.say(
+        "未來幾年的流年運勢也一起解鎖囉，記得每一年都回來看看喔！",
+        "Your year-by-year forecast is unlocked too — come back and check in on each year!",
+      );
+    }
+
+    liunianYearToggle.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest("button");
+      if (!btn) return;
+      selectedYearIndex = Number(btn.dataset.index);
+      liunianYearToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      renderLiunianYearMeta();
+      renderLiunianCards();
+    });
+
+    renderLiunianYearMeta();
+    renderLiunianCards();
 
     guide.say(
       "這只是你命盤的縮影，感情、事業、財運、健康的完整解讀之後會在深度報告裡揭曉！",
