@@ -14,7 +14,18 @@ const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Te
   { labelZh: "🌿 健康", labelEn: "Health", data: TEASER_HEALTH },
 ];
 
-function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser): string {
+function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser, unlocked: boolean): string {
+  if (unlocked) {
+    return `
+      <div class="teaser-card teaser-card--unlocked">
+        <p class="teaser-label"><span class="zh">${labelZh}</span> <span class="en" style="display:inline;">${labelEn}</span></p>
+        <div class="teaser-text">
+          <p class="zh">${teaser.visibleZh}${teaser.blurredZh}${teaser.fullZh}</p>
+          <p class="en">${teaser.visibleEn} ${teaser.blurredEn} ${teaser.fullEn}</p>
+        </div>
+      </div>
+    `;
+  }
   return `
     <div class="teaser-card">
       <p class="teaser-label"><span class="zh">${labelZh}</span> <span class="en" style="display:inline;">${labelEn}</span></p>
@@ -23,7 +34,7 @@ function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser): stri
         <p class="en">${teaser.visibleEn} <span class="teaser-text-blurred">${teaser.blurredEn}</span></p>
         <div class="teaser-fade"></div>
       </div>
-      <div class="teaser-unlock">🔒 <span class="zh">解鎖完整分析</span><span class="en" style="display:inline;">Unlock full analysis</span></div>
+      <button type="button" class="teaser-unlock" data-role="teaser-unlock-btn">🔒 <span class="zh">解鎖完整分析</span><span class="en" style="display:inline;">Unlock full analysis</span></button>
     </div>
   `;
 }
@@ -138,17 +149,44 @@ export function mountResult(root: HTMLElement) {
 
     const teaserStack = document.createElement("div");
     teaserStack.className = "teaser-stack";
-    teaserStack.innerHTML = TEASER_TOPICS.map((topic) =>
-      buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[profile.bazi.dominantWuxing]),
-    ).join("");
     content.appendChild(teaserStack);
 
     content.appendChild(guide.el);
 
     const cta = document.createElement("p");
     cta.className = "result-cta";
-    cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">The full deep-dive report is coming soon — stay tuned.</span>`;
     content.appendChild(cta);
+
+    let unlocked = false;
+
+    function renderTeasers() {
+      teaserStack.innerHTML = TEASER_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[profile.bazi.dominantWuxing], unlocked),
+      ).join("");
+
+      if (unlocked) {
+        cta.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">Unlocked — here's your full report.</span>`;
+        window.dispatchEvent(new CustomEvent("starself:unlocked"));
+      } else {
+        cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">The full deep-dive report is coming soon — stay tuned.</span>`;
+        teaserStack.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+          btn.addEventListener("click", unlock);
+        });
+      }
+    }
+
+    function unlock() {
+      if (unlocked) return;
+      unlocked = true;
+      renderTeasers();
+      guide.say(
+        "報告已經全部解鎖囉，感情、事業、財運、健康的完整解讀都在上面了！",
+        "Everything's unlocked now — love, career, money, and health, all laid out above.",
+      );
+    }
+
+    window.addEventListener("starself:unlock-request", unlock);
+    renderTeasers();
 
     guide.say(
       "這只是你命盤的縮影，感情、事業、財運、健康的完整解讀之後會在深度報告裡揭曉！",

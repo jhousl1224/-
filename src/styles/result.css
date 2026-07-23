@@ -284,6 +284,22 @@
   padding: 0.5rem 1rem;
   font-size: 0.82rem;
   color: var(--gold-soft);
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.teaser-card--unlocked {
+  background: linear-gradient(160deg, rgba(127, 172, 156, 0.16), rgba(13, 16, 48, 0.85));
+  box-shadow: var(--shadow-panel), inset 0 0 0 1px rgba(212, 175, 122, 0.35);
+}
+
+.teaser-card--unlocked .teaser-text {
+  font-size: 0.92rem;
+}
+
+.teaser-card--unlocked .en {
+  margin-top: 0.4rem;
 }
 
 .result-cta {
@@ -323,6 +339,11 @@
 
 .floating-unlock .btn-primary .en {
   font-size: 0.66rem;
+}
+
+.floating-unlock.is-unlocked .btn-primary {
+  background: linear-gradient(160deg, var(--jade-soft), var(--jade));
+  opacity: 0.85;
 }
 
 .floating-toast {

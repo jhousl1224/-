@@ -9,7 +9,7 @@ export function mountFloatingUnlock(root: HTMLElement) {
 
   const toast = document.createElement("div");
   toast.className = "floating-toast";
-  toast.innerHTML = `<span class="zh">完整報告即將推出，敬請期待！</span><span class="en">Coming soon — the full report is on its way!</span>`;
+  toast.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">Unlocked! Enjoy your full report.</span>`;
 
   root.appendChild(wrap);
   root.appendChild(toast);
@@ -18,9 +18,15 @@ export function mountFloatingUnlock(root: HTMLElement) {
   let toastTimer: number | undefined;
 
   btn.addEventListener("click", () => {
+    window.dispatchEvent(new CustomEvent("starself:unlock-request"));
     toast.classList.add("is-visible");
     window.clearTimeout(toastTimer);
     toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+  });
+
+  window.addEventListener("starself:unlocked", () => {
+    btn.innerHTML = `<span class="zh">✅ 已解鎖</span><span class="en">Unlocked</span>`;
+    wrap.classList.add("is-unlocked");
   });
 
   const resultSectionEl = document.getElementById("result");
