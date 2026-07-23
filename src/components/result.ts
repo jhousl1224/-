@@ -206,10 +206,10 @@ export function mountResult(root: HTMLElement) {
     const [thisYear] = buildLiunianYears(profile.bazi.dayMaster, currentYear, 1);
     const futureYears = buildLiunianYears(profile.bazi.dayMaster, currentYear + 1, 3);
 
-    // --- Tier 2: this year, split into an already-happened first half and a forecast second half ---
+    // --- Tier 2: this year's liunian, as one whole-year reading ---
 
     const thisYearHeading = document.createElement("div");
-    thisYearHeading.innerHTML = `<h2 class="zh">今年流年：上半年回顧 + 下半年預測</h2><h2 class="en">This Year: First-Half Recap + Second-Half Forecast</h2>`;
+    thisYearHeading.innerHTML = `<h2 class="zh">今年流年</h2><h2 class="en">This Year's Forecast</h2>`;
     content.appendChild(thisYearHeading);
 
     const thisYearMeta = document.createElement("div");
@@ -220,23 +220,9 @@ export function mountResult(root: HTMLElement) {
     `;
     content.appendChild(thisYearMeta);
 
-    const h1Label = document.createElement("p");
-    h1Label.className = "liunian-half-label";
-    h1Label.innerHTML = `<span class="zh">📖 上半年回顧（已發生）</span><span class="en">📖 First Half — Already Happened</span>`;
-    content.appendChild(h1Label);
-
-    const thisYearH1Cards = document.createElement("div");
-    thisYearH1Cards.className = "teaser-stack";
-    content.appendChild(thisYearH1Cards);
-
-    const h2Label = document.createElement("p");
-    h2Label.className = "liunian-half-label";
-    h2Label.innerHTML = `<span class="zh">🔮 下半年預測（即將發生）</span><span class="en">🔮 Second Half — What's Ahead</span>`;
-    content.appendChild(h2Label);
-
-    const thisYearH2Cards = document.createElement("div");
-    thisYearH2Cards.className = "teaser-stack";
-    content.appendChild(thisYearH2Cards);
+    const thisYearCards = document.createElement("div");
+    thisYearCards.className = "teaser-stack";
+    content.appendChild(thisYearCards);
 
     const thisYearCta = document.createElement("p");
     thisYearCta.className = "result-cta";
@@ -244,32 +230,17 @@ export function mountResult(root: HTMLElement) {
 
     let thisYearUnlocked = false;
 
-    function reframeForHalf(teaser: Teaser, half: "h1" | "h2"): Teaser {
-      const zhPrefix = half === "h1" ? "回顧這半年，" : "接下來這半年，";
-      const enPrefix = half === "h1" ? "Looking back on the first half of the year, " : "Looking ahead to the second half of the year, ";
-      return {
-        ...teaser,
-        visibleZh: teaser.visibleZh.replace(/^這一年，?/, zhPrefix),
-        visibleEn: teaser.visibleEn.replace(/^This year,?\s*/, enPrefix),
-      };
-    }
-
     function renderThisYearCards() {
-      thisYearH1Cards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, reframeForHalf(topic.data[thisYear.category], "h1"), thisYearUnlocked),
-      ).join("");
-      thisYearH2Cards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, reframeForHalf(topic.data[thisYear.category], "h2"), thisYearUnlocked),
+      thisYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[thisYear.category], thisYearUnlocked),
       ).join("");
 
       if (thisYearUnlocked) {
         thisYearCta.innerHTML = `<span class="zh">🎉 今年的流年運勢已解鎖！</span><span class="en">🎉 Unlocked — this year's forecast is all yours.</span>`;
       } else {
-        thisYearCta.innerHTML = `<span class="zh">今年上下半年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full first-half + second-half forecast unlocks with payment.</span>`;
-        [thisYearH1Cards, thisYearH2Cards].forEach((container) => {
-          container.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
-            btn.addEventListener("click", unlockThisYear);
-          });
+        thisYearCta.innerHTML = `<span class="zh">今年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full forecast for this year unlocks with payment.</span>`;
+        thisYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+          btn.addEventListener("click", unlockThisYear);
         });
       }
     }
@@ -279,8 +250,8 @@ export function mountResult(root: HTMLElement) {
       thisYearUnlocked = true;
       renderThisYearCards();
       guide.say(
-        "今年上半年的回顧跟下半年的預測都解鎖囉，對照一下上半年準不準！",
-        "This year's recap and forecast are both unlocked — see how the first half checks out!",
+        "今年的流年運勢解鎖囉，感情、事業、財運、健康都幫你看好了！",
+        "This year's forecast is unlocked — love, career, money, and health, all mapped out for you!",
       );
     }
 
