@@ -174,6 +174,10 @@ export function mountResult(root: HTMLElement) {
 
     content.appendChild(guide.el);
 
+    const teaserDivider = document.createElement("div");
+    teaserDivider.className = "result-divider";
+    content.appendChild(teaserDivider);
+
     window.dispatchEvent(new CustomEvent("starself:report-reset"));
 
     let unlocked = false;
@@ -233,6 +237,10 @@ export function mountResult(root: HTMLElement) {
     thisYearCards.className = "teaser-stack";
     content.appendChild(thisYearCards);
 
+    const thisYearDivider = document.createElement("div");
+    thisYearDivider.className = "result-divider";
+    content.appendChild(thisYearDivider);
+
     let thisYearUnlocked = false;
 
     function renderThisYearCards() {
@@ -283,6 +291,10 @@ export function mountResult(root: HTMLElement) {
     const futureYearCards = document.createElement("div");
     futureYearCards.className = "teaser-stack";
     content.appendChild(futureYearCards);
+
+    const futureYearDivider = document.createElement("div");
+    futureYearDivider.className = "result-divider";
+    content.appendChild(futureYearDivider);
 
     let selectedFutureIndex = 0;
     let futureYearsUnlocked = false;

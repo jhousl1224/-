@@ -342,9 +342,13 @@
   color: var(--cream-dim);
   font-size: 0.82rem;
   text-align: center;
-  border-top: 1px dashed rgba(212, 175, 122, 0.25);
-  padding-top: var(--space-2);
   width: 100%;
+}
+
+.result-divider {
+  width: 100%;
+  border-top: 1px dashed rgba(212, 175, 122, 0.25);
+  margin-top: var(--space-2);
 }
 
 .floating-unlock {
