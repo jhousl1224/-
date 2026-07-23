@@ -103,7 +103,8 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
     </div>
   `;
 
-  section.querySelector(".section__inner")!.appendChild(guide.el);
+  const formCard = section.querySelector(".form-card") as HTMLElement;
+  formCard.parentElement!.insertBefore(guide.el, formCard);
   root.appendChild(section);
 
   window.setTimeout(() => {

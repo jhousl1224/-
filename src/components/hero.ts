@@ -7,8 +7,20 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
 
   const guide = createGuide();
 
-  section.innerHTML = `
-    <div class="section__inner">
+  section.innerHTML = `<div class="section__inner"></div>`;
+  const inner = section.querySelector(".section__inner") as HTMLElement;
+
+  inner.appendChild(guide.el);
+
+  const cta = document.createElement("button");
+  cta.className = "btn-primary";
+  cta.innerHTML = `<span class="zh">開始探索</span><span class="en">Begin the Reading</span>`;
+  cta.addEventListener("click", onStart);
+  inner.appendChild(cta);
+
+  inner.insertAdjacentHTML(
+    "beforeend",
+    `
       <span class="hero__eyebrow">星語所 · StarSelf</span>
       <h1 class="hero__title">
         <span class="zh">看見你的命，找到你的路</span>
@@ -24,21 +36,13 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
         <span class="pillar-tag">生肖 Chinese Zodiac</span>
         <span class="pillar-tag">星座 Star Sign</span>
       </div>
-    </div>
-  `;
-
-  section.querySelector(".section__inner")!.appendChild(guide.el);
-
-  const cta = document.createElement("button");
-  cta.className = "btn-primary";
-  cta.innerHTML = `<span class="zh">開始探索</span><span class="en">Begin the Reading</span>`;
-  cta.addEventListener("click", onStart);
+    `,
+  );
 
   const hint = document.createElement("div");
   hint.className = "scroll-hint";
   hint.textContent = "↓";
 
-  section.querySelector(".section__inner")!.appendChild(cta);
   section.appendChild(hint);
 
   root.appendChild(section);
