@@ -90,7 +90,7 @@ function buildOrbits(): string {
     .join("\n");
 }
 
-function buildEmblemSvg(): string {
+export function buildEmblemSvg(): string {
   const sparkles = [
     [58, 52], [142, 55], [55, 148], [145, 145], [100, 26], [100, 174], [28, 100], [172, 100],
   ]

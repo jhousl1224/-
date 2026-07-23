@@ -1,4 +1,4 @@
-import { createGuide } from "./guide";
+import { buildEmblemSvg, createGuide } from "./guide";
 import { mountCardStack, type CardSpec } from "./cards";
 import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
@@ -24,6 +24,10 @@ const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCa
 ];
 
 const LIUNIAN_YEAR_LABELS_ZH = ["今年", "明年", "後年", "大後年"];
+
+function buildHeadingEmblem(): string {
+  return `<div class="heading-emblem">${buildEmblemSvg()}</div>`;
+}
 
 function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser, unlocked: boolean): string {
   if (unlocked) {
@@ -96,6 +100,7 @@ export function mountResult(root: HTMLElement) {
 
   function renderReport(profile: BirthProfile, analysis: AnalysisResult) {
     content.innerHTML = `
+      ${buildHeadingEmblem()}
       <h2 class="zh">你的命理速寫</h2>
       <h2 class="en">Your Reading, At a Glance</h2>
       <div class="result-summary">
@@ -156,7 +161,7 @@ export function mountResult(root: HTMLElement) {
 
     const teaserHeading = document.createElement("div");
     teaserHeading.dataset.role = "teaser-heading";
-    teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
+    teaserHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
     content.appendChild(teaserHeading);
 
     const teaserStack = document.createElement("div");
@@ -209,7 +214,7 @@ export function mountResult(root: HTMLElement) {
     // --- Tier 2: this year's liunian, as one whole-year reading ---
 
     const thisYearHeading = document.createElement("div");
-    thisYearHeading.innerHTML = `<h2 class="zh">今年流年</h2><h2 class="en">This Year's Forecast</h2>`;
+    thisYearHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">今年流年</h2><h2 class="en">This Year's Forecast</h2>`;
     content.appendChild(thisYearHeading);
 
     const thisYearMeta = document.createElement("div");
@@ -260,7 +265,7 @@ export function mountResult(root: HTMLElement) {
     // --- Tier 3: next 3 years, bundled in one unlock ---
 
     const futureYearsHeading = document.createElement("div");
-    futureYearsHeading.innerHTML = `<h2 class="zh">明年・後年・大後年流年</h2><h2 class="en">The Next 3 Years</h2>`;
+    futureYearsHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">明年・後年・大後年流年</h2><h2 class="en">The Next 3 Years</h2>`;
     content.appendChild(futureYearsHeading);
 
     const futureYearToggle = document.createElement("div");
