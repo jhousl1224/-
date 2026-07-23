@@ -109,7 +109,7 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
 
   window.setTimeout(() => {
     guide.say(
-      "不知道出生時間也沒關係，選個大概的時辰，我們先看個大方向。",
+      "不知道出生時間沒關係，選個大概時辰，我們先看大方向。",
       "Not sure of the exact hour? Pick your best guess — we'll still find the big picture.",
     );
   }, 600);

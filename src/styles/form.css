@@ -71,7 +71,7 @@
 .field-row {
   display: flex;
   gap: 0.6rem;
-  margin-top: 0.6rem;
+  margin-top: 0.3rem;
 }
 
 .field {

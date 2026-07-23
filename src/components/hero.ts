@@ -23,11 +23,11 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
     `
       <span class="hero__eyebrow">星語所 · StarSelf</span>
       <h1 class="hero__title">
-        <span class="zh">看見你的命，找到你的路</span>
+        <span class="zh">看見你的命，<br />找到你的路</span>
         <span class="en">See your chart. Find your path.</span>
       </h1>
       <p class="hero__desc">
-        <span class="zh">結合紫微斗數、八字、星座與生肖，用一份出生資料，畫出屬於你的天賦地圖。</span>
+        <span class="zh">結合紫微斗數、八字、星座與生肖，<br />用一份出生資料，畫出屬於你的天賦地圖。</span>
         <span class="en en--body">One birthday, four different systems — Zi Wei Dou Shu, Bazi, Chinese Zodiac, and Star Sign — all pointing at the same thing: what you're actually good at.</span>
       </p>
       <div class="hero__pillars">
