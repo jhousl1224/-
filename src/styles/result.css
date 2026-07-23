@@ -44,6 +44,10 @@
   font-size: 0.8rem;
 }
 
+:root[data-lang="en"] .result-summary .en {
+  font-size: 0.98rem;
+}
+
 .card-stack {
   width: 100%;
   display: flex;
@@ -341,6 +345,10 @@
   font-size: 0.66rem;
 }
 
+:root[data-lang="en"] .floating-unlock .btn-primary .en {
+  font-size: 0.92rem;
+}
+
 .floating-unlock.is-unlocked .btn-primary {
   background: linear-gradient(160deg, var(--jade-soft), var(--jade));
   opacity: 0.85;
@@ -376,6 +384,10 @@
   font-size: 0.7rem;
 }
 
+:root[data-lang="en"] .floating-toast .en {
+  font-size: 0.85rem;
+}
+
 .liunian-year-toggle {
   width: 100%;
   margin-top: var(--space-2);
@@ -401,6 +413,11 @@
   font-size: 0.76rem;
 }
 
+:root[data-lang="en"] .liunian-year-meta .en {
+  font-size: 0.9rem;
+  color: var(--gold-soft);
+}
+
 .liunian-half-label {
   width: 100%;
   text-align: left;
@@ -418,4 +435,11 @@
   display: block;
   margin-top: 0.15rem;
   font-size: 0.75rem;
+}
+
+:root[data-lang="en"] .liunian-half-label .en {
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-top: 0;
 }

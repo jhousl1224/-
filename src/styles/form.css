@@ -144,6 +144,11 @@
   font-size: 0.78rem;
 }
 
+:root[data-lang="en"] .birthplace-option .en {
+  color: var(--cream);
+  font-size: 0.88rem;
+}
+
 .birthplace-option:hover,
 .birthplace-option:focus {
   background: rgba(212, 175, 122, 0.15);

@@ -162,6 +162,12 @@
   font-size: 0.76rem;
 }
 
+:root[data-lang="en"] .guide__bubble-en {
+  color: var(--cream);
+  font-size: 0.98rem;
+  margin-top: 0;
+}
+
 @keyframes guide-breathe {
   0%,
   100% {

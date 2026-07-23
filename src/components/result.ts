@@ -72,10 +72,10 @@ export function mountResult(root: HTMLElement) {
   function renderLoading() {
     content.innerHTML = `
       <h2 class="zh">正在為你排盤</h2>
-      <span class="en">Reading the stars for you</span>
+      <h2 class="en">Reading the stars for you</h2>
       <div class="progress-wrap">
         <div class="progress-track"><div class="progress-fill" data-role="fill"></div></div>
-        <p class="progress-label" data-role="label">準備中… Preparing...</p>
+        <p class="progress-label" data-role="label"><span class="zh">準備中…</span> <span class="en">Preparing...</span></p>
       </div>
     `;
     content.appendChild(guide.el);
@@ -87,7 +87,7 @@ export function mountResult(root: HTMLElement) {
     for (const step of PROGRESS_STEPS) {
       await new Promise((r) => setTimeout(r, 380));
       fill.style.width = `${step.pct}%`;
-      label.textContent = `${step.zh} ${step.en}`;
+      label.innerHTML = `<span class="zh">${step.zh}</span> <span class="en">${step.en}</span>`;
       guide.say(step.zh, step.en);
     }
     await new Promise((r) => setTimeout(r, 300));
@@ -96,7 +96,7 @@ export function mountResult(root: HTMLElement) {
   function renderReport(profile: BirthProfile, analysis: AnalysisResult) {
     content.innerHTML = `
       <h2 class="zh">你的命理速寫</h2>
-      <span class="en">Your Reading, At a Glance</span>
+      <h2 class="en">Your Reading, At a Glance</h2>
       <div class="result-summary">
         <p class="zh">${analysis.summary.zh}</p>
         <p class="en">${analysis.summary.en}</p>
@@ -155,7 +155,7 @@ export function mountResult(root: HTMLElement) {
 
     const teaserHeading = document.createElement("div");
     teaserHeading.dataset.role = "teaser-heading";
-    teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><span class="en">There's more hiding in your chart</span>`;
+    teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
     content.appendChild(teaserHeading);
 
     const teaserStack = document.createElement("div");
@@ -208,7 +208,7 @@ export function mountResult(root: HTMLElement) {
     // --- Tier 2: this year, split into an already-happened first half and a forecast second half ---
 
     const thisYearHeading = document.createElement("div");
-    thisYearHeading.innerHTML = `<h2 class="zh">今年流年：上半年回顧 + 下半年預測</h2><span class="en">This Year: First-Half Recap + Second-Half Forecast</span>`;
+    thisYearHeading.innerHTML = `<h2 class="zh">今年流年：上半年回顧 + 下半年預測</h2><h2 class="en">This Year: First-Half Recap + Second-Half Forecast</h2>`;
     content.appendChild(thisYearHeading);
 
     const thisYearMeta = document.createElement("div");
@@ -288,7 +288,7 @@ export function mountResult(root: HTMLElement) {
     // --- Tier 3: next 3 years, bundled in one unlock ---
 
     const futureYearsHeading = document.createElement("div");
-    futureYearsHeading.innerHTML = `<h2 class="zh">明年・後年・大後年流年</h2><span class="en">The Next 3 Years</span>`;
+    futureYearsHeading.innerHTML = `<h2 class="zh">明年・後年・大後年流年</h2><h2 class="en">The Next 3 Years</h2>`;
     content.appendChild(futureYearsHeading);
 
     const futureYearToggle = document.createElement("div");

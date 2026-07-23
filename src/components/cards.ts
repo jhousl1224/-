@@ -85,7 +85,7 @@ function buildCard(spec: CardSpec): HTMLElement {
       <div class="flip-card-face flip-card-front">
         ${buildBadge(spec.badge)}
         <h3 class="flip-card-title zh">${spec.titleZh}</h3>
-        <span class="en">${spec.titleEn}</span>
+        <h3 class="flip-card-title en">${spec.titleEn}</h3>
         <p class="zh" style="font-size:0.8rem; margin-top:0.1rem;">${spec.frontNoteZh}</p>
         <p class="en en--body" style="font-size:0.72rem;">${spec.frontNoteEn}</p>
         <span class="flip-card-hint"><span class="zh">點擊翻牌</span> <span class="en">Tap to flip</span></span>
