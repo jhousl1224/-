@@ -71,16 +71,16 @@
 .field-row {
   display: flex;
   gap: 0.6rem;
-  margin-top: var(--space-2);
+  margin-top: 0.6rem;
 }
 
 .field {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
   text-align: left;
-  margin-top: var(--space-2);
+  margin-top: 0.6rem;
 }
 
 .field label {
@@ -158,7 +158,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: var(--space-2);
+  margin-top: 0.6rem;
   font-size: 0.85rem;
   color: var(--cream-dim);
 }
@@ -171,5 +171,5 @@
 
 .form-card .btn-primary {
   width: 100%;
-  margin-top: var(--space-3);
+  margin-top: 1rem;
 }

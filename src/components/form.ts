@@ -47,7 +47,7 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
           <button type="button" data-value="lunar">農曆 Lunar</button>
         </div>
 
-        <div class="toggle-group" data-role="gender-toggle" style="margin-top:12px;">
+        <div class="toggle-group" data-role="gender-toggle" style="margin-top:8px;">
           <button type="button" data-value="female" class="is-active">女 Female</button>
           <button type="button" data-value="male">男 Male</button>
         </div>
