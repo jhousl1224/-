@@ -108,6 +108,14 @@ a {
   font-weight: 300;
 }
 
+:root[data-lang="zh"] .en {
+  display: none !important;
+}
+
+:root[data-lang="en"] .zh {
+  display: none !important;
+}
+
 .section {
   position: relative;
   min-height: 100dvh;

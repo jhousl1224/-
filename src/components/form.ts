@@ -1,6 +1,12 @@
 import { createGuide } from "./guide";
+import { getStoredLang, type Lang } from "./langToggle";
 import { findCity, searchCities, type City } from "../lib/cities";
 import type { BirthInput, CalendarType, Gender } from "../lib/types";
+
+const BIRTHPLACE_PLACEHOLDER: Record<Lang, string> = {
+  zh: "輸入城市名稱",
+  en: "Search a city...",
+};
 
 function option(value: string | number, label: string) {
   return `<option value="${value}">${label}</option>`;
@@ -52,7 +58,6 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
             type="text"
             id="f-birthplace"
             autocomplete="off"
-            placeholder="輸入城市名稱 Search a city..."
             data-role="birthplace-input"
           />
           <div class="birthplace-suggestions" data-role="birthplace-suggestions"></div>
@@ -138,6 +143,11 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
   const birthplaceInput = section.querySelector('[data-role="birthplace-input"]') as HTMLInputElement;
   const birthplaceSuggestions = section.querySelector('[data-role="birthplace-suggestions"]') as HTMLElement;
 
+  birthplaceInput.placeholder = BIRTHPLACE_PLACEHOLDER[getStoredLang()];
+  window.addEventListener("starself:lang-changed", (e) => {
+    birthplaceInput.placeholder = BIRTHPLACE_PLACEHOLDER[(e as CustomEvent<Lang>).detail];
+  });
+
   function renderBirthplaceSuggestions(cities: City[]) {
     if (cities.length === 0) {
       birthplaceSuggestions.innerHTML = "";
@@ -147,7 +157,7 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
     birthplaceSuggestions.innerHTML = cities
       .map(
         (c) =>
-          `<button type="button" class="birthplace-option" data-city-id="${c.id}">${c.nameZh} <span class="en">${c.nameEn}</span> · ${c.countryZh}</button>`,
+          `<button type="button" class="birthplace-option" data-city-id="${c.id}"><span class="zh">${c.nameZh}</span> <span class="en">${c.nameEn}</span> · <span class="zh">${c.countryZh}</span></button>`,
       )
       .join("");
     birthplaceSuggestions.classList.add("is-open");
@@ -188,11 +198,11 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
 
     const daysInMonth = new Date(year, month, 0).getDate();
     if (calendarType === "solar" && day > daysInMonth) {
-      errorEl.textContent = "這個月份沒有這一天，請確認日期喔 / That date doesn't exist in this month.";
+      errorEl.innerHTML = `<span class="zh">這個月份沒有這一天，請確認日期喔</span> <span class="en">That date doesn't exist in this month.</span>`;
       return;
     }
     if (!selectedCity) {
-      errorEl.textContent = "請從清單中選擇出生地 / Please choose a birthplace from the list.";
+      errorEl.innerHTML = `<span class="zh">請從清單中選擇出生地</span> <span class="en">Please choose a birthplace from the list.</span>`;
       return;
     }
     errorEl.textContent = "";

@@ -166,7 +166,7 @@ export function createGuide(sizeClass = ""): GuideController {
 
   const bubble = document.createElement("div");
   bubble.className = "guide__bubble";
-  bubble.innerHTML = `<span class="guide__bubble-zh"></span><span class="guide__bubble-en en"></span>`;
+  bubble.innerHTML = `<span class="guide__bubble-zh zh"></span><span class="guide__bubble-en en"></span>`;
 
   wrap.appendChild(figure);
   wrap.appendChild(bubble);

@@ -88,7 +88,7 @@ function buildCard(spec: CardSpec): HTMLElement {
         <span class="en">${spec.titleEn}</span>
         <p class="zh" style="font-size:0.8rem; margin-top:0.1rem;">${spec.frontNoteZh}</p>
         <p class="en en--body" style="font-size:0.72rem;">${spec.frontNoteEn}</p>
-        <span class="flip-card-hint">點擊翻牌 Tap to flip</span>
+        <span class="flip-card-hint"><span class="zh">點擊翻牌</span> <span class="en">Tap to flip</span></span>
       </div>
       <div class="flip-card-face flip-card-back">
         <p class="zh">${spec.bodyZh}</p>

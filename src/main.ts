@@ -11,12 +11,16 @@ import { mountHero } from "./components/hero";
 import { mountForm } from "./components/form";
 import { mountResult } from "./components/result";
 import { mountFloatingUnlock } from "./components/floatingUnlock";
+import { applyLang, getStoredLang, mountLangToggle } from "./components/langToggle";
 import { buildProfile } from "./lib/profile";
 import { generateAnalysis } from "./lib/analysis";
 import type { BirthInput } from "./lib/types";
 
+applyLang(getStoredLang());
+
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
+mountLangToggle(app);
 mountStarfield(app);
 mountHero(app, () => {
   const inputSection = document.getElementById("input");
