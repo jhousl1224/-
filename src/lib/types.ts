@@ -1,6 +1,17 @@
 export type CalendarType = "solar" | "lunar";
 export type Gender = "male" | "female";
 
+export interface Birthplace {
+  id: string;
+  nameZh: string;
+  nameEn: string;
+  countryZh: string;
+  countryEn: string;
+  lat: number;
+  lon: number;
+  utcOffset: number;
+}
+
 export interface BirthInput {
   calendarType: CalendarType;
   year: number;
@@ -10,6 +21,7 @@ export interface BirthInput {
   minute: number;
   gender: Gender;
   isLeapMonth: boolean;
+  birthplace: Birthplace;
 }
 
 export interface ZiweiPalaceInfo {

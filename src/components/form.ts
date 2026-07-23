@@ -1,4 +1,5 @@
 import { createGuide } from "./guide";
+import { findCity, searchCities, type City } from "../lib/cities";
 import type { BirthInput, CalendarType, Gender } from "../lib/types";
 
 function option(value: string | number, label: string) {
@@ -43,6 +44,18 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
         <div class="toggle-group" data-role="gender-toggle" style="margin-top:12px;">
           <button type="button" data-value="female" class="is-active">女 Female</button>
           <button type="button" data-value="male">男 Male</button>
+        </div>
+
+        <div class="field" style="position:relative;">
+          <label for="f-birthplace">出生地 Birthplace</label>
+          <input
+            type="text"
+            id="f-birthplace"
+            autocomplete="off"
+            placeholder="輸入城市名稱 Search a city..."
+            data-role="birthplace-input"
+          />
+          <div class="birthplace-suggestions" data-role="birthplace-suggestions"></div>
         </div>
 
         <div class="field-row">
@@ -121,6 +134,50 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
     btn.classList.add("is-active");
   });
 
+  let selectedCity: City | null = null;
+  const birthplaceInput = section.querySelector('[data-role="birthplace-input"]') as HTMLInputElement;
+  const birthplaceSuggestions = section.querySelector('[data-role="birthplace-suggestions"]') as HTMLElement;
+
+  function renderBirthplaceSuggestions(cities: City[]) {
+    if (cities.length === 0) {
+      birthplaceSuggestions.innerHTML = "";
+      birthplaceSuggestions.classList.remove("is-open");
+      return;
+    }
+    birthplaceSuggestions.innerHTML = cities
+      .map(
+        (c) =>
+          `<button type="button" class="birthplace-option" data-city-id="${c.id}">${c.nameZh} <span class="en">${c.nameEn}</span> · ${c.countryZh}</button>`,
+      )
+      .join("");
+    birthplaceSuggestions.classList.add("is-open");
+  }
+
+  birthplaceInput.addEventListener("input", () => {
+    selectedCity = null;
+    renderBirthplaceSuggestions(searchCities(birthplaceInput.value));
+  });
+
+  birthplaceInput.addEventListener("focus", () => {
+    renderBirthplaceSuggestions(searchCities(birthplaceInput.value));
+  });
+
+  birthplaceSuggestions.addEventListener("mousedown", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".birthplace-option");
+    if (!btn) return;
+    e.preventDefault();
+    const city = findCity(btn.dataset.cityId ?? "") ?? null;
+    selectedCity = city;
+    if (city) birthplaceInput.value = `${city.nameZh} ${city.nameEn}`;
+    renderBirthplaceSuggestions([]);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!section.contains(e.target as Node)) return;
+    if (birthplaceInput.contains(e.target as Node) || birthplaceSuggestions.contains(e.target as Node)) return;
+    renderBirthplaceSuggestions([]);
+  });
+
   const submitBtn = section.querySelector('[data-role="submit"]') as HTMLButtonElement;
   submitBtn.addEventListener("click", () => {
     const year = Number((section.querySelector("#f-year") as HTMLSelectElement).value);
@@ -134,6 +191,10 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
       errorEl.textContent = "這個月份沒有這一天，請確認日期喔 / That date doesn't exist in this month.";
       return;
     }
+    if (!selectedCity) {
+      errorEl.textContent = "請從清單中選擇出生地 / Please choose a birthplace from the list.";
+      return;
+    }
     errorEl.textContent = "";
 
     const input: BirthInput = {
@@ -145,6 +206,7 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
       minute,
       gender,
       isLeapMonth: calendarType === "lunar" ? leapCheckbox.checked : false,
+      birthplace: selectedCity,
     };
 
     guide.say("好，讓我來翻翻星圖……", "Alright, let's see what the stars have to say...");
