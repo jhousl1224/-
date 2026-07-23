@@ -164,15 +164,15 @@ export function mountResult(root: HTMLElement) {
     teaserHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
     content.appendChild(teaserHeading);
 
+    const cta = document.createElement("p");
+    cta.className = "result-cta";
+    content.appendChild(cta);
+
     const teaserStack = document.createElement("div");
     teaserStack.className = "teaser-stack";
     content.appendChild(teaserStack);
 
     content.appendChild(guide.el);
-
-    const cta = document.createElement("p");
-    cta.className = "result-cta";
-    content.appendChild(cta);
 
     window.dispatchEvent(new CustomEvent("starself:report-reset"));
 
@@ -217,6 +217,10 @@ export function mountResult(root: HTMLElement) {
     thisYearHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">今年流年</h2><h2 class="en">This Year's Forecast</h2>`;
     content.appendChild(thisYearHeading);
 
+    const thisYearCta = document.createElement("p");
+    thisYearCta.className = "result-cta";
+    content.appendChild(thisYearCta);
+
     const thisYearMeta = document.createElement("div");
     thisYearMeta.className = "liunian-year-meta";
     thisYearMeta.innerHTML = `
@@ -228,10 +232,6 @@ export function mountResult(root: HTMLElement) {
     const thisYearCards = document.createElement("div");
     thisYearCards.className = "teaser-stack";
     content.appendChild(thisYearCards);
-
-    const thisYearCta = document.createElement("p");
-    thisYearCta.className = "result-cta";
-    content.appendChild(thisYearCta);
 
     let thisYearUnlocked = false;
 
@@ -268,6 +268,10 @@ export function mountResult(root: HTMLElement) {
     futureYearsHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">明年・後年・大後年流年</h2><h2 class="en">The Next 3 Years</h2>`;
     content.appendChild(futureYearsHeading);
 
+    const futureYearCta = document.createElement("p");
+    futureYearCta.className = "result-cta";
+    content.appendChild(futureYearCta);
+
     const futureYearToggle = document.createElement("div");
     futureYearToggle.className = "toggle-group liunian-year-toggle";
     content.appendChild(futureYearToggle);
@@ -279,10 +283,6 @@ export function mountResult(root: HTMLElement) {
     const futureYearCards = document.createElement("div");
     futureYearCards.className = "teaser-stack";
     content.appendChild(futureYearCards);
-
-    const futureYearCta = document.createElement("p");
-    futureYearCta.className = "result-cta";
-    content.appendChild(futureYearCta);
 
     let selectedFutureIndex = 0;
     let futureYearsUnlocked = false;
