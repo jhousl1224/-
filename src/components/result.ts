@@ -194,7 +194,7 @@ export function mountResult(root: HTMLElement) {
       unlocked = true;
       renderTeasers();
       guide.say(
-        "報告已經全部解鎖囉，感情、事業、財運、健康的完整解讀都在上面了！",
+        "感情、事業、財運、健康完整解鎖，解讀都在上面嘍！",
         "Everything's unlocked now — love, career, money, and health, all laid out above.",
       );
     }
