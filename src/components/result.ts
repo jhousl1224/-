@@ -163,9 +163,11 @@ export function mountResult(root: HTMLElement) {
     cardStackDivider.className = "result-divider";
     content.appendChild(cardStackDivider);
 
+    content.appendChild(guide.el);
+
     const teaserHeading = document.createElement("div");
     teaserHeading.dataset.role = "teaser-heading";
-    teaserHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
+    teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
     content.appendChild(teaserHeading);
 
     const cta = document.createElement("p");
@@ -175,8 +177,6 @@ export function mountResult(root: HTMLElement) {
     const teaserStack = document.createElement("div");
     teaserStack.className = "teaser-stack";
     content.appendChild(teaserStack);
-
-    content.appendChild(guide.el);
 
     const teaserDivider = document.createElement("div");
     teaserDivider.className = "result-divider";
