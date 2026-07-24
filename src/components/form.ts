@@ -38,9 +38,6 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
 
   section.innerHTML = `
     <div class="section__inner">
-      <h2 class="zh">告訴我你的出生時刻</h2>
-      <h2 class="en">Tell me when your story began</h2>
-
       <div class="form-card">
         <div class="toggle-group" data-role="calendar-toggle">
           <button type="button" data-value="solar" class="is-active">陽曆 Solar</button>
