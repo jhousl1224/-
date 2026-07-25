@@ -181,6 +181,24 @@ export function mountResult(root: HTMLElement) {
     teaserDivider.className = "result-divider";
     content.appendChild(teaserDivider);
 
+    // --- Independent section: current-life-stage advice (relationship + career status) ---
+
+    const statusHeading = document.createElement("div");
+    statusHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">現階段狀況</h2><h2 class="en">Where You Stand Right Now</h2>`;
+    content.appendChild(statusHeading);
+
+    const statusCta = document.createElement("p");
+    statusCta.className = "result-cta";
+    content.appendChild(statusCta);
+
+    const statusStack = document.createElement("div");
+    statusStack.className = "teaser-stack";
+    content.appendChild(statusStack);
+
+    const statusDivider = document.createElement("div");
+    statusDivider.className = "result-divider";
+    content.appendChild(statusDivider);
+
     window.dispatchEvent(new CustomEvent("starself:report-reset"));
 
     let unlocked = false;
@@ -190,24 +208,31 @@ export function mountResult(root: HTMLElement) {
     const careerLabelZh = profile.input.careerStatus === "stable" ? "💼 職場狀態・在職穩定" : "💼 職場狀態・待業中";
     const careerLabelEn = profile.input.careerStatus === "stable" ? "💼 Career Status · Employed" : "💼 Career Status · Job Hunting";
 
-    const allTeaserTopics: { labelZh: string; labelEn: string; teaser: Teaser }[] = [
-      ...TEASER_TOPICS.map((topic) => ({ labelZh: topic.labelZh, labelEn: topic.labelEn, teaser: topic.data[profile.bazi.dominantWuxing] })),
+    const statusTopics: { labelZh: string; labelEn: string; teaser: Teaser }[] = [
       { labelZh: relationshipLabelZh, labelEn: relationshipLabelEn, teaser: RELATIONSHIP_ADVICE[profile.bazi.dominantWuxing][profile.input.relationshipStatus] },
       { labelZh: careerLabelZh, labelEn: careerLabelEn, teaser: CAREER_ADVICE[profile.bazi.dominantWuxing][profile.input.careerStatus] },
     ];
 
     function renderTeasers() {
-      teaserStack.innerHTML = allTeaserTopics
+      teaserStack.innerHTML = TEASER_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[profile.bazi.dominantWuxing], unlocked),
+      ).join("");
+
+      statusStack.innerHTML = statusTopics
         .map((topic) => buildTeaserCard(topic.labelZh, topic.labelEn, topic.teaser, unlocked))
         .join("");
 
       if (unlocked) {
         cta.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked — here's your full report.</span>`;
+        statusCta.innerHTML = `<span class="zh">🎉 現階段狀況分析已解鎖！</span><span class="en">🎉 Unlocked — your current-stage advice is ready.</span>`;
         window.dispatchEvent(new CustomEvent("starself:unlocked"));
       } else {
         cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">🔒 The full deep-dive report is coming soon — stay tuned.</span>`;
-        teaserStack.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
-          btn.addEventListener("click", unlock);
+        statusCta.innerHTML = `<span class="zh">感情與職場現況分析，敬請期待付費解鎖 🔒</span><span class="en">🔒 Advice for where you stand right now unlocks with payment.</span>`;
+        [teaserStack, statusStack].forEach((stack) => {
+          stack.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+            btn.addEventListener("click", unlock);
+          });
         });
       }
     }
