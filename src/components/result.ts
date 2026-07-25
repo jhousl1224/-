@@ -6,7 +6,7 @@ import { WESTERN_BADGE, WUXING_BADGE, ZIWEI_NO_STAR_BADGE, ZIWEI_STAR_BADGE, ZOD
 import { buildLiunianYears, type LiunianCategory } from "../lib/liunian";
 import { LIUNIAN_CAREER, LIUNIAN_CATEGORY_INFO, LIUNIAN_HEALTH, LIUNIAN_LOVE, LIUNIAN_WEALTH } from "../lib/liunianData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
-import { CAREER_ADVICE, RELATIONSHIP_ADVICE } from "../lib/statusAdvice";
+import { CAREER_ADVICE, CAREER_PATH_ADVICE, RELATIONSHIP_ADVICE } from "../lib/statusAdvice";
 import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
 
@@ -218,6 +218,11 @@ export function mountResult(root: HTMLElement) {
     const statusTopics: { labelZh: string; labelEn: string; teaser: Teaser }[] = [
       { labelZh: relationshipLabelZh, labelEn: relationshipLabelEn, teaser: RELATIONSHIP_ADVICE[profile.bazi.dominantWuxing][profile.input.relationshipStatus] },
       { labelZh: careerLabelZh, labelEn: careerLabelEn, teaser: CAREER_ADVICE[profile.bazi.dominantWuxing][profile.input.careerStatus] },
+      {
+        labelZh: "🧭 適合的職涯方向",
+        labelEn: "🧭 Career Direction Fit",
+        teaser: CAREER_PATH_ADVICE[profile.bazi.dominantWuxing][profile.input.careerStatus],
+      },
     ];
 
     function renderTeasers() {

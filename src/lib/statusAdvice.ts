@@ -114,6 +114,119 @@ export const RELATIONSHIP_ADVICE: Record<string, Record<RelationshipStatus, Teas
   },
 };
 
+export const CAREER_PATH_ADVICE: Record<string, Record<CareerStatus, Teaser>> = {
+  木: {
+    stable: {
+      visibleZh: "工作穩定、但心裡蠢蠢欲動想轉換跑道的你，其實很適合往「培育型」的方向走，",
+      blurredZh: "但選錯轉職方向，可能會讓你的優勢完全用不上……",
+      visibleEn: "Stable in your job but itching to switch tracks, you're actually well-suited to anything \"developmental\" —",
+      blurredEn: "but picking the wrong direction could waste exactly what makes you good...",
+      fullZh:
+        "像是教育培訓、人才發展、內容創作，或需要規劃長期成長路線的產業經理職。你的天賦是陪著一件事或一個人從零長大，如果只是換一個「薪水更高但一樣一成不變」的位置，你很快又會倦怠。真的想加薪，不如往「能規劃、能培養」的管理職或顧問方向談；如果考慮創業，適合做教育類、成長型工作坊、或訂閱制的個人品牌——重點是找到「持續累積」的商業模式，而不是一次性的生意。",
+      fullEn:
+        "think education and training, talent development, content creation, or a management role built around long-term growth planning. Your gift is nurturing something — or someone — from scratch, and if you just swap into another role that pays more but stays just as repetitive, you'll burn out again fast. If a raise is the real goal, aim for management or consulting roles built around developing people. If you're considering starting something, education-style businesses, growth workshops, or a subscription-based personal brand fit you well — the key is a business model built on compounding, not one-off sales.",
+    },
+    unemployed: {
+      visibleZh: "還在找方向的你，很適合投入需要陪伴、教學、或長期培養的產業，",
+      blurredZh: "但求職時，有一種職缺會讓你特別容易迷失……",
+      visibleEn: "Still searching for direction, you're well-suited to industries built around mentoring, teaching, or long-term development —",
+      blurredEn: "but there's one kind of listing that's especially likely to leave you feeling lost...",
+      fullZh:
+        "看起來很自由、什麼都可以做、卻沒有明確成長路徑的「彈性職缺」。這種職缺聽起來輕鬆，卻會讓你失去方向感。適合你的職業類別包括：教育訓練、人資（人才發展）、社群經營、內容企劃，這些工作都有清楚的成長曲線可以依循。如果想創業，可以從「教別人一件你擅長的事」開始，例如線上課程、一對一諮詢、或社群型的知識服務——不需要一次做大，先從小規模的陪伴式生意開始最適合你。",
+      fullEn:
+        "flexible-sounding listings with no clear growth path, where \"you can do anything.\" They sound easy but leave you feeling directionless fast. Job categories that fit you well: education and training, HR (talent development), community management, content strategy — these all come with a visible growth curve to follow. If you're thinking about starting something, begin by teaching what you're already good at — an online course, one-on-one coaching, or a knowledge-based community service. You don't need to go big right away; a small, relationship-driven business suits you best to start.",
+    },
+  },
+  火: {
+    stable: {
+      visibleZh: "工作穩定的你，如果想轉職或加薪，方向其實很明確，",
+      blurredZh: "但很多人在這一步，會選錯讓自己發光的舞台……",
+      visibleEn: "With a stable job, if you're eyeing a switch or a raise, the direction is actually pretty clear —",
+      blurredEn: "but a lot of people take a wrong turn right at this step, picking the wrong stage to shine on...",
+      fullZh:
+        "往「站在最前面」的位置走，而不是往後勤或幕後角色靠。業務主管、品牌公關、活動製作、直播或內容主持，這些需要你被看見、被聽見的角色，才能真正把你的優勢換成收入。如果考慮創業，你適合做「個人品牌很重要」的生意，例如自媒體、活動策展、或需要你親自出面的服務型創業——你的魅力就是資產，千萬別把自己藏在幕後。",
+      fullEn:
+        "toward roles where you're front and center, not tucked into back-office or support functions. Sales leadership, brand PR, event production, hosting or livestreaming — anything that puts you in front of people is where your strengths actually convert into income. If you're weighing starting a business, go where personal branding matters: media, event curation, or a service business where you're the face of it. Your charisma is the asset — don't hide it behind the scenes.",
+    },
+    unemployed: {
+      visibleZh: "求職中的你，很適合找需要「快速對外」的角色，",
+      blurredZh: "但有一種求職方式，反而會讓你錯失機會……",
+      visibleEn: "Job-hunting right now, you're well-suited to roles that need you to move outward fast —",
+      blurredEn: "but one particular way of job-hunting is likely costing you opportunities...",
+      fullZh:
+        "投履歷後乾等通知，而不是主動聯絡、主動展現自己。業務、公關、活動企劃、行銷、直播銷售這類需要主動出擊、對外溝通的工作，會比行政內勤更快看到你的表現。如果想創業，你適合做需要「快速吸引注意力」的生意，例如直播帶貨、活動策劃、或短影音相關的內容事業——你的優勢是能快速炒熱氣氛，這在起步階段是很稀缺的能力。",
+      fullEn:
+        "sitting back and waiting to hear after sending an application, instead of reaching out and putting yourself forward. Sales, PR, event planning, marketing, livestream selling — anything that rewards proactive, outward-facing energy will show off what you're good at far faster than back-office admin work. If you're considering starting something, go where grabbing attention fast matters: livestream commerce, event production, or short-form content — your ability to energize a room quickly is a genuinely rare skill at the early stage of any venture.",
+    },
+  },
+  土: {
+    stable: {
+      visibleZh: "工作穩定的你，如果想轉職或加薪，其實不用換到完全陌生的領域，",
+      blurredZh: "因為你真正的優勢，換到哪個產業都一樣值錢……",
+      visibleEn: "With a stable job, you don't actually need to jump into a totally unfamiliar field to get a raise or switch —",
+      blurredEn: "because your real advantage stays valuable no matter which industry you move to...",
+      fullZh:
+        "那就是「把複雜的事情變得穩定可控」的能力。往流程管理、專案管理、營運、供應鏈這類需要把事情系統化的職位轉，會比跳去完全陌生的創意產業更容易加薪，也更容易被看見。如果考慮創業，你適合做「重複購買、需要長期信任」的生意，例如代辦服務、實體門市、或需要穩定交付品質的專業服務——你的可靠會變成客戶回購的理由。",
+      fullEn:
+        "making complicated things stable and controllable. Moving toward process management, project management, operations, or supply chain roles that need things systematized will get you a raise faster, and get you noticed faster, than jumping into an unfamiliar creative field. If you're considering starting something, go where repeat business and long-term trust matter — agency-style services, a physical storefront, or professional services where consistent delivery is the whole point. Your reliability becomes the reason customers keep coming back.",
+    },
+    unemployed: {
+      visibleZh: "求職中的你，很適合找制度完整、有清楚 SOP 的產業，",
+      blurredZh: "但你可能一直在找一種其實不適合現階段的工作……",
+      visibleEn: "Job-hunting right now, you're well-suited to industries with solid structure and clear SOPs —",
+      blurredEn: "but you might be chasing a type of job that doesn't actually fit where you are right now...",
+      fullZh:
+        "步調快、需要隨機應變、什麼都要自己摸索的新創或業務型工作。這種環境的不確定感，會讓你發揮不出真正的實力。行政管理、後勤、品保、物流、公部門或大型企業的營運職，會比新創業務更適合你現在的狀態，也更容易讓你穩定站穩腳步。如果想創業，建議先從「加盟」或「有既定模式可以複製」的生意開始，而不是完全從零摸索——你需要的是一個已經被驗證過的框架，讓你把可靠的優勢發揮出來。",
+      fullEn:
+        "fast-moving, improvise-as-you-go startup or sales-heavy roles. That uncertainty makes it hard for your real strengths to show. Administration, operations, quality assurance, logistics, or an operations role at a government agency or large company will fit where you are right now far better than an early-stage startup, and get you standing on solid ground faster. If you're thinking about starting something, begin with a franchise or a business model that's already proven and replicable, rather than figuring everything out from zero — what you need is a validated framework where your reliability can actually shine.",
+    },
+  },
+  金: {
+    stable: {
+      visibleZh: "工作穩定的你，如果想轉職或加薪，你的專業本來就很有市場，",
+      blurredZh: "但很多人在這一步，會選錯能真正放大這份專業的位置……",
+      visibleEn: "With a stable job, your expertise is already genuinely marketable if you're eyeing a switch or a raise —",
+      blurredEn: "but a lot of people pick the wrong kind of role at this step, one that can't actually amplify it...",
+      fullZh:
+        "往「需要精準判斷、有明確評鑑標準」的職位轉，而不是往需要模糊溝通、看感覺做事的角色靠。財務、法務、品管、稽核、數據分析這類職位，會讓你的高標準直接變成加薪籌碼。如果考慮創業，你適合做「專業服務」型的生意，例如顧問、審計、品質認證、或需要嚴謹流程的專業工作室——你的挑剔就是最好的品牌信任狀。",
+      fullEn:
+        "toward roles that actually reward precise judgment and clear evaluation criteria, not ones built on vague communication and going with the flow. Finance, legal, quality control, audit, data analysis — these turn your high standards directly into leverage for a raise. If you're weighing starting a business, professional-services models fit you well: consulting, auditing, quality certification, or a rigorously-run studio business — your exacting standards are the strongest brand trust signal you have.",
+    },
+    unemployed: {
+      visibleZh: "求職中的你，很適合找需要嚴謹判斷、標準明確的職位，",
+      blurredZh: "但有一種求職心態，反而會讓你錯過好機會……",
+      visibleEn: "Job-hunting right now, you're well-suited to roles that need rigorous judgment and clear standards —",
+      blurredEn: "but one particular mindset is likely costing you good opportunities...",
+      fullZh:
+        "覺得自己「還不夠完美」而遲遲不投履歷。你的高標準用在工作上是優勢，用在評估自己身上卻常常變成阻力。財會、法遵、品保、數據分析、編輯審校這類工作，本來就需要你這種挑剔的眼光，很適合現在投遞。如果想創業，你適合做需要「嚴格把關」的生意，例如檢驗、認證、精品代購、或高單價的專業諮詢——先從小規模、可控的範圍開始，把你的標準變成賣點，而不是拖延的理由。",
+      fullEn:
+        "feeling like you're \"not quite ready yet\" and holding off on applying. Your high standards are an asset at work, but turned on yourself in self-assessment, they usually become a brake. Finance, compliance, quality assurance, data analysis, editing and proofreading — these roles genuinely need your kind of exacting eye, and are worth applying to right now. If you're considering starting something, go where strict quality control matters: inspection, certification, premium sourcing, or high-value professional consulting. Start small and controlled, and turn your standards into the selling point instead of the reason you keep waiting.",
+    },
+  },
+  水: {
+    stable: {
+      visibleZh: "工作穩定的你，如果想轉職或加薪，你的彈性其實是稀缺資源，",
+      blurredZh: "但很多人會用錯地方，把彈性變成廉價勞力……",
+      visibleEn: "With a stable job, your flexibility is actually a scarce resource if you're eyeing a switch or a raise —",
+      blurredEn: "but a lot of people misuse it and let it turn into cheap, unlimited labor...",
+      fullZh:
+        "與其繼續當那個「什麼都能救火」的人，不如往需要跨部門協調、對外溝通的專業角色轉，例如顧問、專案經理、國際業務、或需要整合多方意見的角色——這些位置會直接把你的適應力換算成薪水，而不是繼續消耗你。如果考慮創業，你適合做需要「靈活應變」的生意，例如國際貿易、跨境電商、或提供彈性解決方案的顧問服務——你的優勢是能隨環境調整，選一個變動性本身就是常態的產業，會比穩定不變的產業更適合你發揮。",
+      fullEn:
+        "instead of staying the person who puts out every fire, move toward professional roles built around cross-team coordination and outward communication — consulting, project management, international sales, or roles integrating input from multiple sides. These convert your adaptability directly into pay, instead of just draining it. If you're weighing starting something, businesses that need agility fit you well: international trade, cross-border e-commerce, or a flexible-solutions consultancy. Your strength is adjusting to changing conditions, so an industry where change is the norm suits you better than a static, unchanging one.",
+    },
+    unemployed: {
+      visibleZh: "求職中的你，很適合找需要跨領域溝通、彈性應變的角色，",
+      blurredZh: "但你可能一直在等一個「完全符合條件」的職缺才敢投……",
+      visibleEn: "Job-hunting right now, you're well-suited to roles needing cross-field communication and flexibility —",
+      blurredEn: "but you might keep waiting for a listing that matches every single requirement before applying...",
+      fullZh:
+        "而錯過很多其實很適合你、只是條件寫得不完全吻合的機會。顧問、專案協調、客服、國際業務、跨部門窗口，這類角色本來就重視「能不能快速上手不同情境」，比起條件完全符合，你的適應力才是真正的加分項。如果想創業，你適合做需要「串連資源」的生意，例如仲介、代理、跨境電商、或整合型的顧問服務——你的強項是把分散的資源和人脈串在一起，這正是很多小型生意最需要的能力。",
+      fullEn:
+        "and missing a lot of roles that would actually suit you well, just because the posting wasn't a perfect match on paper. Consulting, project coordination, customer service, international sales, cross-department liaison roles — these value how fast you can adapt to a new situation more than a perfect checklist match, and your adaptability is the real point in your favor. If you're considering starting something, go where connecting resources matters: brokering, agency work, cross-border e-commerce, or an integrative consulting service. Your strength is linking scattered resources and relationships together — exactly what most small businesses need most.",
+    },
+  },
+};
+
 export const CAREER_ADVICE: Record<string, Record<CareerStatus, Teaser>> = {
   木: {
     stable: {
