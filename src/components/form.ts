@@ -1,7 +1,7 @@
 import { createGuide } from "./guide";
 import { getStoredLang, type Lang } from "./langToggle";
 import { findCity, searchCities, type City } from "../lib/cities";
-import type { BirthInput, CalendarType, Gender } from "../lib/types";
+import type { BirthInput, CalendarType, CareerStatus, Gender, RelationshipStatus } from "../lib/types";
 
 const BIRTHPLACE_PLACEHOLDER: Record<Lang, string> = {
   zh: "輸入城市名稱",
@@ -91,6 +91,22 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
           <span>此月為閏月 This is a leap month</span>
         </label>
 
+        <div class="field">
+          <label>感情狀態 Relationship Status</label>
+          <div class="toggle-group" data-role="relationship-toggle">
+            <button type="button" data-value="stable" class="is-active">穩定交往 In a Relationship</button>
+            <button type="button" data-value="single">單身 Single</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>職場狀態 Career Status</label>
+          <div class="toggle-group" data-role="career-toggle">
+            <button type="button" data-value="stable" class="is-active">在職穩定 Employed</button>
+            <button type="button" data-value="unemployed">待業中 Unemployed</button>
+          </div>
+        </div>
+
         <p class="form-error" data-role="error"></p>
 
         <button type="button" class="btn-primary" data-role="submit">
@@ -113,9 +129,13 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
 
   let calendarType: CalendarType = "solar";
   let gender: Gender = "female";
+  let relationshipStatus: RelationshipStatus = "stable";
+  let careerStatus: CareerStatus = "stable";
 
   const calendarToggle = section.querySelector('[data-role="calendar-toggle"]') as HTMLElement;
   const genderToggle = section.querySelector('[data-role="gender-toggle"]') as HTMLElement;
+  const relationshipToggle = section.querySelector('[data-role="relationship-toggle"]') as HTMLElement;
+  const careerToggle = section.querySelector('[data-role="career-toggle"]') as HTMLElement;
   const leapField = section.querySelector('[data-role="leap-field"]') as HTMLElement;
   const leapCheckbox = section.querySelector("#f-leap") as HTMLInputElement;
   const errorEl = section.querySelector('[data-role="error"]') as HTMLElement;
@@ -134,6 +154,22 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
     if (!btn) return;
     gender = btn.dataset.value as Gender;
     genderToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  });
+
+  relationshipToggle.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest("button");
+    if (!btn) return;
+    relationshipStatus = btn.dataset.value as RelationshipStatus;
+    relationshipToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  });
+
+  careerToggle.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest("button");
+    if (!btn) return;
+    careerStatus = btn.dataset.value as CareerStatus;
+    careerToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
     btn.classList.add("is-active");
   });
 
@@ -215,6 +251,8 @@ export function mountForm(root: HTMLElement, onSubmit: (input: BirthInput) => vo
       gender,
       isLeapMonth: calendarType === "lunar" ? leapCheckbox.checked : false,
       birthplace: selectedCity,
+      relationshipStatus,
+      careerStatus,
     };
 
     guide.say("好，讓我來翻翻星圖……", "Alright, let's see what the stars have to say...");

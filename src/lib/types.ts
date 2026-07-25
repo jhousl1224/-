@@ -1,5 +1,7 @@
 export type CalendarType = "solar" | "lunar";
 export type Gender = "male" | "female";
+export type RelationshipStatus = "stable" | "single";
+export type CareerStatus = "stable" | "unemployed";
 
 export interface Birthplace {
   id: string;
@@ -22,6 +24,8 @@ export interface BirthInput {
   gender: Gender;
   isLeapMonth: boolean;
   birthplace: Birthplace;
+  relationshipStatus: RelationshipStatus;
+  careerStatus: CareerStatus;
 }
 
 export interface ZiweiPalaceInfo {

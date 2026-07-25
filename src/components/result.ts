@@ -6,6 +6,7 @@ import { WESTERN_BADGE, WUXING_BADGE, ZIWEI_NO_STAR_BADGE, ZIWEI_STAR_BADGE, ZOD
 import { buildLiunianYears, type LiunianCategory } from "../lib/liunian";
 import { LIUNIAN_CAREER, LIUNIAN_CATEGORY_INFO, LIUNIAN_HEALTH, LIUNIAN_LOVE, LIUNIAN_WEALTH } from "../lib/liunianData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
+import { CAREER_ADVICE, RELATIONSHIP_ADVICE } from "../lib/statusAdvice";
 import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
 
@@ -22,8 +23,6 @@ const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCa
   { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: LIUNIAN_WEALTH },
   { labelZh: "🌿 健康", labelEn: "🌿 Health", data: LIUNIAN_HEALTH },
 ];
-
-const LIUNIAN_YEAR_LABELS_ZH = ["今年", "明年", "後年", "大後年"];
 
 function buildHeadingEmblem(): string {
   return `<div class="heading-emblem">${buildEmblemSvg()}</div>`;
@@ -186,10 +185,21 @@ export function mountResult(root: HTMLElement) {
 
     let unlocked = false;
 
+    const relationshipLabelZh = profile.input.relationshipStatus === "stable" ? "💞 感情狀態・穩定交往" : "💞 感情狀態・單身";
+    const relationshipLabelEn = profile.input.relationshipStatus === "stable" ? "💞 Relationship Status · Coupled Up" : "💞 Relationship Status · Single";
+    const careerLabelZh = profile.input.careerStatus === "stable" ? "💼 職場狀態・在職穩定" : "💼 職場狀態・待業中";
+    const careerLabelEn = profile.input.careerStatus === "stable" ? "💼 Career Status · Employed" : "💼 Career Status · Job Hunting";
+
+    const allTeaserTopics: { labelZh: string; labelEn: string; teaser: Teaser }[] = [
+      ...TEASER_TOPICS.map((topic) => ({ labelZh: topic.labelZh, labelEn: topic.labelEn, teaser: topic.data[profile.bazi.dominantWuxing] })),
+      { labelZh: relationshipLabelZh, labelEn: relationshipLabelEn, teaser: RELATIONSHIP_ADVICE[profile.bazi.dominantWuxing][profile.input.relationshipStatus] },
+      { labelZh: careerLabelZh, labelEn: careerLabelEn, teaser: CAREER_ADVICE[profile.bazi.dominantWuxing][profile.input.careerStatus] },
+    ];
+
     function renderTeasers() {
-      teaserStack.innerHTML = TEASER_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[profile.bazi.dominantWuxing], unlocked),
-      ).join("");
+      teaserStack.innerHTML = allTeaserTopics
+        .map((topic) => buildTeaserCard(topic.labelZh, topic.labelEn, topic.teaser, unlocked))
+        .join("");
 
       if (unlocked) {
         cta.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked — here's your full report.</span>`;
@@ -217,7 +227,7 @@ export function mountResult(root: HTMLElement) {
 
     const currentYear = new Date().getFullYear();
     const [thisYear] = buildLiunianYears(profile.bazi.dayMaster, currentYear, 1);
-    const futureYears = buildLiunianYears(profile.bazi.dayMaster, currentYear + 1, 3);
+    const [nextYear] = buildLiunianYears(profile.bazi.dayMaster, currentYear + 1, 1);
 
     // --- Tier 2: this year's liunian, as one whole-year reading ---
 
@@ -274,89 +284,60 @@ export function mountResult(root: HTMLElement) {
 
     renderThisYearCards();
 
-    // --- Tier 3: next 3 years, bundled in one unlock ---
+    // --- Tier 3: next year's liunian, as one whole-year reading ---
 
-    const futureYearsHeading = document.createElement("div");
-    futureYearsHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">明年・後年・大後年流年</h2><h2 class="en">The Next 3 Years</h2>`;
-    content.appendChild(futureYearsHeading);
+    const nextYearHeading = document.createElement("div");
+    nextYearHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">明年流年</h2><h2 class="en">Next Year's Forecast</h2>`;
+    content.appendChild(nextYearHeading);
 
-    const futureYearCta = document.createElement("p");
-    futureYearCta.className = "result-cta";
-    content.appendChild(futureYearCta);
+    const nextYearCta = document.createElement("p");
+    nextYearCta.className = "result-cta";
+    content.appendChild(nextYearCta);
 
-    const futureYearToggle = document.createElement("div");
-    futureYearToggle.className = "toggle-group liunian-year-toggle";
-    content.appendChild(futureYearToggle);
+    const nextYearMeta = document.createElement("div");
+    nextYearMeta.className = "liunian-year-meta";
+    nextYearMeta.innerHTML = `
+      <p class="zh">${nextYear.year}年（${nextYear.ganZhi}年）・${LIUNIAN_CATEGORY_INFO[nextYear.category].labelZh}：${LIUNIAN_CATEGORY_INFO[nextYear.category].themeZh}</p>
+      <p class="en">${nextYear.year} (${nextYear.ganZhi}) · ${LIUNIAN_CATEGORY_INFO[nextYear.category].labelEn}: ${LIUNIAN_CATEGORY_INFO[nextYear.category].themeEn}</p>
+    `;
+    content.appendChild(nextYearMeta);
 
-    const futureYearMeta = document.createElement("div");
-    futureYearMeta.className = "liunian-year-meta";
-    content.appendChild(futureYearMeta);
+    const nextYearCards = document.createElement("div");
+    nextYearCards.className = "teaser-stack";
+    content.appendChild(nextYearCards);
 
-    const futureYearCards = document.createElement("div");
-    futureYearCards.className = "teaser-stack";
-    content.appendChild(futureYearCards);
+    const nextYearDivider = document.createElement("div");
+    nextYearDivider.className = "result-divider";
+    content.appendChild(nextYearDivider);
 
-    const futureYearDivider = document.createElement("div");
-    futureYearDivider.className = "result-divider";
-    content.appendChild(futureYearDivider);
+    let nextYearUnlocked = false;
 
-    let selectedFutureIndex = 0;
-    let futureYearsUnlocked = false;
-
-    futureYearToggle.innerHTML = futureYears
-      .map(
-        (y, i) =>
-          `<button type="button" data-index="${i}" class="${i === 0 ? "is-active" : ""}"><span class="zh">${LIUNIAN_YEAR_LABELS_ZH[i + 1]}</span><span class="en">${y.year}</span></button>`,
-      )
-      .join("");
-
-    function renderFutureYearMeta() {
-      const y = futureYears[selectedFutureIndex];
-      const info = LIUNIAN_CATEGORY_INFO[y.category];
-      futureYearMeta.innerHTML = `
-        <p class="zh">${y.year}年（${y.ganZhi}年）・${info.labelZh}：${info.themeZh}</p>
-        <p class="en">${y.year} (${y.ganZhi}) · ${info.labelEn}: ${info.themeEn}</p>
-      `;
-    }
-
-    function renderFutureYearCards() {
-      const y = futureYears[selectedFutureIndex];
-      futureYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[y.category], futureYearsUnlocked),
+    function renderNextYearCards() {
+      nextYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
+        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[nextYear.category], nextYearUnlocked),
       ).join("");
 
-      if (futureYearsUnlocked) {
-        futureYearCta.innerHTML = `<span class="zh">🎉 未來三年運勢已解鎖！點上面的年份切換查看</span><span class="en">🎉 Unlocked — switch between years above to see each forecast.</span>`;
+      if (nextYearUnlocked) {
+        nextYearCta.innerHTML = `<span class="zh">🎉 明年的流年運勢已解鎖！</span><span class="en">🎉 Unlocked — next year's forecast is all yours.</span>`;
       } else {
-        futureYearCta.innerHTML = `<span class="zh">未來三年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full 3-year forecast unlocks with payment.</span>`;
-        futureYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
-          btn.addEventListener("click", unlockFutureYears);
+        nextYearCta.innerHTML = `<span class="zh">明年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full forecast for next year unlocks with payment.</span>`;
+        nextYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
+          btn.addEventListener("click", unlockNextYear);
         });
       }
     }
 
-    function unlockFutureYears() {
-      if (futureYearsUnlocked) return;
-      futureYearsUnlocked = true;
-      renderFutureYearCards();
+    function unlockNextYear() {
+      if (nextYearUnlocked) return;
+      nextYearUnlocked = true;
+      renderNextYearCards();
       guide.say(
-        "未來三年的流年運勢也一起解鎖囉，記得每一年都回來看看喔！",
-        "Your next 3 years are unlocked too — come back and check in on each one!",
+        "明年的流年運勢也解鎖囉，提早幫你看好方向！",
+        "Next year's forecast is unlocked too — a head start on what's coming!",
       );
     }
 
-    futureYearToggle.addEventListener("click", (e) => {
-      const btn = (e.target as HTMLElement).closest("button");
-      if (!btn) return;
-      selectedFutureIndex = Number(btn.dataset.index);
-      futureYearToggle.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      renderFutureYearMeta();
-      renderFutureYearCards();
-    });
-
-    renderFutureYearMeta();
-    renderFutureYearCards();
+    renderNextYearCards();
 
     guide.say(
       "這只是你命盤的縮影，感情、事業、財運、健康的完整解讀之後會在深度報告裡揭曉！",
