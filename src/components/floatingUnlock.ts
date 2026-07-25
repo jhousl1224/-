@@ -1,66 +1,118 @@
-const LOCKED_LABEL = `<span class="zh">🔒 解鎖完整報告</span><span class="en">🔒 Unlock Full Report</span>`;
+type ZoneKey = "base" | "thisyear" | "nextyear";
+
+const ZONE_ORDER: ZoneKey[] = ["base", "thisyear", "nextyear"];
+
+const ZONE_CONFIG: Record<ZoneKey, { eventName: string; label: string; toast: string }> = {
+  base: {
+    eventName: "starself:unlock-request",
+    label: `<span class="zh">🔒 解鎖完整報告</span><span class="en">🔒 Unlock Full Report</span>`,
+    toast: `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked! Enjoy your full report.</span>`,
+  },
+  thisyear: {
+    eventName: "starself:unlock-request:thisyear",
+    label: `<span class="zh">🔒 解鎖今年流年</span><span class="en">🔒 Unlock This Year's Forecast</span>`,
+    toast: `<span class="zh">🎉 今年流年已解鎖！</span><span class="en">🎉 Unlocked! This year's forecast is ready.</span>`,
+  },
+  nextyear: {
+    eventName: "starself:unlock-request:nextyear",
+    label: `<span class="zh">🔒 解鎖明年流年</span><span class="en">🔒 Unlock Next Year's Forecast</span>`,
+    toast: `<span class="zh">🎉 明年流年已解鎖！</span><span class="en">🎉 Unlocked! Next year's forecast is ready.</span>`,
+  },
+};
 
 export function mountFloatingUnlock(root: HTMLElement) {
   const wrap = document.createElement("div");
   wrap.className = "floating-unlock";
   wrap.innerHTML = `
     <button type="button" class="btn-primary" data-role="floating-unlock-btn">
-      ${LOCKED_LABEL}
+      ${ZONE_CONFIG.base.label}
     </button>
   `;
 
   const toast = document.createElement("div");
   toast.className = "floating-toast";
-  toast.innerHTML = `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked! Enjoy your full report.</span>`;
 
   root.appendChild(wrap);
   root.appendChild(toast);
 
   const btn = wrap.querySelector("button") as HTMLButtonElement;
   let toastTimer: number | undefined;
-  let hasUnlocked = false;
+  let activeZone: ZoneKey | null = null;
 
   btn.addEventListener("click", () => {
-    window.dispatchEvent(new CustomEvent("starself:unlock-request"));
+    if (!activeZone) return;
+    const config = ZONE_CONFIG[activeZone];
+    window.dispatchEvent(new CustomEvent(config.eventName));
+    toast.innerHTML = config.toast;
     toast.classList.add("is-visible");
     window.clearTimeout(toastTimer);
     toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
   });
 
-  // Once unlocked, each card shows its own "已解鎖" badge — the floating
-  // button's job (prompting the unlock) is done, so drop it instead of
-  // leaving a now-purposeless pill floating over the content.
-  window.addEventListener("starself:unlocked", () => {
-    hasUnlocked = true;
-    wrap.classList.remove("is-visible");
-  });
-
-  // A fresh form submission means a brand-new, never-unlocked report — drop
-  // any leftover "unlocked" visual state from a previous chart.
+  // A fresh form submission means a brand-new report — drop any leftover
+  // zone/visibility state from a previous chart until scroll re-evaluates it.
   window.addEventListener("starself:report-reset", () => {
-    hasUnlocked = false;
-    btn.innerHTML = LOCKED_LABEL;
+    activeZone = null;
+    wrap.classList.remove("is-visible");
   });
 
   const resultSectionEl = document.getElementById("result");
   if (!resultSectionEl) return { el: wrap };
   const resultSection = resultSectionEl;
 
-  let heading: HTMLElement | null = null;
+  function zoneIsLocked(key: ZoneKey): boolean {
+    return resultSection.querySelector(`[data-lock-zone="${key}"] [data-role="teaser-unlock-btn"]`) !== null;
+  }
+
+  // The floating pill sits fixed near the bottom of the screen, so as the page
+  // scrolls a card's own inline unlock button will eventually pass through
+  // that same spot. Rather than let the two stack on top of each other, hide
+  // the floating pill whenever an inline button is already sitting there —
+  // there's no need for the shortcut when the real button is right in front
+  // of you.
+  function inlineButtonNearFloatingArea(key: ZoneKey): boolean {
+    const dangerZoneTop = window.innerHeight - 120;
+    const buttons = resultSection.querySelectorAll<HTMLElement>(`[data-lock-zone="${key}"] [data-role="teaser-unlock-btn"]`);
+    for (const button of buttons) {
+      const rect = button.getBoundingClientRect();
+      if (rect.bottom > dangerZoneTop && rect.top < window.innerHeight) return true;
+    }
+    return false;
+  }
+
+  function zoneRange(key: ZoneKey): { top: number; bottom: number } | null {
+    const els = resultSection.querySelectorAll<HTMLElement>(`[data-lock-zone="${key}"]`);
+    if (els.length === 0) return null;
+    return { top: els[0].getBoundingClientRect().top, bottom: els[els.length - 1].getBoundingClientRect().bottom };
+  }
+
   let ticking = false;
-  let listenersAttached = false;
 
   function updateVisibility() {
     ticking = false;
-    if (hasUnlocked) {
-      wrap.classList.remove("is-visible");
-      return;
+    // Zones sit back-to-back in document order, so walking them in order and
+    // stopping at the first one whose range contains the reference line finds
+    // whichever locked section is currently in view — never more than one.
+    const referenceY = window.innerHeight * 0.85;
+    let matched: ZoneKey | null = null;
+    for (const key of ZONE_ORDER) {
+      const range = zoneRange(key);
+      if (!range) continue;
+      if (referenceY < range.top) break;
+      if (referenceY <= range.bottom) {
+        matched = key;
+        break;
+      }
     }
-    if (!heading) return;
-    // Show once we've scrolled down past the teaser heading; hide again once
-    // we've scrolled back up into the flip-card area above it.
-    const pastHeading = heading.getBoundingClientRect().bottom < window.innerHeight * 0.85;
-    wrap.classList.toggle("is-visible", pastHeading);
+
+    if (matched && zoneIsLocked(matched) && !inlineButtonNearFloatingArea(matched)) {
+      activeZone = matched;
+      btn.innerHTML = ZONE_CONFIG[matched].label;
+      wrap.classList.add("is-visible");
+    } else {
+      activeZone = null;
+      wrap.classList.remove("is-visible");
+    }
   }
 
   function onScroll() {
@@ -70,32 +122,16 @@ export function mountFloatingUnlock(root: HTMLElement) {
     }
   }
 
-  function attach(headingEl: HTMLElement) {
-    heading = headingEl;
-    if (!listenersAttached) {
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
-      listenersAttached = true;
-    }
-    updateVisibility();
-  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
 
-  // Re-submitting the form rebuilds the card stack, which replaces the teaser
-  // heading with a new DOM node — keep watching indefinitely so we re-attach
-  // to it instead of holding a stale reference to the detached old one.
-  function checkHeading() {
-    const found = resultSection.querySelector('[data-role="teaser-heading"]') as HTMLElement | null;
-    if (found && found !== heading) {
-      attach(found);
-    } else if (!found && heading) {
-      heading = null;
-      wrap.classList.remove("is-visible");
-    }
-  }
-
-  checkHeading();
-  const mutationObserver = new MutationObserver(checkHeading);
+  // The report's DOM is rebuilt on submit and rewritten in place on each
+  // unlock click — re-check visibility whenever any of that happens instead
+  // of holding stale element references.
+  const mutationObserver = new MutationObserver(onScroll);
   mutationObserver.observe(resultSection, { childList: true, subtree: true });
+
+  updateVisibility();
 
   return { el: wrap };
 }

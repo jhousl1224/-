@@ -166,15 +166,18 @@ export function mountResult(root: HTMLElement) {
 
     const teaserHeading = document.createElement("div");
     teaserHeading.dataset.role = "teaser-heading";
+    teaserHeading.dataset.lockZone = "base";
     teaserHeading.innerHTML = `<h2 class="zh">還有更多藏在命盤裡</h2><h2 class="en">There's more hiding in your chart</h2>`;
     content.appendChild(teaserHeading);
 
     const cta = document.createElement("p");
     cta.className = "result-cta";
+    cta.dataset.lockZone = "base";
     content.appendChild(cta);
 
     const teaserStack = document.createElement("div");
     teaserStack.className = "teaser-stack";
+    teaserStack.dataset.lockZone = "base";
     content.appendChild(teaserStack);
 
     const teaserDivider = document.createElement("div");
@@ -184,19 +187,23 @@ export function mountResult(root: HTMLElement) {
     // --- Independent section: current-life-stage advice (relationship + career status) ---
 
     const statusHeading = document.createElement("div");
+    statusHeading.dataset.lockZone = "base";
     statusHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">現階段狀況</h2><h2 class="en">Where You Stand Right Now</h2>`;
     content.appendChild(statusHeading);
 
     const statusCta = document.createElement("p");
     statusCta.className = "result-cta";
+    statusCta.dataset.lockZone = "base";
     content.appendChild(statusCta);
 
     const statusStack = document.createElement("div");
     statusStack.className = "teaser-stack";
+    statusStack.dataset.lockZone = "base";
     content.appendChild(statusStack);
 
     const statusDivider = document.createElement("div");
     statusDivider.className = "result-divider";
+    statusDivider.dataset.lockZone = "base";
     content.appendChild(statusDivider);
 
     window.dispatchEvent(new CustomEvent("starself:report-reset"));
@@ -257,6 +264,7 @@ export function mountResult(root: HTMLElement) {
     // --- Tier 2: this year's liunian, as one whole-year reading ---
 
     const thisYearHeading = document.createElement("div");
+    thisYearHeading.dataset.lockZone = "thisyear";
     thisYearHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">今年流年</h2><h2 class="en">This Year's Forecast</h2>`;
     content.appendChild(thisYearHeading);
 
@@ -274,10 +282,12 @@ export function mountResult(root: HTMLElement) {
 
     const thisYearCards = document.createElement("div");
     thisYearCards.className = "teaser-stack";
+    thisYearCards.dataset.lockZone = "thisyear";
     content.appendChild(thisYearCards);
 
     const thisYearDivider = document.createElement("div");
     thisYearDivider.className = "result-divider";
+    thisYearDivider.dataset.lockZone = "thisyear";
     content.appendChild(thisYearDivider);
 
     let thisYearUnlocked = false;
@@ -307,11 +317,13 @@ export function mountResult(root: HTMLElement) {
       );
     }
 
+    window.addEventListener("starself:unlock-request:thisyear", unlockThisYear);
     renderThisYearCards();
 
     // --- Tier 3: next year's liunian, as one whole-year reading ---
 
     const nextYearHeading = document.createElement("div");
+    nextYearHeading.dataset.lockZone = "nextyear";
     nextYearHeading.innerHTML = `${buildHeadingEmblem()}<h2 class="zh">明年流年</h2><h2 class="en">Next Year's Forecast</h2>`;
     content.appendChild(nextYearHeading);
 
@@ -329,10 +341,12 @@ export function mountResult(root: HTMLElement) {
 
     const nextYearCards = document.createElement("div");
     nextYearCards.className = "teaser-stack";
+    nextYearCards.dataset.lockZone = "nextyear";
     content.appendChild(nextYearCards);
 
     const nextYearDivider = document.createElement("div");
     nextYearDivider.className = "result-divider";
+    nextYearDivider.dataset.lockZone = "nextyear";
     content.appendChild(nextYearDivider);
 
     let nextYearUnlocked = false;
@@ -362,6 +376,7 @@ export function mountResult(root: HTMLElement) {
       );
     }
 
+    window.addEventListener("starself:unlock-request:nextyear", unlockNextYear);
     renderNextYearCards();
 
     guide.say(
