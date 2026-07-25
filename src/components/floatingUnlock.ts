@@ -64,22 +64,6 @@ export function mountFloatingUnlock(root: HTMLElement) {
     return resultSection.querySelector(`[data-lock-zone="${key}"] [data-role="teaser-unlock-btn"]`) !== null;
   }
 
-  // The floating pill sits fixed near the bottom of the screen, so as the page
-  // scrolls a card's own inline unlock button will eventually pass through
-  // that same spot. Rather than let the two stack on top of each other, hide
-  // the floating pill whenever an inline button is already sitting there —
-  // there's no need for the shortcut when the real button is right in front
-  // of you.
-  function inlineButtonNearFloatingArea(key: ZoneKey): boolean {
-    const dangerZoneTop = window.innerHeight - 120;
-    const buttons = resultSection.querySelectorAll<HTMLElement>(`[data-lock-zone="${key}"] [data-role="teaser-unlock-btn"]`);
-    for (const button of buttons) {
-      const rect = button.getBoundingClientRect();
-      if (rect.bottom > dangerZoneTop && rect.top < window.innerHeight) return true;
-    }
-    return false;
-  }
-
   function zoneRange(key: ZoneKey): { top: number; bottom: number } | null {
     const els = resultSection.querySelectorAll<HTMLElement>(`[data-lock-zone="${key}"]`);
     if (els.length === 0) return null;
@@ -105,7 +89,7 @@ export function mountFloatingUnlock(root: HTMLElement) {
       }
     }
 
-    if (matched && zoneIsLocked(matched) && !inlineButtonNearFloatingArea(matched)) {
+    if (matched && zoneIsLocked(matched)) {
       activeZone = matched;
       btn.innerHTML = ZONE_CONFIG[matched].label;
       wrap.classList.add("is-visible");
