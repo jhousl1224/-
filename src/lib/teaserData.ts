@@ -218,3 +218,56 @@ export const TEASER_HEALTH: Record<string, Teaser> = {
       "cold hands and feet, or occasional mild swelling in your legs, which is really your circulation asking you to slow down, but because it doesn't hurt, you tend to just wave it off. Make staying warm and moving your legs regularly part of your routine now, rather than waiting for a louder signal before you think to take care of it.",
   },
 };
+
+export const TEASER_FAMILY: Record<string, Teaser> = {
+  木: {
+    visibleZh: "在家庭裡，你常常是那個推著大家一起變好的人，",
+    blurredZh: "但這份用心，家人感受到的不一定是你以為的那樣……",
+    visibleEn: "In your family, you're often the one pushing everyone to grow together —",
+    blurredEn: "but what your family actually feels from that isn't quite what you'd expect...",
+    fullZh:
+      "你很習慣在家庭聚會裡提出建議、規劃全家的未來，甚至替爸媽的健康、手足的發展操心，這份熱心是真的，但如果每次見面都在「討論該怎麼改善」，家人反而會覺得跟你相處有壓力，好像回家也要被檢討進度。真正讓家庭關係加溫的，不是你又想到了什麼新點子，而是偶爾單純地陪伴，不談計畫、不談成長，只是一起吃頓飯。",
+    fullEn:
+      "You're often the one bringing up ideas at gatherings, planning ahead, worrying over your parents' health or a sibling's future. That care is real, but if every visit turns into a discussion about what could be improved, family starts to feel like another place they're being evaluated. What actually warms things up isn't another new idea — it's occasionally just being there, no agenda, no growth talk, just a meal together.",
+  },
+  火: {
+    visibleZh: "你在家庭裡總是最有活力、最會炒熱氣氛的那個人，",
+    blurredZh: "但這份熱鬧，也可能讓某個安靜的家人覺得……",
+    visibleEn: "You're usually the one bringing the energy at family gatherings, the one who makes things livelier just by showing up —",
+    blurredEn: "but that liveliness might leave a quieter family member feeling...",
+    fullZh:
+      "自己在這個家裡插不上話。你天生擅長帶動氣氛，講話大聲、情緒外放，家庭聚會有你在總是特別熱鬧，但比較內向的家人（可能是爸媽其中一位，或是安靜的手足）可能因此漸漸退到角落，習慣讓你主導。這份熱情很珍貴，但也試著偶爾把麥克風讓出去，主動問問那個比較安靜的人，最近過得怎麼樣。",
+    fullEn:
+      "like there's no room to get a word in. You're naturally good at driving the energy, loud and expressive, and gatherings are livelier with you around — but a quieter family member (maybe a parent, maybe a sibling) may have quietly stepped back over time, used to letting you take the lead. That warmth is genuinely valuable, but try occasionally handing the mic over, and actually ask the quiet one how they've really been doing.",
+  },
+  土: {
+    visibleZh: "你是家裡最讓人放心的那個，什麼事到你手上都會被穩穩處理好，",
+    blurredZh: "但這份可靠，也讓你在家庭裡背上了一個不對等的角色……",
+    visibleEn: "You're the one your family trusts most — whatever lands in your hands gets handled —",
+    blurredEn: "but that reliability has also saddled you with an uneven role at home...",
+    fullZh:
+      "「什麼都找你就對了」的那個人。經濟上、照顧長輩、處理家務，很多責任會自然而然落到你身上，因為大家都相信你扛得住。但長期一個人扛，容易累積成無聲的委屈——不是不願意付出，而是希望這份付出，也能被家人真正看見、分擔。這份健康的家庭關係，需要你偶爾開口說「這次換你們來」，而不是永遠自己默默扛下去。",
+    fullEn:
+      "the one everyone defaults to. Money, caring for elders, handling household matters — a lot of responsibility naturally lands on you, because everyone trusts you to carry it. But carrying it alone for too long builds into quiet resentment — not because you mind helping, but because you want that effort actually seen and shared. A healthier version of this needs you to occasionally say 'your turn this time,' instead of always quietly carrying it yourself.",
+  },
+  金: {
+    visibleZh: "你對家人的期待很清楚，也習慣把該說的話直接講出來，",
+    blurredZh: "但這份直接，在家庭裡特別容易被誤會成一件事……",
+    visibleEn: "You're clear about what you expect from family, and used to just saying it directly —",
+    blurredEn: "but that directness is especially prone to being misread at home as one specific thing...",
+    fullZh:
+      "不夠溫柔。你可能只是想把事情處理好、把界線劃清楚，例如金錢分配、長輩照顧的分工，但用「這樣不對」開頭的溝通方式，容易讓家人覺得自己在被指正，而不是被商量。家人之間的關係比同事、朋友更需要「先接住情緒，再談道理」，試著在說出你的標準之前，先說一句「我知道這不容易」，會讓你的直接被更溫柔地接收。",
+    fullEn:
+      "not warm enough. You might just be trying to get things handled and boundaries clear — splitting money, dividing care for elders — but leading with 'this isn't right' tends to make family feel corrected instead of consulted. Family relationships need feelings acknowledged before logic gets a turn, more than coworkers or friends do. Try saying 'I know this isn't easy' before laying out your standard, and your directness lands a lot more gently.",
+  },
+  水: {
+    visibleZh: "你很懂得配合家裡每個人的需求，是家庭裡最好協調的那個，",
+    blurredZh: "但這份好配合，也讓你在家庭裡漸漸消失了一個東西……",
+    visibleEn: "You're skilled at accommodating everyone's needs — the easiest one in the family to coordinate with —",
+    blurredEn: "but being this easygoing has slowly made one thing disappear...",
+    fullZh:
+      "你自己的意見。逢年過節該去誰家、家務怎麼分、意見不合時該聽誰的，你常常是那個「都可以」的人，久了大家甚至忘記問你想要什麼。這不是你沒有想法，而是你太習慣把「不製造衝突」放在第一位。試著在下一次家庭決定裡，主動說出一次自己真正的偏好——你會發現，家人其實很願意聽，只是你一直沒說。",
+    fullEn:
+      "your own opinion. Whose house to visit for the holidays, how to split chores, whose call it is when there's disagreement — you're often the one who says 'either is fine,' until eventually people stop even asking what you want. It's not that you don't have an opinion — it's that you've put avoiding conflict first for so long. Next time a family decision comes up, try actually voicing your real preference — you'll likely find they're happy to listen, you just hadn't been saying it.",
+  },
+};

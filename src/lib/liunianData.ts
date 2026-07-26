@@ -432,3 +432,106 @@ export const LIUNIAN_HEALTH: Record<LiunianCategory, Teaser> = {
       "assuming a good night's sleep will fix anything, so you start dismissing small aches and pains, and put off check-ups or treatment you actually need. Your baseline health is genuinely solid this year, a good one for recuperating and rebuilding your reserves — but don't let that ease become a reason to ignore warning signs. Keep up with the numbers you're supposed to track and the follow-ups you're supposed to do, so you don't waste the good condition your body's giving you this year.",
   },
 };
+
+export const LIUNIAN_FAMILY: Record<LiunianCategory, Teaser> = {
+  比肩: {
+    visibleZh: "這一年你在家裡的主見會變得特別強，比較敢說出自己的想法、也比較不想照別人的安排走，",
+    blurredZh: "但這股「我有我的想法」的底氣，容易讓家庭裡出現一種對峙……",
+    visibleEn: "This year you'll feel noticeably more opinionated at home — more willing to say what you think, less willing to just go along with someone else's plan —",
+    blurredEn: "but that same conviction can turn into a standoff at home...",
+    fullZh:
+      "你跟另一位一樣有主見的家人（可能是父母其中一位，或是手足）意見不合時，誰都不肯先讓步。這一年你的自我意識會比平常更強，這對你個人發展是好事，但在家庭決定上，如果每個人都堅持己見，很容易演變成冷戰。這一年家庭關係的課題，不是收起你的想法，而是學會分辨「這件事值得堅持」還是「這件事讓一步也無妨」。",
+    fullEn:
+      "with a family member who's just as stubborn — a parent, maybe a sibling — where neither side backs down first. Your sense of self is genuinely stronger this year, which is good for you personally, but if everyone in the family digs in equally, it turns into a cold war fast. The family lesson this year isn't quieting your opinions — it's learning to tell the difference between what's actually worth holding your ground on and what's fine to just let go.",
+  },
+  劫財: {
+    visibleZh: "這一年家裡在錢或資源分配上，可能會出現比較明顯的競爭感——遺產、家用分攤、或誰該多付出一點，",
+    blurredZh: "但這種較勁的氣氛，容易讓一件本來很單純的事變得複雜……",
+    visibleEn: "This year, money or resources at home may carry a more visible competitive edge — inheritance, shared expenses, who should be contributing more —",
+    blurredEn: "but that competitive undertone tends to complicate something that used to be simple...",
+    fullZh:
+      "計較誰付出得比較多、誰拿得比較少。這種比較一旦開始，很難停下來，甚至會延燒到跟金錢無關的事情上，變成翻舊帳。這一年家庭裡任何牽涉到「資源分配」的討論，最好提前講清楚規則，而不是等到事情發生了才在情緒上爭對錯——把話說在事前，能省下事後很多不必要的心結。",
+    fullEn:
+      "keeping score of who's giving more and who's getting less. Once that comparison starts, it's hard to stop, sometimes spilling into old grievances that have nothing to do with money. Any conversation this year about splitting resources goes better with the rules set clearly upfront, rather than arguing over who's right after the fact — saying it before it happens saves a lot of unnecessary resentment later.",
+  },
+  食神: {
+    visibleZh: "這一年你會特別想跟家人分享生活——聚餐、出遊、聊近況，家庭氣氛會變得比較輕鬆熱鬧，",
+    blurredZh: "但這份想分享的心情，也可能讓某件事被你不小心說溜嘴……",
+    visibleEn: "This year you'll want to share more of your life with family — meals, trips, catching up — and things will feel lighter and livelier —",
+    blurredEn: "but that urge to share can also make you accidentally let slip something you shouldn't...",
+    fullZh:
+      "把不該公開的家庭祕密或某人的私事，在聚會的輕鬆氣氛裡不小心說出來。你這一年表達欲比較旺盛，聊開了容易收不住，卻沒注意到在場的某個家人其實不想讓別人知道那件事。這一年很適合多安排家庭聚會、修復關係，但開口前，記得先確認「這是我可以說的，還是只有我知道就好」。",
+    fullEn:
+      "a family secret or someone's private business, slipping out in the relaxed mood of a gathering. Your urge to talk runs high this year, easy to get carried away — without noticing someone in the room didn't want that shared. This is a genuinely good year for more family time and mending things, just check before you speak: is this mine to share, or was it only ever mine to know.",
+  },
+  傷官: {
+    visibleZh: "這一年你看家裡的問題會特別清楚，也比較敢直接說出「這樣不對」，",
+    blurredZh: "但這份直言，特別容易讓家人把你的話聽成另一種意思……",
+    visibleEn: "This year you'll see problems at home clearly, and won't hesitate to say 'this isn't right' —",
+    blurredEn: "but that bluntness tends to get heard as something else entirely...",
+    fullZh:
+      "在批評，而不是在關心。你可能只是想幫忙解決問題——爸媽的生活習慣、手足的選擇——但少了鋪墊的直接指正，很容易被解讀成「你又在嫌我們」。家庭關係跟職場不一樣，對方要的往往不是你分析得多準確，而是先感覺到你是站在他這邊的。這一年最值得練習的，是把「你應該」換成「我擔心」，會讓你的真心話更容易被聽進去。",
+    fullEn:
+      "criticism instead of care. You might just be trying to help — a parent's habits, a sibling's choices — but correction without any softening easily reads as 'you're judging us again.' Family isn't like work — what they usually need isn't how accurate your read is, it's feeling like you're on their side first. What's worth practicing this year is swapping 'you should' for 'I'm worried,' so what you actually mean gets heard.",
+  },
+  偏財: {
+    visibleZh: "這一年家裡的財務狀況可能會有意外的變動——長輩給的資助、意外的家族資產、或是需要臨時支援某位家人，",
+    blurredZh: "但這種「錢突然進出」的狀態，也容易讓家庭關係出現一個裂痕……",
+    visibleEn: "This year your family's finances may see unexpected shifts — help from an elder, an unexpected family asset, or needing to support someone on short notice —",
+    blurredEn: "but money moving in and out this suddenly can crack the relationship in one specific way...",
+    fullZh:
+      "因為錢的用途或分配沒講清楚而起爭執。意外的資源出現時，家人對「該怎麼用」往往各有想法，如果沒有提前討論，很容易演變成誰都覺得自己被虧待。這一年如果家裡有意外之財或需要資助某位成員，最好趁大家心情都好的時候，一次把規則和期待講清楚，而不是等錢到位了才臨時討論。",
+    fullEn:
+      "arguments over how it's used or split. When unexpected resources show up, everyone tends to have their own idea of what should happen with it, and without an upfront conversation, someone usually ends up feeling shortchanged. If a windfall or a need for support comes up this year, settle the rules and expectations while everyone's still in a good mood, rather than improvising once the money's already there.",
+  },
+  正財: {
+    visibleZh: "這一年你會更務實地看待家庭責任，把該做的事、該分攤的費用都安排得很清楚，",
+    blurredZh: "但這份「一切都安排好了」的務實，也可能讓家人感覺到一件事……",
+    visibleEn: "This year you'll get more practical about family responsibilities, laying out who owes what and who's doing what with real clarity —",
+    blurredEn: "but that same practicality can leave family feeling like one specific thing...",
+    fullZh:
+      "自己在這個家裡，好像變成了一項要被管理的任務。你把家用分攤、長輩照顧排班都規劃得清清楚楚，這份負責任值得肯定，但如果每次互動都圍繞著「這個月誰該做什麼」，家人會漸漸少了想跟你隨意聊天的意願。這一年家庭關係要顧好，記得在安排事務之外，留一點不談責任分工、單純閒聊的時間。",
+    fullEn:
+      "like they've become a task to be managed. You've got the shared expenses and the elder-care rotation all mapped out, and that's genuinely responsible, but if every interaction revolves around who's doing what this month, people slowly lose the urge to just talk to you casually. Keep some time this year that's just conversation, no logistics attached.",
+  },
+  七殺: {
+    visibleZh: "這一年家裡可能會出現比較大的挑戰——長輩健康出狀況、家人之間的衝突升高，或是需要一次做出重大的家庭決定，",
+    blurredZh: "但這種被逼到牆角的壓力，其實在讓這個家經歷一件必要的事……",
+    visibleEn: "This year your family may face a bigger challenge — an elder's health scare, rising conflict between family members, or a major decision that can't be put off —",
+    blurredEn: "but that up-against-the-wall pressure is actually forcing something necessary...",
+    fullZh:
+      "把長期被擱置的問題攤開來面對。平常大家客客氣氣不去碰的話題——照顧責任怎麼分、某個心結該不該說開——會在這一年被迫浮上檯面。這一年不好受，但撐過去的家庭，關係通常會比之前更緊密、更誠實。這一年最重要的不是避開衝突，而是在衝突發生時，記得你們是同一隊，不是敵人。",
+    fullEn:
+      "laying out problems that have quietly been avoided. Topics everyone's politely skirted around — how caregiving gets divided, an old grudge that's never been said out loud — tend to surface this year whether anyone wants them to or not. It's a hard year, but families that get through it usually come out closer and more honest than before. What matters most this year isn't avoiding conflict — it's remembering, when it happens, that you're on the same team, not opposing ones.",
+  },
+  正官: {
+    visibleZh: "這一年家庭裡的責任和期待會變得比較明確——誰該照顧誰、誰該負擔什麼，規範感會提高，",
+    blurredZh: "但這些逐漸清楚的責任分工，容易讓你感受到一種壓力……",
+    visibleEn: "This year, responsibilities and expectations at home will get more clearly defined — who's caring for whom, who owes what —",
+    blurredEn: "but that sharpening division of labor tends to come with a specific kind of pressure...",
+    fullZh:
+      "覺得自己在這個家裡的角色，好像變成了一份不能拒絕的義務。這一年身為家中一份子的責任會比較重，可能是照顧長輩、扛起某個家族角色，你可能會覺得喘不過氣，但這些責任其實也是在確立你在這個家裡真正重要的位置。這一年不適合逃避該扛的責任，而適合在扛起來的同時，也誠實跟家人說「我需要一點支援」——這不會削弱你的角色，反而讓這份責任走得更久。",
+    fullEn:
+      "feeling like your role in the family has become an obligation you can't say no to. Your responsibilities as a family member run heavier this year, maybe caregiving, maybe stepping into a defined role, and it can feel suffocating — but these responsibilities are also what establishes your real place in this family. This isn't the year to dodge what's yours to carry, but it is the year to be honest, while carrying it, that you need some support — that doesn't weaken your role, it's what lets you keep carrying it.",
+  },
+  偏印: {
+    visibleZh: "這一年你會更想有自己的空間，不太想被家庭事務綁住，喜歡自己一個人靜一靜，",
+    blurredZh: "但這種向內收的狀態，容易讓家人誤會成一件事……",
+    visibleEn: "This year you'll want more of your own space, less pulled into family matters, drawn to being alone with your thoughts —",
+    blurredEn: "but that inward pull can easily get misread as one specific thing...",
+    fullZh:
+      "你在疏遠這個家。你可能只是需要獨處的時間整理自己，不代表你不在乎家人，但如果你連續一段時間都很少主動聯絡、很少參與家庭活動，家人接收到的訊號會是「被推開」，而不是「他需要空間」。這一年在照顧自己需求的同時，記得偶爾主動報個平安、傳個訊息，讓家人知道，你的抽離不是疏遠，只是暫時需要一個人靜一靜。",
+    fullEn:
+      "pulling away from the family. You might just need time alone to process things, which doesn't mean you don't care, but if you go quiet for a stretch, rarely reaching out, rarely showing up to family things, what lands for them is being shut out, not 'they needed space.' While you're taking care of that need this year, remember to occasionally check in, send a message — so they know the distance isn't about them, just a temporary need to be alone.",
+  },
+  正印: {
+    visibleZh: "這一年家人會給你比較多支持——長輩主動關心、家庭氣氛也比較溫暖安穩，",
+    blurredZh: "但這份被照顧的舒適，也可能讓你養成一個習慣……",
+    visibleEn: "This year your family will offer you more support — an elder checking in more, a warmer, steadier atmosphere at home —",
+    blurredEn: "but being cared for this comfortably can build a habit you don't notice forming...",
+    fullZh:
+      "把家人的付出當成理所當然，很少主動回饋或表達感謝。這一年確實適合多回家、多接受家人的照顧，休養生息，但如果只是單向地接受，久了會讓給予的一方（通常是父母）覺得付出沒被看見。這一年家庭關係要長久，重點不是拒絕被照顧，而是記得偶爾主動說一句「謝謝你們」，或是找機會反過來照顧他們一次。",
+    fullEn:
+      "taking that giving for granted, rarely reciprocating or saying thanks. This is genuinely a good year to go home more, let family take care of you, and actually rest — but if it stays one-directional, the one doing the giving (usually a parent) starts to feel unseen over time. What keeps this good this year isn't refusing the care — it's remembering to say thank you, or finding a chance to take care of them for once too.",
+  },
+};

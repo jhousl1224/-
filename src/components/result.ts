@@ -4,10 +4,10 @@ import type { AnalysisResult } from "../lib/analysis";
 import { ZIWEI_STAR_EN_NAME } from "../lib/analysisData";
 import { WESTERN_BADGE, WUXING_BADGE, ZIWEI_NO_STAR_BADGE, ZIWEI_STAR_BADGE, ZODIAC_BADGE } from "../lib/icons";
 import { buildLiunianYears, type LiunianCategory } from "../lib/liunian";
-import { LIUNIAN_CAREER, LIUNIAN_CATEGORY_INFO, LIUNIAN_HEALTH, LIUNIAN_LOVE, LIUNIAN_WEALTH } from "../lib/liunianData";
+import { LIUNIAN_CAREER, LIUNIAN_CATEGORY_INFO, LIUNIAN_FAMILY, LIUNIAN_HEALTH, LIUNIAN_LOVE, LIUNIAN_WEALTH } from "../lib/liunianData";
 import { ganToPinyin, ganZhiToPinyin } from "../lib/pinyin";
 import { CAREER_ADVICE, CAREER_PATH_ADVICE, RELATIONSHIP_ADVICE } from "../lib/statusAdvice";
-import { TEASER_CAREER, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
+import { TEASER_CAREER, TEASER_FAMILY, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
 
 const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Teaser> }[] = [
@@ -15,6 +15,7 @@ const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Te
   { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: TEASER_CAREER },
   { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: TEASER_WEALTH },
   { labelZh: "🌿 健康", labelEn: "🌿 Health", data: TEASER_HEALTH },
+  { labelZh: "🏠 家庭關係", labelEn: "🏠 Family", data: TEASER_FAMILY },
 ];
 
 const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCategory, Teaser> }[] = [
@@ -22,6 +23,7 @@ const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCa
   { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: LIUNIAN_CAREER },
   { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: LIUNIAN_WEALTH },
   { labelZh: "🌿 健康", labelEn: "🌿 Health", data: LIUNIAN_HEALTH },
+  { labelZh: "🏠 家庭關係", labelEn: "🏠 Family", data: LIUNIAN_FAMILY },
 ];
 
 function buildHeadingEmblem(): string {
