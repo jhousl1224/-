@@ -120,9 +120,9 @@ export const TEASER_WEALTH: Record<string, Teaser> = {
     visibleEn: "Your money tends to build slowly — you're not chasing overnight wins —",
     blurredEn: "but there's one spending habit quietly slowing down how fast you save...",
     fullZh:
-      "那就是為了「自我成長」而花的錢，總是最容易被你合理化。課程、書籍、證照、進修，這些支出感覺起來像投資，但如果沒有設定上限，反而會變成拖慢存錢速度的黑洞。試著幫「成長類支出」設一個每月額度，你長期累積的能力，還是能持續進步，只是速度會更穩。",
+      "那就是為了「自我成長」而花的錢，總是最容易被你合理化。課程、書籍、證照、進修，這些支出感覺起來像投資，但如果沒有設定上限，反而會變成拖慢存錢速度的黑洞。試著幫「成長類支出」設一個每月額度，你長期累積的能力，還是能持續進步，只是速度會更穩。說到具體的開運方法，木屬性的你，適合的招財色是綠色和藍綠色系，方位以東方最旺，隨身可以帶木質或綠色的小物，家裡在東方擺一盆黃金葛或發財樹，也很適合你。生活習慣上，多接觸陽光、多閱讀吸收新知，會讓你的財運跟著你的成長一起往上走。",
     fullEn:
-      "spending on 'self-growth' is the easiest kind to talk yourself into. Courses, books, certifications, more training — it all feels like investment, but without a cap, it quietly becomes the thing draining your savings rate. Set a monthly ceiling for growth-related spending; you'll still keep building your long game, just at a steadier pace.",
+      "spending on 'self-growth' is the easiest kind to talk yourself into. Courses, books, certifications, more training — it all feels like investment, but without a cap, it quietly becomes the thing draining your savings rate. Set a monthly ceiling for growth-related spending; you'll still keep building your long game, just at a steadier pace. As for concrete ways to boost this: with a Wood element, your lucky colors are green and teal, and east is your strongest direction. Carrying something wooden or green, or keeping a pothos or money tree in the east side of your home, suits you well. On the habit side, getting more sunlight and reading to keep learning tends to lift your finances right along with your own growth.",
   },
   火: {
     visibleZh: "錢對你來說來得快，你也很敢花在自己身上，",
@@ -130,9 +130,9 @@ export const TEASER_WEALTH: Record<string, Teaser> = {
     visibleEn: "Money comes fast for you, and you're not afraid to spend it on yourself —",
     blurredEn: "but impulse spending might be quietly eating into your savings...",
     fullZh:
-      "尤其是在情緒高漲或心情不好的時候，你花錢的速度會明顯變快，事後才發現買了一堆用不到的東西。你不需要完全戒掉這種享受當下的個性，但可以試著設一個「24 小時原則」：想買非必要的東西時，先等一天再決定。多數時候，你會發現那股衝動早就消失了。",
+      "尤其是在情緒高漲或心情不好的時候，你花錢的速度會明顯變快，事後才發現買了一堆用不到的東西。你不需要完全戒掉這種享受當下的個性，但可以試著設一個「24 小時原則」：想買非必要的東西時，先等一天再決定。多數時候，你會發現那股衝動早就消失了。說到具體的開運方法，火屬性的你，適合的招財色是紅色、橘色和紫色，方位以南方最旺，隨身可以帶紅色系的小物或飾品，家裡在南方點一盞常亮的燈，也很適合你。生活習慣上，白天多參與社交、多讓自己被看見，會比悶著頭做事更容易幫你打開財路。",
     fullEn:
-      "especially when your mood spikes, high or low, your spending speeds up without you noticing, and afterward you find a pile of things you didn't need. You don't have to kill the impulse to enjoy the moment — just try a 24-hour rule: for anything non-essential, wait a day before buying. Most of the time, you'll find the urge already passed on its own.",
+      "especially when your mood spikes, high or low, your spending speeds up without you noticing, and afterward you find a pile of things you didn't need. You don't have to kill the impulse to enjoy the moment — just try a 24-hour rule: for anything non-essential, wait a day before buying. Most of the time, you'll find the urge already passed on its own. As for concrete ways to boost this: with a Fire element, your lucky colors are red, orange, and purple, and south is your strongest direction. Carrying something red, or keeping a light lit in the south side of your home, suits you well. On the habit side, staying visible and social during the day opens up more financial paths for you than working quietly behind the scenes.",
   },
   土: {
     visibleZh: "存錢這件事你完全不費力，安全感對你來說很重要，",
@@ -140,9 +140,9 @@ export const TEASER_WEALTH: Record<string, Teaser> = {
     visibleEn: "Saving comes naturally to you — security actually matters —",
     blurredEn: "but there's a kind of opportunity you keep passing on for being too cautious...",
     fullZh:
-      "那就是需要承擔一點短期波動、但長期報酬明顯更高的機會。你把「不虧錢」放在第一位，這份謹慎保護了你，但也讓你錯過不少複利效果明顯的選擇。試著把一小部分（例如存款的一成）撥去承擔可控範圍內的風險，你會發現，安全感不需要靠「完全不動」來維持。",
+      "那就是需要承擔一點短期波動、但長期報酬明顯更高的機會。你把「不虧錢」放在第一位，這份謹慎保護了你，但也讓你錯過不少複利效果明顯的選擇。試著把一小部分（例如存款的一成）撥去承擔可控範圍內的風險，你會發現，安全感不需要靠「完全不動」來維持。說到具體的開運方法，土屬性的你，適合的招財色是黃色和大地色系，方位以中央和西南最旺，隨身可以帶陶瓷或黃水晶類的小物，家裡的財位放一個穩重、方正的擺設，也很適合你。生活習慣上，固定記帳、規律存錢，會比追求高風險的機會更能穩穩養大你的財運。",
     fullEn:
-      "anything that involves a bit of short-term ups and downs but a clearly higher payoff over time. Not losing money comes first for you, and that caution has protected you, but it's also cost you plenty of compounding along the way. Try setting aside a small slice — maybe a tenth of your savings — for a controlled amount of risk. You'll find that security doesn't actually require standing completely still.",
+      "anything that involves a bit of short-term ups and downs but a clearly higher payoff over time. Not losing money comes first for you, and that caution has protected you, but it's also cost you plenty of compounding along the way. Try setting aside a small slice — maybe a tenth of your savings — for a controlled amount of risk. You'll find that security doesn't actually require standing completely still. As for concrete ways to boost this: with an Earth element, your lucky colors are yellow and earth tones, and the center and southwest are your strongest directions. Carrying something ceramic or a piece of citrine, or keeping a solid, square-shaped object in your home's wealth corner, suits you well. On the habit side, tracking your spending and saving on a regular schedule grows your finances more reliably than chasing high-risk opportunities.",
   },
   金: {
     visibleZh: "理財這件事你腦子很清楚，說到做到，",
@@ -150,9 +150,9 @@ export const TEASER_WEALTH: Record<string, Teaser> = {
     visibleEn: "You think clearly about money and actually follow through —",
     blurredEn: "but there's one financial decision you've been putting off for a while...",
     fullZh:
-      "通常跟「放手」有關：換工作、停損一筆投資、或是終止一個不再划算的合作。你習慣先想清楚所有變數再行動，但這件事上你已經想得夠久了，多想不會讓答案更清楚，只會讓成本越拖越高。給自己一個明確的期限，到了就照計畫做，而不是繼續等一個「更確定」的時機。",
+      "通常跟「放手」有關：換工作、停損一筆投資、或是終止一個不再划算的合作。你習慣先想清楚所有變數再行動，但這件事上你已經想得夠久了，多想不會讓答案更清楚，只會讓成本越拖越高。給自己一個明確的期限，到了就照計畫做，而不是繼續等一個「更確定」的時機。說到具體的開運方法，金屬性的你，適合的招財色是白色、金色和銀色，方位以西方最旺，隨身可以帶金屬材質或白水晶的小物，家裡在西方擺一個圓形的金屬擺件，也很適合你。生活習慣上，定期整理財務、斷捨離不必要的支出，會讓你的財運跟你的空間一樣清爽有效率。",
     fullEn:
-      "usually something about letting go: switching jobs, cutting losses on an investment, ending an arrangement that's stopped paying off. You like having every variable mapped out before you move, but you've already thought this one through enough — more thinking won't make the answer clearer, it'll just raise the cost of waiting. Give yourself a real deadline, and when it hits, act on the plan instead of holding out for a moment that feels more certain.",
+      "usually something about letting go: switching jobs, cutting losses on an investment, ending an arrangement that's stopped paying off. You like having every variable mapped out before you move, but you've already thought this one through enough — more thinking won't make the answer clearer, it'll just raise the cost of waiting. Give yourself a real deadline, and when it hits, act on the plan instead of holding out for a moment that feels more certain. As for concrete ways to boost this: with a Metal element, your lucky colors are white, gold, and silver, and west is your strongest direction. Carrying something metallic or a piece of clear quartz, or keeping a round metal object in the west side of your home, suits you well. On the habit side, regularly reviewing your finances and cutting unnecessary spending keeps your money as clear and efficient as your space.",
   },
   水: {
     visibleZh: "你賺錢的管道通常不只一個，腦筋也轉得快，",
@@ -160,9 +160,9 @@ export const TEASER_WEALTH: Record<string, Teaser> = {
     visibleEn: "Money tends to reach you through more than one channel —",
     blurredEn: "but the real reason it doesn't stick around is a little different than you'd think...",
     fullZh:
-      "不是花太多，而是分得太散。你同時開著好幾條賺錢的路，資金也跟著分散在各處，導致你其實很難說清楚自己整體的財務狀況。試著每個月花十分鐘，把所有收入、支出集中看一次，你會發現，讓錢留下來的關鍵，不是賺更多，而是先看清楚錢去了哪裡。",
+      "不是花太多，而是分得太散。你同時開著好幾條賺錢的路，資金也跟著分散在各處，導致你其實很難說清楚自己整體的財務狀況。試著每個月花十分鐘，把所有收入、支出集中看一次，你會發現，讓錢留下來的關鍵，不是賺更多，而是先看清楚錢去了哪裡。說到具體的開運方法，水屬性的你，適合的招財色是黑色和深藍色，方位以北方最旺，隨身可以帶玻璃或黑曜石類的小物，家裡在北方擺一個小型流水擺件，也很適合你。生活習慣上，維持多元收入來源沒問題，但記得定期把錢集中記錄一次，讓流動的財運，也能留下清楚的軌跡。",
     fullEn:
-      "it's not that you spend too much, it's that everything is scattered across too many places. You've got several income streams running at once, with money spread out to match, which makes it genuinely hard to say what your overall financial picture even looks like. Spend ten minutes a month pulling everything — income, spending — into one view. What actually keeps money around isn't earning more; it's seeing clearly where it's already going.",
+      "it's not that you spend too much, it's that everything is scattered across too many places. You've got several income streams running at once, with money spread out to match, which makes it genuinely hard to say what your overall financial picture even looks like. Spend ten minutes a month pulling everything — income, spending — into one view. What actually keeps money around isn't earning more; it's seeing clearly where it's already going. As for concrete ways to boost this: with a Water element, your lucky colors are black and deep blue, and north is your strongest direction. Carrying something glass or a piece of obsidian, or keeping a small flowing-water feature in the north side of your home, suits you well. On the habit side, multiple income streams work fine for you, just remember to consolidate and track it all regularly, so money that moves this much still leaves a clear trail.",
   },
 };
 
