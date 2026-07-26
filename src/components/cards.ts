@@ -88,7 +88,7 @@ function buildCard(spec: CardSpec): HTMLElement {
         <h3 class="flip-card-title en">${spec.titleEn}</h3>
         <p class="zh" style="font-size:0.8rem; margin-top:0.1rem;">${spec.frontNoteZh}</p>
         <p class="en en--body" style="font-size:0.72rem;">${spec.frontNoteEn}</p>
-        <span class="flip-card-hint"><span class="zh">點擊翻牌</span> <span class="en">Tap to flip</span></span>
+        <span class="flip-card-hint"><span class="flip-card-hint-icon">🔄</span><span class="zh">點擊翻牌看完整解讀</span><span class="en">Tap to flip</span></span>
       </div>
       <div class="flip-card-face flip-card-back">
         <p class="zh">${spec.bodyZh}</p>
@@ -98,6 +98,35 @@ function buildCard(spec: CardSpec): HTMLElement {
   `;
   card.addEventListener("click", () => card.classList.toggle("is-flipped"));
   return card;
+}
+
+// A couple of test users scrolled straight past every card without realizing
+// they were tappable — the static hint text wasn't enough to signal it. Play
+// a one-time demo flip on the very first card once it's actually in view, so
+// people SEE it flip instead of having to guess. Cancelled if the user taps
+// anything before it fires so it never fights their own interaction.
+function playDemoFlip(card: HTMLElement) {
+  let userInteracted = false;
+  card.addEventListener("click", () => { userInteracted = true; }, { once: true });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting || userInteracted) continue;
+        observer.disconnect();
+        window.setTimeout(() => {
+          if (userInteracted) return;
+          card.classList.add("is-flipped");
+          window.setTimeout(() => {
+            if (userInteracted) return;
+            card.classList.remove("is-flipped");
+          }, 1400);
+        }, 900);
+      }
+    },
+    { threshold: 0.6 },
+  );
+  observer.observe(card);
 }
 
 export function mountCardStack(container: HTMLElement, specs: CardSpec[]) {
@@ -113,7 +142,9 @@ export function mountCardStack(container: HTMLElement, specs: CardSpec[]) {
     index.textContent = `${i + 1} / ${specs.length}`;
     item.appendChild(index);
 
-    item.appendChild(buildCard(spec));
+    const card = buildCard(spec);
+    item.appendChild(card);
+    if (i === 0) playDemoFlip(card);
 
     if (i < specs.length - 1) {
       const hint = document.createElement("div");
