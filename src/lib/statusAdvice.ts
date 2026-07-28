@@ -1,6 +1,15 @@
 import type { Teaser } from "./teaserData";
 import type { CareerStatus, RelationshipStatus } from "./types";
 
+export type AgeBracket = "young" | "mid" | "senior";
+
+export function getAgeBracket(birthYear: number): AgeBracket {
+  const age = new Date().getFullYear() - birthYear;
+  if (age <= 29) return "young";
+  if (age <= 45) return "mid";
+  return "senior";
+}
+
 export const RELATIONSHIP_ADVICE: Record<string, Record<RelationshipStatus, Teaser>> = {
   木: {
     stable: {
@@ -336,6 +345,169 @@ export const CAREER_ADVICE: Record<string, Record<CareerStatus, Teaser>> = {
         "把「適應力強」講出來當成你的優勢。你可能覺得這是理所當然的特質，不值得特別提，但對很多公司來說，一個能快速融入不同團隊、隨情況調整做法的人非常稀缺。顧問、專案協調、客戶服務這類需要彈性和溝通的角色，會特別適合你，面試時記得主動把這個特質講出來。",
       fullEn:
         "actually naming 'highly adaptable' as one of your strengths. You might think it's just how you are and not worth mentioning, but for a lot of companies, someone who can blend into different teams fast and adjust their approach on the fly is genuinely rare. Roles like consulting, project coordination, and client services — anything needing flexibility and communication — suit you especially well. Remember to actually say this out loud in interviews.",
+    },
+  },
+};
+
+export const WEALTH_IMPROVEMENT_ADVICE: Record<string, Record<AgeBracket, Teaser>> = {
+  木: {
+    young: {
+      visibleZh: "木屬性的人錢留不住，很多時候不是花太多，",
+      blurredZh: "而是你一直把「賺更多」這件事，排在另一件事後面……",
+      visibleEn: "Money not sticking around for a Wood element usually isn't about spending too much —",
+      blurredEn: "it's that you keep putting 'earning more' behind something else...",
+      fullZh:
+        "排在「先讓自己變得更好」後面。你把大部分心力放在學習、進修、累積能力上，卻遲遲沒有讓這些投資真正轉換成收入——你現在最該做的，不是再多上一堂課，而是找一個方法，把你已經會的東西變現，哪怕只是接一個小案子、賣一個小技能，先讓「成長」開始產生現金流。",
+      fullEn:
+        "behind 'becoming better first.' You pour most of your energy into learning, training, building skills, but rarely turn that investment into actual income. What's worth doing right now isn't one more course — it's finding a way to monetize what you already know, even a small gig or a small skill sold, so 'growth' starts generating cash flow instead of just costing it.",
+    },
+    mid: {
+      visibleZh: "木屬性的人錢留不住，很多時候不是花太多，",
+      blurredZh: "而是你一直把「賺更多」這件事，排在另一件事後面……",
+      visibleEn: "Money not sticking around for a Wood element usually isn't about spending too much —",
+      blurredEn: "it's that you keep putting 'earning more' behind something else...",
+      fullZh:
+        "排在照顧家庭、栽培他人的責任後面。這個階段你可能一邊扛著房貸、孩子的教育費，一邊還在想著怎麼讓自己更好，卻沒把「增加收入」排進待辦清單的前幾名。這個年紀最該做的，是重新盤點一次現有的專業和人脈，看看有沒有能直接加薪或轉職的機會，而不是繼續用「進修」拖延「賺更多」這件事。",
+      fullEn:
+        "behind responsibilities — caring for family, developing other people. At this stage you might be juggling a mortgage and school fees while still thinking about self-improvement, without putting 'increase my income' anywhere near the top of the list. What's worth doing at this age is taking stock of your existing expertise and network for a real raise or career move, instead of letting more training keep postponing actually earning more.",
+    },
+    senior: {
+      visibleZh: "木屬性的人錢留不住，很多時候不是花太多，",
+      blurredZh: "而是你一直把「賺更多」這件事，排在另一件事後面……",
+      visibleEn: "Money not sticking around for a Wood element usually isn't about spending too much —",
+      blurredEn: "it's that you keep putting 'earning more' behind something else...",
+      fullZh:
+        "排在還想繼續學習、還想證明自己的心態後面。這個階段你可能仍然把資源投入在新的證照、新的領域，卻沒有把已經累積幾十年的專業，變成穩定的被動收入或顧問收入。這個年紀最該做的，是盤點一次自己真正值錢的能力，把它變成一項可以持續產生收入的資產，而不是繼續當學生。",
+      fullEn:
+        "behind still wanting to learn, still wanting to prove yourself. At this stage you might still be pouring resources into new certifications or new fields, without turning decades of accumulated expertise into steady passive or consulting income. What's worth doing at this age is taking stock of what you're genuinely worth, and turning it into an asset that keeps generating income — instead of staying a student.",
+    },
+  },
+  火: {
+    young: {
+      visibleZh: "火屬性的人錢留不住，關鍵不只是衝動消費，",
+      blurredZh: "而是你的財務系統，一直靠「當下的感覺」在運作……",
+      visibleEn: "Money not sticking around for a Fire element isn't only about impulse spending —",
+      blurredEn: "it's that your whole financial system runs on how you feel in the moment...",
+      fullZh:
+        "有錢就花、沒特別記帳、投資也常常憑感覺進出。這個階段本錢還不多，靠感覺理財的代價相對可以承受，但也是建立習慣的黃金期。你現在最該做的，是強迫自己設一個最簡單的規則——薪水一入帳，先自動轉一筆固定比例到另一個帳戶，不用管感覺，先讓「存錢」變成反射動作。",
+      fullEn:
+        "spend when there's money, skip the tracking, and buy or sell investments on a whim. Your capital is still small at this stage, so the cost of feeling-based money management is manageable, but it's also the best window to build a habit. What's worth doing right now is forcing one simple rule on yourself: the moment your paycheck lands, auto-transfer a fixed percentage to another account, no feelings involved — make saving a reflex.",
+    },
+    mid: {
+      visibleZh: "火屬性的人錢留不住，關鍵不只是衝動消費，",
+      blurredZh: "而是你的財務系統，一直靠「當下的感覺」在運作……",
+      visibleEn: "Money not sticking around for a Fire element isn't only about impulse spending —",
+      blurredEn: "it's that your whole financial system runs on how you feel in the moment...",
+      fullZh:
+        "收入可能變高了，花錢的手筆也跟著變大，但資產配置卻沒有跟著變得更有系統，重要的保險、儲蓄計畫常常因為「最近心情不好想犒賞自己」而一延再延。這個年紀最該做的，是把「保障」跟「投資」設成自動扣款，讓理財不再需要靠意志力或心情，而是變成不用思考的固定機制。",
+      fullEn:
+        "your income may have grown, and your spending grew right along with it, while your asset allocation never got more systematic — important insurance and savings plans keep getting pushed back because 'I'm in a mood, I deserve a treat.' What's worth doing at this age is putting protection and investing on autopilot, so managing money no longer needs willpower or mood — it just runs.",
+    },
+    senior: {
+      visibleZh: "火屬性的人錢留不住，關鍵不只是衝動消費，",
+      blurredZh: "而是你的財務系統，一直靠「當下的感覺」在運作……",
+      visibleEn: "Money not sticking around for a Fire element isn't only about impulse spending —",
+      blurredEn: "it's that your whole financial system runs on how you feel in the moment...",
+      fullZh:
+        "可能已經累積了不少資產，但因為太習慣憑感覺做決定，資產配置可能還是偏向衝動、缺乏長期規劃，退休準備容易因為一時的心動投資而受影響。這個年紀最該做的，是把重要的資產交給一個穩定的機制或值得信任的顧問管理，減少讓「一時的感覺」影響退休後的生活品質。",
+      fullEn:
+        "you may have built up real assets by now, but being this used to deciding on feeling can leave your allocation still impulsive and short on long-term planning, with retirement prep vulnerable to whatever investment catches your eye that week. What's worth doing at this age is handing the important assets to a stable system or a trusted advisor, so a passing feeling doesn't get to decide your quality of life in retirement.",
+    },
+  },
+  土: {
+    young: {
+      visibleZh: "土屬性的人明明很會存錢，錢卻還是留不住，",
+      blurredZh: "因為你的錢，很多時候不是花在自己身上……",
+      visibleEn: "An Earth element is genuinely good at saving, yet money still doesn't stick around —",
+      blurredEn: "because a lot of it never actually gets spent on you...",
+      fullZh:
+        "花在幫忙家人、朋友周轉，或是承擔了不屬於你的開銷。你天生可靠，大家有需要都會想到你，你也很難拒絕，結果存下來的錢常常變成別人的應急金。這個年紀最該練習的，是替自己的存款設一條「不能動用」的底線，家人朋友需要幫忙時，用你能負擔的方式量力而為，而不是每次都全額承擔。",
+      fullEn:
+        "on bailing out family or friends, or covering costs that were never really yours. You're reliable by nature, people default to asking you first, and you find it hard to say no, so your savings often end up as someone else's emergency fund. What's worth practicing at this age is setting a hard line around your savings that can't be touched, and helping family or friends within what you can actually afford, instead of covering the full cost every time.",
+    },
+    mid: {
+      visibleZh: "土屬性的人明明很會存錢，錢卻還是留不住，",
+      blurredZh: "因為你的錢，很多時候不是花在自己身上……",
+      visibleEn: "An Earth element is genuinely good at saving, yet money still doesn't stick around —",
+      blurredEn: "because a lot of it never actually gets spent on you...",
+      fullZh:
+        "花在照顧家庭、栽培孩子、或負擔長輩的開銷上，而你自己的退休金和保障，反而被排到最後面才考慮。這個年紀最容易陷入「先顧好每個人，才輪到自己」的循環。你最該做的，是把自己的退休準備當成一筆不能被挪用的固定支出，優先程度要排在其他人的需求前面，而不是等有剩才存。",
+      fullEn:
+        "on caring for family, raising kids, or supporting elders, while your own retirement and protection keep getting pushed to the very end of the list. This age is where it's easiest to fall into 'take care of everyone else first, myself last.' What's worth doing is treating your own retirement savings as a fixed, untouchable expense, prioritized ahead of everyone else's needs, instead of only saving what's left over.",
+    },
+    senior: {
+      visibleZh: "土屬性的人明明很會存錢，錢卻還是留不住，",
+      blurredZh: "因為你的錢，很多時候不是花在自己身上……",
+      visibleEn: "An Earth element is genuinely good at saving, yet money still doesn't stick around —",
+      blurredEn: "because a lot of it never actually gets spent on you...",
+      fullZh:
+        "花在資助已經成年的子女、或持續負擔家族裡其他人的開銷，退休後的資產反而因此被慢慢掏空。你習慣當那個「什麼都罩得住」的人，但這個年紀最重要的，是保護好自己的退休生活品質——學著溫和地說「這件事我沒辦法再全額幫忙了」，把照顧自己放在照顧別人的前面。",
+      fullEn:
+        "on supporting grown children, or continuing to cover costs for other family members, quietly draining the retirement assets you've built. You're used to being the one who can handle anything, but the most important thing at this age is protecting your own quality of life in retirement — practice gently saying 'I can't cover the whole thing anymore,' and put taking care of yourself ahead of taking care of everyone else.",
+    },
+  },
+  金: {
+    young: {
+      visibleZh: "金屬性的人錢留不住，很多時候是因為一個標準，",
+      blurredZh: "那就是「東西一定要買最好的，將就會讓你不舒服」……",
+      visibleEn: "Money not sticking around for a Metal element often comes down to one standard —",
+      blurredEn: "everything has to be the best; settling for less makes you genuinely uncomfortable...",
+      fullZh:
+        "所以你在3C、穿著、生活用品上，常常選擇單價最高的選項，理由是「品質好才划算」，但這個階段收入還沒完全跟上，這種堅持容易讓存款壓力變大。這個年紀最該做的，不是降低標準，而是把「買最好」的預算限定在真正常用、影響大的品項上，其他的東西，容許自己先選「夠好」的版本。",
+      fullEn:
+        "so you tend to pick the highest-priced option in electronics, clothes, everyday items, reasoning that good quality is worth it — but at a stage where your income hasn't fully caught up, that insistence puts real strain on your savings. What's worth doing at this age isn't lowering your standards — it's limiting the 'buy the best' budget to items you actually use often and that genuinely matter, and letting yourself pick 'good enough' for the rest.",
+    },
+    mid: {
+      visibleZh: "金屬性的人錢留不住，很多時候是因為一個標準，",
+      blurredZh: "那就是「東西一定要買最好的，將就會讓你不舒服」……",
+      visibleEn: "Money not sticking around for a Metal element often comes down to one standard —",
+      blurredEn: "everything has to be the best; settling for less makes you genuinely uncomfortable...",
+      fullZh:
+        "所以在孩子的教育、居住品質、生活用品上，你都傾向選擇最高規格的選項，這些支出加總起來，往往遠超過你原本的預算規劃。這個年紀最該做的，是誠實列出「哪些高標準真的值得」，哪些其實只是為了面子或安心，把預算集中在前者，其他項目允許自己降低一階。",
+      fullEn:
+        "so for your kids' education, your home, everyday items, you lean toward the top-spec option every time, and those costs added up usually blow well past your original budget. What's worth doing at this age is honestly listing which high standards are truly worth it, and which are really just about appearances or peace of mind — concentrate the budget on the former, and allow yourself one tier down on the rest.",
+    },
+    senior: {
+      visibleZh: "金屬性的人錢留不住，很多時候是因為一個標準，",
+      blurredZh: "那就是「東西一定要買最好的，將就會讓你不舒服」……",
+      visibleEn: "Money not sticking around for a Metal element often comes down to one standard —",
+      blurredEn: "everything has to be the best; settling for less makes you genuinely uncomfortable...",
+      fullZh:
+        "所以退休後的生活規劃，你也習慣用「最好的」當標準，不管是醫療、居住還是照護，都想選擇最頂級的方案，卻沒有精算過這樣的標準需要多少資產支撐。這個年紀最該做的，是找專業的財務規劃，實際算清楚「維持你要的生活品質」需要多少資產，再決定哪些「最好」是現階段真正負擔得起的。",
+      fullEn:
+        "so your retirement planning defaults to 'the best' too — healthcare, housing, care, you want the top-tier option for all of it, without actually running the numbers on what that standard requires in assets. What's worth doing at this age is getting a real financial plan done, working out exactly what assets it takes to sustain the life you want, then deciding which 'bests' you can actually afford right now.",
+    },
+  },
+  水: {
+    young: {
+      visibleZh: "水屬性的人錢留不住，通常不是因為亂花，",
+      blurredZh: "而是因為你很難拒絕別人開口的那個瞬間……",
+      visibleEn: "Money not sticking around for a Water element usually isn't about spending carelessly —",
+      blurredEn: "it's about the moment someone asks you for something, and you can't say no...",
+      fullZh:
+        "不管是朋友揪團投資、揪合資、還是借錢周轉，你總是很難拒絕，甚至會為了維持關係，硬著頭皮答應超出自己能力的金額。這個年紀最該練習的，是先幫自己設一個「這個月能動用的彈性額度」，超過這個數字，不管誰開口，都先說「我要想一下」，而不是當下就答應。",
+      fullEn:
+        "whether it's a friend rallying a group investment, a joint venture, or someone needing to borrow — you find it hard to say no, sometimes agreeing to amounts beyond what you can actually afford just to keep the relationship intact. What's worth practicing at this age is setting yourself a flexible monthly limit ahead of time; past that number, no matter who's asking, the answer is 'let me think about it,' not an answer on the spot.",
+    },
+    mid: {
+      visibleZh: "水屬性的人錢留不住，通常不是因為亂花，",
+      blurredZh: "而是因為你很難拒絕別人開口的那個瞬間……",
+      visibleEn: "Money not sticking around for a Water element usually isn't about spending carelessly —",
+      blurredEn: "it's about the moment someone asks you for something, and you can't say no...",
+      fullZh:
+        "不管是親戚朋友的投資邀約、還是需要出資的人情往來，你都容易因為不好意思拒絕而讓錢流出去，這個階段金額通常也比年輕時更大，一次判斷失誤的代價也更高。這個年紀最該做的，是把重要的財務決定「拉長決策時間」，任何超過一定金額的請求，都先跟信任的人討論過一次，再回覆對方。",
+      fullEn:
+        "whether it's relatives or friends pitching an investment, or social obligations that call for money, you tend to let money flow out because saying no feels awkward — and at this stage the amounts are usually bigger than they were when you were younger, so one bad call costs more. What's worth doing at this age is stretching out the decision time on anything financial — for any request past a certain amount, talk it through with someone you trust before you answer.",
+    },
+    senior: {
+      visibleZh: "水屬性的人錢留不住，通常不是因為亂花，",
+      blurredZh: "而是因為你很難拒絕別人開口的那個瞬間……",
+      visibleEn: "Money not sticking around for a Water element usually isn't about spending carelessly —",
+      blurredEn: "it's about the moment someone asks you for something, and you can't say no...",
+      fullZh:
+        "不管是子女的創業資金、朋友的投資邀約，你都可能因為心軟而挪用退休準備金去支援別人，這個階段的每一次挪用，對你自己的退休生活影響都更直接。這個年紀最該做的，是把退休金明確劃分成「絕對不能動」的部分，任何人情上的資助，都只能從劃分出來的「可動用」額度裡出，保護好自己晚年的底線。",
+      fullEn:
+        "whether it's a child's startup funding or a friend's investment pitch, you may soften and dip into retirement savings to help someone out, and at this stage every withdrawal hits your own retirement more directly. What's worth doing at this age is clearly ring-fencing a portion of your retirement fund as absolutely untouchable — any favor involving money can only come from what's left outside that fence, protecting the floor under your own later years.",
     },
   },
 };
