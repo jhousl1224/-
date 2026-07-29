@@ -9,14 +9,14 @@ export interface Teaser {
 
 export const TEASER_LOVE: Record<string, Teaser> = {
   木: {
-    visibleZh: "你在感情裡，總忍不住想推著對方一起變得更好，",
+    visibleZh: "面對感情，你總忍不住想推著喜歡的人一起變得更好，",
     blurredZh: "但這麼做的時候，你好像忘記問自己一件事……",
-    visibleEn: "In relationships, you can't help pushing the person you love to grow —",
+    visibleEn: "When it comes to love, you can't help wanting to push the person you like to grow —",
     blurredEn: "but doing that, you tend to forget to ask yourself one thing...",
     fullZh:
-      "那就是對方到底想不想變。你很容易把「陪伴」活成「帶領」，把感情經營成一場成長計畫，卻沒發現，你自己的安全感，其實也悄悄綁在「對方有沒有進步」這件事上。當關係停滯不前，你感受到的不只是失望，更像是一種「我是不是不夠好」的自我懷疑。真正適合你的關係，不是找一個等你雕塑的人，而是找一個願意跟你並肩往前走、不需要你一直推的人。",
+      "那就是對方到底想不想變。你很容易把「陪伴」活成「帶領」，把感情經營成一場成長計畫，卻沒發現，你自己的安全感，其實也悄悄綁在「對方有沒有進步」這件事上。一旦覺得對方停滯不前，你感受到的不只是失望，更像是一種「我是不是不夠好」的自我懷疑。真正適合你的對象，不是找一個等你雕塑的人，而是找一個願意跟你並肩往前走、不需要你一直推的人。",
     fullEn:
-      "whether they actually want to change in the first place. You tend to turn companionship into coaching, treating the relationship like a growth project, without noticing that your own sense of security has quietly gotten tangled up in their progress. When things stall, what you feel isn't just disappointment — it edges into 'maybe I'm not doing this right.' The relationship that actually works for you isn't one where you're shaping someone; it's one where you're walking alongside someone who moves on their own.",
+      "whether they actually want to change in the first place. You tend to turn companionship into coaching, treating love like a growth project, without noticing that your own sense of security has quietly gotten tangled up in their progress. The moment you sense them stalling, what you feel isn't just disappointment — it edges into 'maybe I'm not doing this right.' Who actually works for you isn't someone you're shaping; it's someone walking alongside you who moves on their own.",
   },
   火: {
     visibleZh: "愛上一個人的時候，你幾乎藏不住，反應快、表達也直接，",
@@ -24,19 +24,19 @@ export const TEASER_LOVE: Record<string, Teaser> = {
     visibleEn: "When you fall for someone, it shows immediately — quick, obvious, no hiding it —",
     blurredEn: "but underneath that directness is a worry you've never said out loud...",
     fullZh:
-      "你怕的是，一旦慢下來、想清楚了，熱度就退了。所以你習慣用衝的方式確認感情，靠反應速度證明自己是認真的，卻很少給自己時間去問，這份喜歡是不是禁得起冷靜。真正穩定的關係，需要的不是你每次都燃燒得多快，而是願不願意在退溫之後，還留在原地。",
+      "你怕的是，一旦慢下來、想清楚了，熱度就退了。所以你習慣用衝的方式確認感情，靠反應速度證明自己是認真的，卻很少給自己時間去問，這份喜歡是不是禁得起冷靜。能走得長久的感情，需要的不是你每次都燃燒得多快，而是願不願意在退溫之後，還留在原地。",
     fullEn:
-      "you're afraid that if you slow down long enough to actually think, the heat fades. So you use speed to prove you're serious, reacting fast instead of sitting with the feeling, and rarely give yourself room to ask whether this would hold up once things cool off. What steadies a relationship for you isn't how fast you catch fire — it's whether you're still there once it burns down to something quieter.",
+      "you're afraid that if you slow down long enough to actually think, the heat fades. So you use speed to prove you're serious, reacting fast instead of sitting with the feeling, and rarely give yourself room to ask whether this would hold up once things cool off. What makes love last for you isn't how fast you catch fire — it's whether you're still there once it burns down to something quieter.",
   },
   土: {
-    visibleZh: "比起一見鍾情，你更看重這段關係走不走得下去，",
+    visibleZh: "比起一見鍾情，你更看重感情走不走得下去，",
     blurredZh: "但你的安全感，其實一直建立在一件事情上……",
-    visibleEn: "You care less about the spark and more about whether this actually lasts —",
+    visibleEn: "You care less about the spark and more about whether it can actually last —",
     blurredEn: "but your sense of security has been resting on one specific thing...",
     fullZh:
-      "那就是「對方會不會離開」。你把穩定感看得比心動更重要，也很擅長把關係經營得踏實，但這份踏實感背後，藏著你對「被留下」的焦慮，甚至因此不太敢先表達真實的需求，怕一開口就打破現在的平衡。其實對你來說，最安心的關係不是完全沒有變動，而是你敢在對方面前，說出自己真正想要什麼。",
+      "那就是「對方會不會離開」。你把穩定感看得比心動更重要，也很擅長讓感情走向踏實，但這份踏實感背後，藏著你對「被留下」的焦慮，甚至因此不太敢先表達真實的需求，怕一開口就打破好不容易建立的平衡。其實對你來說，最安心的感情不是完全沒有變動，而是你敢在對方面前，說出自己真正想要什麼。",
     fullEn:
-      "whether they'll stay. You value stability over sparks, and you're genuinely good at building something solid, but underneath that steadiness is a quiet fear of being left, one that keeps you from voicing what you actually need first, in case it tips the balance. The relationship that would actually feel safest isn't one with zero change — it's one where you're brave enough to say out loud what you want.",
+      "whether they'll stay. You value stability over sparks, and you're genuinely good at steering things toward something solid, but underneath that steadiness is a quiet fear of being left, one that keeps you from voicing what you actually need first, in case it tips a balance you worked hard to build. What would actually feel safest to you isn't love with zero change — it's being brave enough to say out loud what you want.",
   },
   金: {
     visibleZh: "談感情你最怕曖昧不明，喜歡什麼都講清楚，",
@@ -49,14 +49,14 @@ export const TEASER_LOVE: Record<string, Teaser> = {
       "coldness, or not caring enough. You treat clarity as a form of respect, without realizing that some people don't need a clean conclusion — they need the slower, unclear feeling of being approached. You're not short on warmth; you just default to explaining it instead of sitting in it. Leaving a little room before you spell things out would let people actually receive how direct you are, instead of misreading it.",
   },
   水: {
-    visibleZh: "跟你在一起的人常說很自在，因為你總懂得配合對方的步調，",
+    visibleZh: "在感情裡，你總懂得配合對方的步調，讓相處變得很自在，",
     blurredZh: "只是這樣久了，有件事你其實一直沒說出口……",
-    visibleEn: "People who date you always say it feels easy, because you adapt to their pace —",
+    visibleEn: "In matters of the heart, you're good at matching the other person's pace, which makes things feel easy —",
     blurredEn: "but after a while, there's something you've never actually said...",
     fullZh:
-      "那就是你自己想要的步調，其實從來沒被說出來過。你太擅長讀懂對方的需求、順著對方調整，久而久之，連自己都快忘記原本的節奏是什麼。這不是委屈，而是你把「配合」當成了愛的證明。真正健康的關係，是讓對方也有機會，配合你一次。",
+      "那就是你自己想要的步調，其實從來沒被說出來過。你太擅長讀懂對方的需求、順著對方調整，久而久之，連自己都快忘記原本的節奏是什麼。這不是委屈，而是你把「配合」當成了愛的證明。感情要走得健康，需要讓對方也有機會，配合你一次。",
     fullEn:
-      "what pace you'd actually want, if anyone asked. You're so good at reading what the other person needs and adjusting to it that, over time, you start losing track of your own rhythm underneath it. It's not that you're being taken advantage of — you've just made adapting your main way of showing love. A relationship that's actually balanced gives the other person a turn to adjust to you too.",
+      "what pace you'd actually want, if anyone asked. You're so good at reading what the other person needs and adjusting to it that, over time, you start losing track of your own rhythm underneath it. It's not that you're being taken advantage of — you've just made adapting your main way of showing love. For it to stay healthy, the other person needs a turn to adjust to you too.",
   },
 };
 

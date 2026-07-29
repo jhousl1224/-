@@ -50,7 +50,7 @@ export const LIUNIAN_LOVE: Record<LiunianCategory, Teaser> = {
     fullZh:
       "把「想到什麼就說什麼」用在了不該直說的時刻。這一年你的表達欲會特別旺盛，話多、點子多，對方一開始會覺得你很有趣，但如果對方正處在低潮或需要被聆聽的時刻，你的滔滔不絕反而會變成一種打斷。這一年感情要顧好，重點不是少說，而是在說之前，先確認對方現在需要的，是被逗笑，還是被聽見。",
     fullEn:
-      "saying whatever comes to mind when it's actually not the moment for it. Your urge to express will run high this year — more talk, more ideas — and at first your partner will find you delightful, but if they're going through a low point and need to be heard, your stream of talk can start feeling like an interruption. The key to relationships this year isn't talking less — it's checking, before you speak, whether they need to be made to laugh or need to be listened to.",
+      "saying whatever comes to mind when it's actually not the moment for it. Your urge to express will run high this year — more talk, more ideas — and at first they'll find you delightful, but if they're going through a low point and need to be heard, your stream of talk can start feeling like an interruption. The key to relationships this year isn't talking less — it's checking, before you speak, whether they need to be made to laugh or need to be listened to.",
   },
   傷官: {
     visibleZh: "這一年你在感情裡會變得很敢講真話，看到問題就直接點出來，不太會拐彎抹角，",
@@ -80,7 +80,7 @@ export const LIUNIAN_LOVE: Record<LiunianCategory, Teaser> = {
     fullZh:
       "把感情當成一項要管理的專案。你會很認真規劃約會、記得重要日子、甚至衡量這段關係「值不值得投入」，對方一開始會覺得被重視，但久了可能會感覺自己像被KPI檢核，而不是被單純地愛著。這一年感情要顧好，是記得偶爾放下「經營」的腦袋，單純浪費時間陪對方發呆，而不是每件事都要有產出。",
     fullEn:
-      "managing the relationship like a project. You'll plan dates carefully, remember important dates, even weigh whether the relationship is worth the investment — your partner will feel valued at first, but over time it can start to feel like being tracked against a KPI instead of simply loved. The thing to remember this year is to occasionally drop the management mindset and just waste time together doing nothing in particular, instead of needing every moment to produce something.",
+      "managing the relationship like a project. You'll plan dates carefully, remember important dates, even weigh whether the relationship is worth the investment — they'll feel valued at first, but over time it can start to feel like being tracked against a KPI instead of simply loved. The thing to remember this year is to occasionally drop the management mindset and just waste time together doing nothing in particular, instead of needing every moment to produce something.",
   },
   七殺: {
     visibleZh: "這一年感情裡可能會出現比較激烈的考驗——爭吵變得更直接、或是有外力（家庭、第三者、距離）強勢介入，",
