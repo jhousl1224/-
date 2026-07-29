@@ -51,6 +51,16 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
           <span><span class="zh">明年流年解析</span><span class="en">Next Year's Forecast</span></span>
           <span class="hero__pricing-amount">NT$69</span>
         </div>
+        <div class="hero__pricing-item hero__pricing-item--bundle">
+          <span>
+            <span class="hero__pricing-badge"><span class="zh">最划算</span><span class="en">Best Value</span></span>
+            <span><span class="zh">🎁 一次全部解鎖</span><span class="en">🎁 Unlock Everything</span></span>
+          </span>
+          <span class="hero__pricing-amount">
+            <span class="hero__pricing-strike">NT$287</span>
+            NT$249
+          </span>
+        </div>
       </div>
     `,
   );

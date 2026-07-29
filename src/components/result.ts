@@ -166,6 +166,27 @@ export function mountResult(root: HTMLElement) {
 
     content.appendChild(guide.el);
 
+    const bundleOffer = document.createElement("div");
+    bundleOffer.className = "bundle-offer";
+    bundleOffer.innerHTML = `
+      <p class="bundle-offer-badge"><span class="zh">最划算</span><span class="en">Best Value</span></p>
+      <p class="bundle-offer-title"><span class="zh">🎁 一次全部解鎖</span><span class="en">🎁 Unlock Everything</span></p>
+      <p class="bundle-offer-price">
+        <span class="bundle-offer-strike">NT$287</span>
+        <span class="bundle-offer-amount">NT$249</span>
+      </p>
+      <p class="bundle-offer-desc"><span class="zh">完整報告＋今年流年＋明年流年，一次解鎖省 NT$38</span><span class="en">Full report + this year + next year forecast — save NT$38</span></p>
+      <button type="button" class="btn-primary" data-role="unlock-all-btn">
+        <span class="zh">🔓 立即解鎖全部</span><span class="en">🔓 Unlock Everything Now</span>
+      </button>
+    `;
+    content.appendChild(bundleOffer);
+
+    const bundleOfferBtn = bundleOffer.querySelector('[data-role="unlock-all-btn"]') as HTMLButtonElement;
+    bundleOfferBtn.addEventListener("click", () => {
+      window.dispatchEvent(new CustomEvent("starself:unlock-request:all"));
+    });
+
     const teaserHeading = document.createElement("div");
     teaserHeading.dataset.role = "teaser-heading";
     teaserHeading.dataset.lockZone = "base";
@@ -262,6 +283,7 @@ export function mountResult(root: HTMLElement) {
       if (unlocked) return;
       unlocked = true;
       renderTeasers();
+      updateBundleOfferVisibility();
       guide.say(
         "感情、事業、財運、健康完整解鎖，解讀都在上面嘍！",
         "Everything's unlocked now — love, career, money, and health, all laid out above.",
@@ -269,6 +291,7 @@ export function mountResult(root: HTMLElement) {
     }
 
     window.addEventListener("starself:unlock-request", unlock);
+    window.addEventListener("starself:unlock-request:all", unlock);
     renderTeasers();
 
     const currentYear = new Date().getFullYear();
@@ -325,6 +348,7 @@ export function mountResult(root: HTMLElement) {
       if (thisYearUnlocked) return;
       thisYearUnlocked = true;
       renderThisYearCards();
+      updateBundleOfferVisibility();
       guide.say(
         "今年的流年運勢解鎖囉，感情、事業、財運、健康都幫你看好了！",
         "This year's forecast is unlocked — love, career, money, and health, all mapped out for you!",
@@ -332,6 +356,7 @@ export function mountResult(root: HTMLElement) {
     }
 
     window.addEventListener("starself:unlock-request:thisyear", unlockThisYear);
+    window.addEventListener("starself:unlock-request:all", unlockThisYear);
     renderThisYearCards();
 
     // --- Tier 3: next year's liunian, as one whole-year reading ---
@@ -384,13 +409,21 @@ export function mountResult(root: HTMLElement) {
       if (nextYearUnlocked) return;
       nextYearUnlocked = true;
       renderNextYearCards();
+      updateBundleOfferVisibility();
       guide.say(
         "明年的流年運勢也解鎖囉，提早幫你看好方向！",
         "Next year's forecast is unlocked too — a head start on what's coming!",
       );
     }
 
+    function updateBundleOfferVisibility() {
+      if (unlocked && thisYearUnlocked && nextYearUnlocked) {
+        bundleOffer.style.display = "none";
+      }
+    }
+
     window.addEventListener("starself:unlock-request:nextyear", unlockNextYear);
+    window.addEventListener("starself:unlock-request:all", unlockNextYear);
     renderNextYearCards();
 
     guide.say(
