@@ -12,13 +12,26 @@ export interface City {
 
 export const CITIES: City[] = [
   // 台灣
+  { id: "keelung", nameZh: "基隆", nameEn: "Keelung", countryZh: "台灣", countryEn: "Taiwan", lat: 25.13, lon: 121.74, utcOffset: 8 },
   { id: "taipei", nameZh: "台北", nameEn: "Taipei", countryZh: "台灣", countryEn: "Taiwan", lat: 25.0, lon: 121.5, utcOffset: 8 },
-  { id: "taichung", nameZh: "台中", nameEn: "Taichung", countryZh: "台灣", countryEn: "Taiwan", lat: 24.1, lon: 120.7, utcOffset: 8 },
-  { id: "kaohsiung", nameZh: "高雄", nameEn: "Kaohsiung", countryZh: "台灣", countryEn: "Taiwan", lat: 22.6, lon: 120.3, utcOffset: 8 },
-  { id: "tainan", nameZh: "台南", nameEn: "Tainan", countryZh: "台灣", countryEn: "Taiwan", lat: 23.0, lon: 120.2, utcOffset: 8 },
+  { id: "newtaipei", nameZh: "新北", nameEn: "New Taipei", countryZh: "台灣", countryEn: "Taiwan", lat: 25.01, lon: 121.46, utcOffset: 8 },
+  { id: "taoyuan", nameZh: "桃園", nameEn: "Taoyuan", countryZh: "台灣", countryEn: "Taiwan", lat: 24.99, lon: 121.3, utcOffset: 8 },
   { id: "hsinchu", nameZh: "新竹", nameEn: "Hsinchu", countryZh: "台灣", countryEn: "Taiwan", lat: 24.8, lon: 121.0, utcOffset: 8 },
-  { id: "hualien", nameZh: "花蓮", nameEn: "Hualien", countryZh: "台灣", countryEn: "Taiwan", lat: 24.0, lon: 121.6, utcOffset: 8 },
+  { id: "miaoli", nameZh: "苗栗", nameEn: "Miaoli", countryZh: "台灣", countryEn: "Taiwan", lat: 24.56, lon: 120.82, utcOffset: 8 },
+  { id: "taichung", nameZh: "台中", nameEn: "Taichung", countryZh: "台灣", countryEn: "Taiwan", lat: 24.1, lon: 120.7, utcOffset: 8 },
+  { id: "changhua", nameZh: "彰化", nameEn: "Changhua", countryZh: "台灣", countryEn: "Taiwan", lat: 24.08, lon: 120.54, utcOffset: 8 },
+  { id: "nantou", nameZh: "南投", nameEn: "Nantou", countryZh: "台灣", countryEn: "Taiwan", lat: 23.91, lon: 120.68, utcOffset: 8 },
+  { id: "yunlin", nameZh: "雲林", nameEn: "Yunlin", countryZh: "台灣", countryEn: "Taiwan", lat: 23.71, lon: 120.54, utcOffset: 8 },
+  { id: "chiayi", nameZh: "嘉義", nameEn: "Chiayi", countryZh: "台灣", countryEn: "Taiwan", lat: 23.48, lon: 120.45, utcOffset: 8 },
+  { id: "tainan", nameZh: "台南", nameEn: "Tainan", countryZh: "台灣", countryEn: "Taiwan", lat: 23.0, lon: 120.2, utcOffset: 8 },
+  { id: "kaohsiung", nameZh: "高雄", nameEn: "Kaohsiung", countryZh: "台灣", countryEn: "Taiwan", lat: 22.6, lon: 120.3, utcOffset: 8 },
+  { id: "pingtung", nameZh: "屏東", nameEn: "Pingtung", countryZh: "台灣", countryEn: "Taiwan", lat: 22.67, lon: 120.49, utcOffset: 8 },
   { id: "yilan", nameZh: "宜蘭", nameEn: "Yilan", countryZh: "台灣", countryEn: "Taiwan", lat: 24.75, lon: 121.75, utcOffset: 8 },
+  { id: "hualien", nameZh: "花蓮", nameEn: "Hualien", countryZh: "台灣", countryEn: "Taiwan", lat: 24.0, lon: 121.6, utcOffset: 8 },
+  { id: "taitung", nameZh: "台東", nameEn: "Taitung", countryZh: "台灣", countryEn: "Taiwan", lat: 22.76, lon: 121.14, utcOffset: 8 },
+  { id: "penghu", nameZh: "澎湖", nameEn: "Penghu", countryZh: "台灣", countryEn: "Taiwan", lat: 23.57, lon: 119.58, utcOffset: 8 },
+  { id: "kinmen", nameZh: "金門", nameEn: "Kinmen", countryZh: "台灣", countryEn: "Taiwan", lat: 24.45, lon: 118.32, utcOffset: 8 },
+  { id: "lienchiang", nameZh: "連江", nameEn: "Lienchiang", countryZh: "台灣", countryEn: "Taiwan", lat: 26.16, lon: 119.95, utcOffset: 8 },
 
   // 港澳
   { id: "hongkong", nameZh: "香港", nameEn: "Hong Kong", countryZh: "香港", countryEn: "Hong Kong", lat: 22.3, lon: 114.2, utcOffset: 8 },
