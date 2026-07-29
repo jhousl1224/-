@@ -83,44 +83,44 @@ export const LIUNIAN_LOVE: Record<LiunianCategory, Teaser> = {
       "managing the relationship like a project. You'll plan dates carefully, remember important dates, even weigh whether the relationship is worth the investment — they'll feel valued at first, but over time it can start to feel like being tracked against a KPI instead of simply loved. The thing to remember this year is to occasionally drop the management mindset and just waste time together doing nothing in particular, instead of needing every moment to produce something.",
   },
   七殺: {
-    visibleZh: "這一年感情裡可能會出現比較激烈的考驗——爭吵變得更直接、或是有外力（家庭、第三者、距離）強勢介入，",
-    blurredZh: "但這種來勢洶洶的壓力，其實在逼你面對一件你一直迴避的事……",
-    visibleEn: "This year relationships may hit sharper tests — arguments getting more direct, or outside forces (family, a third party, distance) pushing in hard —",
-    blurredEn: "but that intense pressure is actually forcing you to face something you've been avoiding...",
+    visibleZh: "這一年感情裡的能量會變得比較激烈——如果有對象，考驗會來得又急又猛；如果單身，遇到的對象也可能來得又快又用力，",
+    blurredZh: "但不管哪一種，這股來勢洶洶的壓力，其實在逼你面對一件你一直迴避的事……",
+    visibleEn: "This year, romantic energy runs more intense — if you're with someone, tests hit hard and fast; if you're single, whoever shows up may come on just as fast and strong —",
+    blurredEn: "but either way, that intense pressure is actually forcing you to face something you've been avoiding...",
     fullZh:
-      "這段關係到底能不能撐過真正的考驗。平常風平浪靜看不出來的問題，會在這一年被放大檢視，逼你們必須攤牌、做決定，而不能再含糊下去。這一年感情不是不好，而是「決定性」的一年——撐過去的關係會變得很難被打倒，撐不過去的，某種程度上也是提早止損。",
+      "這段關係（或這個人）到底禁不禁得起真正的考驗。有對象的人，平常風平浪靜看不出來的問題，會在這一年被放大檢視，逼你們必須攤牌、做決定，而不能再含糊下去；單身的人，則可能遇到一段來得又快又猛烈的緣分，逼你很快決定要不要認真投入。這一年感情不是不好，而是「決定性」的一年——撐過考驗的關係會變得很難被打倒，看清楚不適合就轉身的人，某種程度上也是提早止損。",
     fullEn:
-      "whether this relationship can actually survive a real test. Problems that stayed quiet in calmer times get magnified this year, forcing you to lay it all out and decide, instead of staying vague. This isn't a bad year for love so much as a decisive one — a relationship that gets through it becomes very hard to shake, and one that doesn't is, in its own way, an earlier exit from something that wasn't working.",
+      "whether this relationship — or this person — can actually survive a real test. If you're with someone, problems that stayed quiet in calmer times get magnified this year, forcing you to lay it all out and decide, instead of staying vague. If you're single, you may run into someone who moves in fast and hard, forcing a real decision about whether to actually commit. This isn't a bad year for love so much as a decisive one — a relationship that gets through it becomes very hard to shake, and recognizing early that someone isn't right for you is, in its own way, cutting losses sooner.",
   },
   正官: {
-    visibleZh: "這一年感情中會出現比較多需要面對的現實問題，像是家庭期待、責任分配、未來規劃，",
+    visibleZh: "這一年感情會出現比較多需要面對的現實考量——如果有對象，家庭期待、責任分配、未來規劃會浮上檯面；如果單身，身邊人催婚催戀愛的聲音也會變大，",
     blurredZh: "但這些壓力出現的方式，常常會被你誤會成一件事……",
-    visibleEn: "This year, relationships will run into more real-world pressures to face — family expectations, division of responsibility, planning ahead —",
+    visibleEn: "This year, love runs into more real-world pressures to face — if you're with someone, family expectations and planning ahead surface; if you're single, the people around you get louder about wanting you settled down —",
     blurredEn: "but the way this pressure shows up tends to get misread as one specific thing...",
     fullZh:
-      "你可能會覺得「是不是我們感情出了什麼問題」，但其實這些壓力多半來自關係之外——家人的意見、經濟現實、時間分配，而不是你們彼此不合適。這一年感情的課題，不是逃開這些現實問題，而是學會跟對方一起面對，把「我們要不要撐過這關」變成「我們怎麼一起撐過這關」。撐過這一年的關係，通常會變得更扎實。",
+      "感情本身出了問題。有對象的人可能會覺得「是不是我們哪裡不合適」，但這些壓力多半來自關係之外——家人的意見、經濟現實、時間分配，不是你們真的不適合。單身的人，也可能因為外界催促而開始懷疑自己是不是條件不夠好，但那份焦慮同樣來自外部期待，不是你真的有問題。這一年的課題，不是逃開這些現實壓力，而是分清楚哪些是你自己真正在意的，哪些只是別人的聲音——想清楚這件事的人，感情路通常會走得更扎實。",
     fullEn:
-      "you might start wondering if something's wrong between the two of you, when most of this pressure is actually coming from outside the relationship — family opinions, financial reality, time constraints — not incompatibility. The lesson this year isn't avoiding these real problems, it's facing them together, turning 'are we going to make it through this' into 'how do we make it through this together.' Relationships that get through this year tend to come out sturdier.",
+      "something being wrong with love itself. If you're with someone, you might start wondering if something's fundamentally off between you two, when most of this pressure is actually coming from outside — family opinions, financial reality, time constraints — not incompatibility. If you're single, outside pressure to settle down can make you start doubting whether you're good enough, but that anxiety comes from the same external noise, not any real flaw in you. This year's lesson isn't avoiding these real pressures — it's telling apart what you actually care about from what's just other people's voice. Sorting that out tends to leave your love life sturdier either way.",
   },
   偏印: {
-    visibleZh: "這一年你在感情裡會變得比較抽離、喜歡先想清楚再行動，甚至會用邏輯分析這段關係值不值得繼續，",
+    visibleZh: "這一年你面對感情會變得比較抽離、喜歡先想清楚再行動——如果有對象，會忍不住用邏輯分析這段關係值不值得繼續；如果單身，則容易在還沒真正認識一個人之前，就先用腦袋把對方分析掉，",
     blurredZh: "但這種先想後做的習慣，容易讓身邊的人感受到一件事……",
-    visibleEn: "This year you'll get more detached in relationships, wanting to think things through before acting, even weighing logically whether it's worth continuing —",
+    visibleEn: "This year you'll get more detached about love, wanting to think things through before acting — if you're with someone, you'll weigh logically whether it's worth continuing; if you're single, you tend to analyze someone away in your head before you've really gotten to know them —",
     blurredEn: "but that think-before-you-act habit tends to leave the people close to you feeling one specific way...",
     fullZh:
-      "你人在，心卻好像沒有完全在。你可能是想把關係想透徹才不會做錯決定，但對方感受到的，常常是一種若即若離的距離感，好像自己在被觀察，而不是被靠近。這一年感情要維繫，重點不是想得更透徹，而是偶爾放下分析，讓自己真的「在場」——單純陪伴，不急著下結論。",
+      "你人在，心卻好像沒有完全在。有對象的人，可能是想把關係想透徹才不會做錯決定，但對方感受到的，常常是一種若即若離的距離感，好像自己在被觀察，而不是被靠近。單身的人，則容易還沒真正花時間相處，就先在腦中把對方的優缺點分析完畢，結果永遠停在「觀察期」，沒有真正靠近任何人。這一年感情要有進展，重點不是想得更透徹，而是偶爾放下分析，讓自己真的「在場」——單純陪伴或相處，不急著下結論。",
     fullEn:
-      "that you're there, but not quite fully there. You might just be trying to think things through so you don't make the wrong call, but what your partner feels is often a kind of distance, like they're being observed rather than being close to. What keeps things going this year isn't thinking it through more — it's occasionally dropping the analysis and actually being present, just there, without rushing to a conclusion.",
+      "that you're there, but not quite fully there. If you're with someone, you might just be trying to think things through so you don't make the wrong call, but what they feel is often a kind of distance, like they're being observed rather than being close to. If you're single, you might analyze someone's every pro and con in your head before you've even really spent time with them, staying stuck in an observation phase instead of actually getting close to anyone. What moves things forward this year isn't thinking it through more — it's occasionally dropping the analysis and actually being present, just there, without rushing to a conclusion.",
   },
   正印: {
-    visibleZh: "這一年你會感覺自己在感情裡被照顧得比較多，對方也更願意主動付出，",
+    visibleZh: "這一年你會感覺自己在感情裡被照顧得比較多——如果有對象，對方會更願意主動付出；如果單身，身邊的人也更願意主動幫你關心、幫你牽線，",
     blurredZh: "但這種被好好對待的狀態，也容易讓你養成一個習慣……",
-    visibleEn: "This year you'll feel more taken care of in your relationship, with your partner more willing to give first —",
+    visibleEn: "This year you'll feel more taken care of in matters of the heart — if you're with someone, they'll be more willing to give first; if you're single, the people around you get more eager to check in and set you up —",
     blurredEn: "but being treated this well can quietly build a habit...",
     fullZh:
-      "漸漸把「對方主動」當成理所當然，自己反而越來越被動。這一年確實適合休息、被愛、被照顧，但如果你完全停止主動付出，把所有的溫柔都當成單方面的供應，關係的天秤會慢慢傾斜。這一年感情要長久，重點不是拒絕被照顧，而是記得偶爾主動一次，讓對方知道，這份好被你放在心上、也被你回應著。",
+      "漸漸把「別人主動」當成理所當然，自己反而越來越被動。有對象的人，這一年確實適合休息、被愛、被照顧，但如果完全停止主動付出，把溫柔當成單方面的供應，關係的天秤會慢慢傾斜。單身的人，也可能因為身邊人熱心幫忙介紹，反而不再主動經營交友圈或把握機會，把「找對象」這件事完全外包出去。這一年感情要走得長久或有進展，重點不是拒絕被照顧，而是記得偶爾主動一次，不管是回應對方的好，還是自己主動跨出一步。",
     fullEn:
-      "starting to treat their initiative as a given, while you get more and more passive. This is genuinely a good year to rest, be loved, be cared for — but if you stop giving entirely and treat all that warmth as a one-way supply, the balance in the relationship starts to tip. What keeps this good this year isn't refusing to be cared for — it's remembering to take the lead occasionally, so they know their effort is noticed and returned.",
+      "gradually treating other people's initiative as a given, while you get more and more passive. If you're with someone, this is genuinely a good year to rest, be loved, be cared for — but if you stop giving entirely and treat all that warmth as a one-way supply, the balance starts to tip. If you're single, people around you may be especially eager to set you up, but that can make you stop putting in your own effort to expand your circle or seize opportunities, effectively outsourcing your love life to other people. What keeps this good this year, either way, isn't refusing the care — it's remembering to take initiative yourself occasionally, whether that's reciprocating or actually stepping forward on your own.",
   },
 };
 
