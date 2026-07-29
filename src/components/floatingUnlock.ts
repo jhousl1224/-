@@ -5,17 +5,17 @@ const ZONE_ORDER: ZoneKey[] = ["base", "thisyear", "nextyear"];
 const ZONE_CONFIG: Record<ZoneKey, { eventName: string; label: string; toast: string }> = {
   base: {
     eventName: "starself:unlock-request",
-    label: `<span class="zh">🔒 解鎖完整報告</span><span class="en">🔒 Unlock Full Report</span>`,
+    label: `<span class="zh">🔒 解鎖完整報告 NT$149</span><span class="en">🔒 Unlock Full Report NT$149</span>`,
     toast: `<span class="zh">🎉 完整報告已解鎖！</span><span class="en">🎉 Unlocked! Enjoy your full report.</span>`,
   },
   thisyear: {
     eventName: "starself:unlock-request:thisyear",
-    label: `<span class="zh">🔒 解鎖今年流年</span><span class="en">🔒 Unlock This Year's Forecast</span>`,
+    label: `<span class="zh">🔒 解鎖今年流年 NT$69</span><span class="en">🔒 Unlock This Year NT$69</span>`,
     toast: `<span class="zh">🎉 今年流年已解鎖！</span><span class="en">🎉 Unlocked! This year's forecast is ready.</span>`,
   },
   nextyear: {
     eventName: "starself:unlock-request:nextyear",
-    label: `<span class="zh">🔒 解鎖明年流年</span><span class="en">🔒 Unlock Next Year's Forecast</span>`,
+    label: `<span class="zh">🔒 解鎖明年流年 NT$69</span><span class="en">🔒 Unlock Next Year NT$69</span>`,
     toast: `<span class="zh">🎉 明年流年已解鎖！</span><span class="en">🎉 Unlocked! Next year's forecast is ready.</span>`,
   },
 };

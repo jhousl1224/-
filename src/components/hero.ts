@@ -36,6 +36,22 @@ export function mountHero(root: HTMLElement, onStart: () => void) {
         <span class="pillar-tag">生肖 Chinese Zodiac</span>
         <span class="pillar-tag">星座 Star Sign</span>
       </div>
+
+      <div class="hero__pricing">
+        <p class="hero__pricing-title"><span class="zh">服務定價</span><span class="en">Pricing</span></p>
+        <div class="hero__pricing-item">
+          <span><span class="zh">基礎完整報告</span><span class="en">Full Base Report</span></span>
+          <span class="hero__pricing-amount">NT$149</span>
+        </div>
+        <div class="hero__pricing-item">
+          <span><span class="zh">今年流年解析</span><span class="en">This Year's Forecast</span></span>
+          <span class="hero__pricing-amount">NT$69</span>
+        </div>
+        <div class="hero__pricing-item">
+          <span><span class="zh">明年流年解析</span><span class="en">Next Year's Forecast</span></span>
+          <span class="hero__pricing-amount">NT$69</span>
+        </div>
+      </div>
     `,
   );
 

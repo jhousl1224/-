@@ -248,8 +248,8 @@ export function mountResult(root: HTMLElement) {
         statusCta.innerHTML = `<span class="zh">🎉 現階段狀況分析已解鎖！</span><span class="en">🎉 Unlocked — your current-stage advice is ready.</span>`;
         window.dispatchEvent(new CustomEvent("starself:unlocked"));
       } else {
-        cta.innerHTML = `<span class="zh">完整命盤細節報告，敬請期待付費解鎖 🔒</span><span class="en">🔒 The full deep-dive report is coming soon — stay tuned.</span>`;
-        statusCta.innerHTML = `<span class="zh">感情與職場現況分析，敬請期待付費解鎖 🔒</span><span class="en">🔒 Advice for where you stand right now unlocks with payment.</span>`;
+        cta.innerHTML = `<span class="zh">完整命盤細節報告，付費解鎖 NT$149 🔒</span><span class="en">🔒 Unlock the full deep-dive report for NT$149.</span>`;
+        statusCta.innerHTML = `<span class="zh">感情與職場現況分析，同一次解鎖即可看到 🔒</span><span class="en">🔒 Included in the same NT$149 unlock above.</span>`;
         [teaserStack, statusStack].forEach((stack) => {
           stack.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
             btn.addEventListener("click", unlock);
@@ -314,7 +314,7 @@ export function mountResult(root: HTMLElement) {
       if (thisYearUnlocked) {
         thisYearCta.innerHTML = `<span class="zh">🎉 今年的流年運勢已解鎖！</span><span class="en">🎉 Unlocked — this year's forecast is all yours.</span>`;
       } else {
-        thisYearCta.innerHTML = `<span class="zh">今年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full forecast for this year unlocks with payment.</span>`;
+        thisYearCta.innerHTML = `<span class="zh">今年的完整流年解析，付費解鎖 NT$69 🔒</span><span class="en">🔒 Unlock this year's full forecast for NT$69.</span>`;
         thisYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
           btn.addEventListener("click", unlockThisYear);
         });
@@ -373,7 +373,7 @@ export function mountResult(root: HTMLElement) {
       if (nextYearUnlocked) {
         nextYearCta.innerHTML = `<span class="zh">🎉 明年的流年運勢已解鎖！</span><span class="en">🎉 Unlocked — next year's forecast is all yours.</span>`;
       } else {
-        nextYearCta.innerHTML = `<span class="zh">明年的完整流年解析，付費解鎖 🔒</span><span class="en">🔒 The full forecast for next year unlocks with payment.</span>`;
+        nextYearCta.innerHTML = `<span class="zh">明年的完整流年解析，付費解鎖 NT$69 🔒</span><span class="en">🔒 Unlock next year's full forecast for NT$69.</span>`;
         nextYearCards.querySelectorAll<HTMLButtonElement>('[data-role="teaser-unlock-btn"]').forEach((btn) => {
           btn.addEventListener("click", unlockNextYear);
         });
