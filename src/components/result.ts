@@ -10,6 +10,50 @@ import { CAREER_ADVICE, CAREER_PATH_ADVICE, getAgeBracket, RELATIONSHIP_ADVICE, 
 import { TEASER_CAREER, TEASER_FAMILY, TEASER_HEALTH, TEASER_LOVE, TEASER_WEALTH, type Teaser } from "../lib/teaserData";
 import type { BirthProfile } from "../lib/types";
 
+const WUXING_EN_LABEL: Record<string, string> = { 木: "Wood", 火: "Fire", 土: "Earth", 金: "Metal", 水: "Water" };
+
+// Extra wuxing-specific closing advice appended to each liunian card, decoupled
+// from the ten-god category (which only has 10 values total, one per day
+// master) so two people sharing a day master still get substantially
+// different card text once their own dominant wuxing is factored in.
+const LIUNIAN_WUXING_ACTION: Record<string, Record<string, { zh: string; en: string }>> = {
+  love: {
+    木: { zh: "以你「木」氣的個性來說，最實際的做法是把這份年運能量，用在陪伴一個人一起成長，而不是要求對方立刻跟上你的步調。", en: "Practically speaking, with Wood energy, the move is to put this year's momentum into growing alongside someone — not demanding they keep pace with you right away." },
+    火: { zh: "以你「火」氣的個性來說，最實際的做法是把這份年運能量，用在勇敢表達心意，但記得留一點時間讓感情降溫沉澱。", en: "Practically speaking, with Fire energy, the move is to speak your feelings boldly, but leave room for things to cool and settle afterward." },
+    土: { zh: "以你「土」氣的個性來說，最實際的做法是把這份年運能量，用在務實地經營關係，同時記得偶爾也要主動說出真心話。", en: "Practically speaking, with Earth energy, the move is to keep building the relationship steadily, while remembering to say what you actually feel out loud sometimes." },
+    金: { zh: "以你「金」氣的個性來說，最實際的做法是把這份年運能量，用在把話說清楚，但記得先給對方多一點溫柔和空間。", en: "Practically speaking, with Metal energy, the move is to say things clearly, but give the other person a bit more warmth and space first." },
+    水: { zh: "以你「水」氣的個性來說，最實際的做法是把這份年運能量，用在適度表達自己的需求，而不是一味配合對方。", en: "Practically speaking, with Water energy, the move is to actually voice your own needs, instead of only adapting to theirs." },
+  },
+  career: {
+    木: { zh: "以你「木」氣的個性來說，這一年最值得做的，是把握機會學新東西，把年運能量轉換成實際的成長動力。", en: "Practically speaking, with Wood energy, the most worthwhile move this year is seizing chances to learn — turning this year's energy into real growth." },
+    火: { zh: "以你「火」氣的個性來說，這一年最值得做的，是勇敢站出來表現，但記得把亮眼的表現落實成扎實的成果。", en: "Practically speaking, with Fire energy, the most worthwhile move this year is stepping up boldly, then following through until it's a solid result." },
+    土: { zh: "以你「土」氣的個性來說，這一年最值得做的，是穩紮穩打地累積實力，同時記得替自己爭取應得的肯定。", en: "Practically speaking, with Earth energy, the most worthwhile move this year is building steadily while remembering to actually claim the credit you've earned." },
+    金: { zh: "以你「金」氣的個性來說，這一年最值得做的，是善用你的高標準去把關品質，同時多留意跟同事合作的方式。", en: "Practically speaking, with Metal energy, the most worthwhile move this year is using your high standards to guard quality, while watching how that lands with coworkers." },
+    水: { zh: "以你「水」氣的個性來說，這一年最值得做的，是發揮你的靈活應變能力，主動爭取需要彈性的任務。", en: "Practically speaking, with Water energy, the most worthwhile move this year is putting your adaptability to work, actively volunteering for anything that needs flexibility." },
+  },
+  wealth: {
+    木: { zh: "以你「木」氣的個性來說，理財上最實際的做法是把投資自己的預算設個上限，別讓成長型支出吃掉存款。", en: "Practically speaking, with Wood energy, the smartest money move is capping your self-investment budget so growth spending doesn't eat your savings." },
+    火: { zh: "以你「火」氣的個性來說，理財上最實際的做法是替衝動消費設一個緩衝期，讓花錢的決定更踏實。", en: "Practically speaking, with Fire energy, the smartest money move is building in a buffer before impulse purchases, so spending decisions land more solidly." },
+    土: { zh: "以你「土」氣的個性來說，理財上最實際的做法是適度承擔一點可控風險，別讓過度保守錯過複利機會。", en: "Practically speaking, with Earth energy, the smartest money move is taking on a bit of controlled risk, so caution doesn't cost you compounding." },
+    金: { zh: "以你「金」氣的個性來說，理財上最實際的做法是替猶豫已久的財務決定設一個明確期限，別讓完美主義拖延行動。", en: "Practically speaking, with Metal energy, the smartest money move is setting a real deadline on a financial decision you've been sitting on, instead of letting perfectionism stall you." },
+    水: { zh: "以你「水」氣的個性來說，理財上最實際的做法是定期整理收支，把分散的財務狀況集中看清楚。", en: "Practically speaking, with Water energy, the smartest money move is regularly reviewing your finances, pulling scattered income and spending into one clear view." },
+  },
+  health: {
+    木: { zh: "以你「木」氣的個性來說，健康上最該注意的是情緒累積的壓力，記得替自己安排真正放鬆的時間。", en: "Practically speaking, with Wood energy, watch for stress building up emotionally — schedule real downtime for yourself." },
+    火: { zh: "以你「火」氣的個性來說，健康上最該注意的是心血管和熬夜的影響，情緒高漲時記得刻意放慢步調。", en: "Practically speaking, with Fire energy, watch your heart and your late nights — deliberately slow down when your emotions run high." },
+    土: { zh: "以你「土」氣的個性來說，健康上最該注意的是腸胃和代謝，別再用吃東西處理壓力。", en: "Practically speaking, with Earth energy, watch your gut and metabolism — stop using food to manage stress." },
+    金: { zh: "以你「金」氣的個性來說，健康上最該注意的是換季時的呼吸道和皮膚，提早預防會比事後治療省力。", en: "Practically speaking, with Metal energy, watch your lungs and skin as seasons change — prevention beats treatment here." },
+    水: { zh: "以你「水」氣的個性來說，健康上最該注意的是循環系統，別忽略手腳冰冷這類不痛不癢的小訊號。", en: "Practically speaking, with Water energy, watch your circulation — don't ignore small signs like cold hands and feet." },
+  },
+  family: {
+    木: { zh: "以你「木」氣的個性來說，家庭關係上最實際的做法是偶爾放下想幫大家變好的念頭，單純陪伴就好。", en: "Practically speaking, with Wood energy, the move for family is occasionally dropping the urge to help everyone improve — just being there is enough." },
+    火: { zh: "以你「火」氣的個性來說，家庭關係上最實際的做法是記得把舞台讓給比較安靜的家人，主動問問他們的近況。", en: "Practically speaking, with Fire energy, the move for family is handing the spotlight to quieter family members and actually asking how they're doing." },
+    土: { zh: "以你「土」氣的個性來說，家庭關係上最實際的做法是適度求助，別把所有責任都自己扛下來。", en: "Practically speaking, with Earth energy, the move for family is asking for help sometimes, instead of carrying every responsibility alone." },
+    金: { zh: "以你「金」氣的個性來說，家庭關係上最實際的做法是講道理之前先講感受，會讓溝通更順利。", en: "Practically speaking, with Metal energy, the move for family is leading with feelings before logic — it makes communication land better." },
+    水: { zh: "以你「水」氣的個性來說，家庭關係上最實際的做法是主動說出自己的意見，而不是一味配合家人的安排。", en: "Practically speaking, with Water energy, the move for family is actually voicing your own opinion, instead of just going along with everyone else's plan." },
+  },
+};
+
 const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Teaser> }[] = [
   { labelZh: "💞 感情關係", labelEn: "💞 Love & Relationships", data: TEASER_LOVE },
   { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: TEASER_CAREER },
@@ -18,34 +62,37 @@ const TEASER_TOPICS: { labelZh: string; labelEn: string; data: Record<string, Te
   { labelZh: "🏠 家庭關係", labelEn: "🏠 Family", data: TEASER_FAMILY },
 ];
 
-const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCategory, Teaser> }[] = [
-  { labelZh: "💞 感情關係", labelEn: "💞 Love & Relationships", data: LIUNIAN_LOVE },
-  { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: LIUNIAN_CAREER },
-  { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: LIUNIAN_WEALTH },
-  { labelZh: "🌿 健康", labelEn: "🌿 Health", data: LIUNIAN_HEALTH },
-  { labelZh: "🏠 家庭關係", labelEn: "🏠 Family", data: LIUNIAN_FAMILY },
+const LIUNIAN_TOPICS: { labelZh: string; labelEn: string; data: Record<LiunianCategory, Teaser>; actionKey: keyof typeof LIUNIAN_WUXING_ACTION }[] = [
+  { labelZh: "💞 感情關係", labelEn: "💞 Love & Relationships", data: LIUNIAN_LOVE, actionKey: "love" },
+  { labelZh: "💼 事業方向", labelEn: "💼 Career Direction", data: LIUNIAN_CAREER, actionKey: "career" },
+  { labelZh: "💰 財運", labelEn: "💰 Money & Wealth", data: LIUNIAN_WEALTH, actionKey: "wealth" },
+  { labelZh: "🌿 健康", labelEn: "🌿 Health", data: LIUNIAN_HEALTH, actionKey: "health" },
+  { labelZh: "🏠 家庭關係", labelEn: "🏠 Family", data: LIUNIAN_FAMILY, actionKey: "family" },
 ];
 
 function buildHeadingEmblem(): string {
   return `<div class="heading-emblem">${buildEmblemSvg()}</div>`;
 }
 
-const WUXING_EN_LABEL: Record<string, string> = { 木: "Wood", 火: "Fire", 土: "Earth", 金: "Metal", 水: "Water" };
-
 // Liunian content is keyed only by (day-master × year), so two people who
 // happen to share a day master get byte-for-byte identical liunian cards —
 // there are only 10 possible day masters. Prepend a line drawn from the
-// user's own zodiac + dominant wuxing (which come from their full birth
-// data, not just the day master) so same-day-master users still see
-// something distinctly theirs at the top of every liunian card.
-function personalizeLiunianTeaser(teaser: Teaser, profile: BirthProfile): Teaser {
-  const prefixZh = `身為${profile.zodiac.animal}年、八字「${profile.bazi.dominantWuxing}」氣旺的你，`;
-  const prefixEn = `As a ${profile.zodiac.animalEn} with ${WUXING_EN_LABEL[profile.bazi.dominantWuxing] ?? profile.bazi.dominantWuxing} energy running your Bazi, `;
+// user's own zodiac + dominant wuxing, and append a wuxing-specific closing
+// action tip (both come from their full birth data, not just the day
+// master), so same-day-master users see meaningfully different text at both
+// the start and end of every liunian card, not just a cosmetic intro line.
+function personalizeLiunianTeaser(teaser: Teaser, profile: BirthProfile, actionKey: keyof typeof LIUNIAN_WUXING_ACTION): Teaser {
+  const wux = profile.bazi.dominantWuxing;
+  const prefixZh = `身為${profile.zodiac.animal}年、八字「${wux}」氣旺的你，`;
+  const prefixEn = `As a ${profile.zodiac.animalEn} with ${WUXING_EN_LABEL[wux] ?? wux} energy running your Bazi, `;
   const visibleEn = teaser.visibleEn.charAt(0).toLowerCase() + teaser.visibleEn.slice(1);
+  const action = LIUNIAN_WUXING_ACTION[actionKey]?.[wux];
   return {
     ...teaser,
     visibleZh: prefixZh + teaser.visibleZh,
     visibleEn: prefixEn + visibleEn,
+    fullZh: action ? `${teaser.fullZh}${action.zh}` : teaser.fullZh,
+    fullEn: action ? `${teaser.fullEn} ${action.en}` : teaser.fullEn,
   };
 }
 
@@ -353,7 +400,7 @@ export function mountResult(root: HTMLElement) {
         buildTeaserCard(
           topic.labelZh,
           topic.labelEn,
-          personalizeLiunianTeaser(topic.data[thisYear.category], profile),
+          personalizeLiunianTeaser(topic.data[thisYear.category], profile, topic.actionKey),
           thisYearUnlocked,
         ),
       ).join("");
@@ -419,7 +466,7 @@ export function mountResult(root: HTMLElement) {
         buildTeaserCard(
           topic.labelZh,
           topic.labelEn,
-          personalizeLiunianTeaser(topic.data[nextYear.category], profile),
+          personalizeLiunianTeaser(topic.data[nextYear.category], profile, topic.actionKey),
           nextYearUnlocked,
         ),
       ).join("");
