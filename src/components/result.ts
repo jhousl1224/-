@@ -30,6 +30,25 @@ function buildHeadingEmblem(): string {
   return `<div class="heading-emblem">${buildEmblemSvg()}</div>`;
 }
 
+const WUXING_EN_LABEL: Record<string, string> = { 木: "Wood", 火: "Fire", 土: "Earth", 金: "Metal", 水: "Water" };
+
+// Liunian content is keyed only by (day-master × year), so two people who
+// happen to share a day master get byte-for-byte identical liunian cards —
+// there are only 10 possible day masters. Prepend a line drawn from the
+// user's own zodiac + dominant wuxing (which come from their full birth
+// data, not just the day master) so same-day-master users still see
+// something distinctly theirs at the top of every liunian card.
+function personalizeLiunianTeaser(teaser: Teaser, profile: BirthProfile): Teaser {
+  const prefixZh = `身為${profile.zodiac.animal}年、八字「${profile.bazi.dominantWuxing}」氣旺的你，`;
+  const prefixEn = `As a ${profile.zodiac.animalEn} with ${WUXING_EN_LABEL[profile.bazi.dominantWuxing] ?? profile.bazi.dominantWuxing} energy running your Bazi, `;
+  const visibleEn = teaser.visibleEn.charAt(0).toLowerCase() + teaser.visibleEn.slice(1);
+  return {
+    ...teaser,
+    visibleZh: prefixZh + teaser.visibleZh,
+    visibleEn: prefixEn + visibleEn,
+  };
+}
+
 function buildTeaserCard(labelZh: string, labelEn: string, teaser: Teaser, unlocked: boolean): string {
   if (unlocked) {
     return `
@@ -331,7 +350,12 @@ export function mountResult(root: HTMLElement) {
 
     function renderThisYearCards() {
       thisYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[thisYear.category], thisYearUnlocked),
+        buildTeaserCard(
+          topic.labelZh,
+          topic.labelEn,
+          personalizeLiunianTeaser(topic.data[thisYear.category], profile),
+          thisYearUnlocked,
+        ),
       ).join("");
 
       if (thisYearUnlocked) {
@@ -392,7 +416,12 @@ export function mountResult(root: HTMLElement) {
 
     function renderNextYearCards() {
       nextYearCards.innerHTML = LIUNIAN_TOPICS.map((topic) =>
-        buildTeaserCard(topic.labelZh, topic.labelEn, topic.data[nextYear.category], nextYearUnlocked),
+        buildTeaserCard(
+          topic.labelZh,
+          topic.labelEn,
+          personalizeLiunianTeaser(topic.data[nextYear.category], profile),
+          nextYearUnlocked,
+        ),
       ).join("");
 
       if (nextYearUnlocked) {
